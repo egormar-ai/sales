@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сайт жилого проекта. Предложение на разработку</title>
+<!--
+  Красным подчёркиванием (.tbd) помечены места, требующие заполнения.
+  Смета: 6 200 000 руб. Главная — 45 календарных дней, итоговый продукт — 125 календарных дней. Трудоёмкость в документе не раскрывается.
+  Печать: Ctrl/Cmd+P, ландшафтная ориентация, фон включить.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#E9EDE7;
+  --paper-lift:#F4F6F2;
+  --ink:#16202B;
+  --slate:#5C6B63;
+  --rule:#C2CCC3;
+  --rule-soft:#D6DED6;
+  --red:#A32A21;
+  --gut:104px;
+  --pad:clamp(20px,3.2vw,52px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"IBM Plex Sans",system-ui,sans-serif;
+  font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;
+}
+.deck{height:100vh;height:100dvh;overflow-y:auto}
+.slide{
+  min-height:100vh;min-height:100dvh;
+  display:grid;grid-template-columns:var(--gut) minmax(0,1fr);
+  border-bottom:1px solid var(--rule);
+}
+.gut{
+  border-right:3px double var(--rule);padding:var(--pad) 14px;
+}
+.gut b{font-family:"Source Serif 4",Georgia,serif;font-weight:400;font-size:30px;line-height:1;color:var(--slate);font-variant-numeric:tabular-nums}
+.gut span{display:block;margin-top:10px;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--slate);writing-mode:vertical-rl;transform:rotate(180deg)}
+
+.thesis{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 28px;align-items:end;padding-bottom:12px;border-bottom:1px solid var(--ink)}
+.thesis p{margin:0;font-family:"Source Serif 4",Georgia,serif;font-size:clamp(1rem,1.45vw,1.28rem);line-height:1.32;max-width:66ch;color:var(--ink)}
+.thesis .fig{text-align:right;white-space:nowrap}
+.thesis .fig b{display:block;font-family:"Source Serif 4",Georgia,serif;font-weight:600;font-size:clamp(1.25rem,2.1vw,1.8rem);line-height:1.05;font-variant-numeric:tabular-nums}
+.thesis .fig span{display:block;font-size:10.5px;color:var(--slate);max-width:26ch;white-space:normal;margin-top:3px;margin-left:auto}
+.thesis .fig.red b{color:var(--red)}
+
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.figs>div{border:1px solid var(--rule);background:var(--paper-lift);padding:10px 12px}
+.figs b{display:block;font-family:"Source Serif 4",Georgia,serif;font-weight:600;font-size:clamp(1.2rem,2vw,1.7rem);line-height:1.05;font-variant-numeric:tabular-nums}
+.figs span{display:block;font-size:10.5px;color:var(--slate);margin-top:4px}
+.figs>div.red{border-color:var(--red)}
+.figs>div.red b{color:var(--red)}
+
+table.zebra tbody tr:nth-child(even) td{background:var(--paper-lift)}
+
+.tip{position:relative;display:inline-block;font-size:10.5px;color:var(--slate);border-bottom:1px dotted var(--slate);cursor:help;line-height:1.3}
+.tip::before{content:'i';display:inline-block;width:1.2em;height:1.2em;line-height:1.2em;text-align:center;border:1px solid var(--slate);border-radius:50%;font-size:9px;margin-right:5px;font-style:italic;vertical-align:1px}
+.tip::after{
+  content:attr(data-tip);position:absolute;left:0;bottom:calc(100% + 7px);z-index:30;
+  width:min(62ch,80vw);background:var(--ink);color:var(--paper);padding:9px 12px;
+  font-size:11px;line-height:1.45;font-style:normal;text-align:left;white-space:normal;
+  opacity:0;visibility:hidden;transition:opacity .12s;pointer-events:none;
+}
+.tip:hover::after,.tip:focus::after,.tip:focus-visible::after{opacity:1;visibility:visible}
+.tip.inl{text-transform:none;letter-spacing:0;font-weight:400;margin-left:6px}
+.thesis+.tip,.stack>.tip,.body>.tip{align-self:flex-start}
+.tier-h .tip{margin-left:8px;font-size:10px;vertical-align:baseline}
+footer .tip{margin-left:8px}
+.panel .tip{margin-top:4px}
+.acc details>.in>table{margin-top:2px}
+.acc .in table{color:var(--ink)}
+.acc .in .opts{color:var(--ink)}
+.body{padding:var(--pad);display:flex;flex-direction:column;gap:clamp(12px,1.6vh,24px);min-width:0}
+
+h1,h2{font-family:"Source Serif 4",Georgia,serif;font-weight:600;margin:0;letter-spacing:-.01em}
+h1{font-size:clamp(2rem,3.8vw,3.2rem);line-height:1.08;max-width:24ch}
+h2{font-size:clamp(1.4rem,2.4vw,1.95rem);line-height:1.14;max-width:30ch}
+h2.wide{max-width:40ch}
+.lead{max-width:80ch;color:var(--slate);font-size:clamp(.86rem,1vw,.98rem)}
+p{margin:0}
+.tbd{color:var(--red);border-bottom:1px dashed var(--red)}
+
+table{width:100%;border-collapse:collapse;font-size:clamp(.72rem,.84vw,.86rem)}
+th{text-align:left;font-weight:500;color:var(--slate);font-size:11.5px;padding:0 12px 7px 0;border-bottom:1px solid var(--rule);vertical-align:bottom}
+td{padding:8px 12px 8px 0;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.num,th.num{width:2.4em;color:var(--slate);font-variant-numeric:tabular-nums}
+td.ref,th.ref{width:8em;color:var(--slate);white-space:nowrap}
+td.sum,th.sum{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.key{width:14em;font-weight:500}
+tr.total td{border-top:3px double var(--rule);border-bottom:0;padding-top:10px;font-weight:500}
+table.tight td{padding:5px 12px 5px 0}
+
+.cols{display:grid;gap:clamp(14px,1.8vw,30px);grid-template-columns:repeat(auto-fit,minmax(228px,1fr));align-items:start}
+.cols.two{grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr))}
+.stack{display:flex;flex-direction:column;gap:9px;min-width:0}
+.stack h3{margin:0;font-size:12px;font-weight:500;color:var(--ink);padding-bottom:5px;border-bottom:1px solid var(--rule)}
+.panel{--pp:clamp(12px,1.3vw,16px);border:1px solid var(--rule);padding:0 var(--pp) var(--pp)}
+.panel>h3{
+  margin:0 calc(-1*var(--pp)) 3px;padding:10px var(--pp);
+  border-bottom:3px double var(--rule);background:var(--paper-lift);
+}
+.cols.two>.panel+.panel{margin-top:0}
+@media (max-width:980px){.panel+.panel{margin-top:6px}}
+ul,ol{margin:0;padding-left:16px}
+li{font-size:clamp(.74rem,.86vw,.86rem);margin-bottom:6px}
+li::marker{color:var(--rule)}
+.plain{list-style:none;padding:0}
+.plain li{padding-bottom:8px;border-bottom:1px solid var(--rule-soft);margin:0 0 8px}
+.note{font-size:11.5px;color:var(--slate);max-width:86ch;padding-top:6px;border-top:1px solid var(--rule)}
+.mono-note{font-size:10.5px;color:var(--slate);line-height:1.4}
+
+/* интерактивная навигация */
+.jump{
+  appearance:none;border:1px solid var(--ink);background:var(--paper);color:var(--ink);
+  font:inherit;font-size:11px;padding:3px 9px;cursor:pointer;
+}
+.jump:hover{background:var(--ink);color:var(--paper)}
+ol.contents{padding-left:20px}
+ol.contents li{margin-bottom:7px;font-size:clamp(.84rem,.98vw,.96rem)}
+ol.contents button{
+  appearance:none;background:none;border:0;padding:0;font:inherit;color:var(--ink);
+  cursor:pointer;text-align:left;border-bottom:1px solid var(--rule);
+}
+ol.contents button:hover{border-bottom-color:var(--red);color:var(--red)}
+ol.contents em{font-style:normal;color:var(--slate);font-size:.85em}
+
+/* вызовы */
+.chal{display:grid;gap:9px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.chal article{border:1px solid var(--rule);background:var(--paper-lift);padding:11px 13px;display:flex;flex-direction:column;gap:7px}
+.chal h3{margin:0;font-size:13px;font-weight:500}
+.chal p{font-size:11.5px;color:var(--slate);line-height:1.4}
+.chal footer{margin-top:auto}
+
+.tiles{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(158px,1fr))}
+.tile{background:var(--paper-lift);border:1px solid var(--rule);padding:9px 11px}
+.tile b{display:block;font-weight:500;font-size:12.5px;margin-bottom:3px}
+.tile span{font-size:11px;color:var(--slate);line-height:1.35;display:block}
+.tile.dash{background:none;border-style:dashed;color:var(--slate);font-size:11px;line-height:1.35}
+.tile.mark{border:1.4px solid var(--red)}
+.tile.mark b{color:var(--red)}
+.monthly{display:flex;flex-direction:column;gap:6px;font-size:11.5px}
+.monthly>div{display:grid;grid-template-columns:1fr auto;gap:9px;align-items:baseline}
+.monthly strong{font-weight:500;font-variant-numeric:tabular-nums}
+.monthly>div.mark{border-left:2px solid var(--red);padding-left:7px}
+.monthly>div.mark strong{color:var(--red)}
+
+/* модель системы */
+.arch{display:grid;grid-template-columns:minmax(0,1fr) 190px;gap:16px;align-items:start}
+.arch-main{display:flex;flex-direction:column}
+.tier{border:1px solid var(--rule);background:var(--paper-lift);padding:10px 12px;position:relative}
+.tier+.tier::before{
+  content:'';position:absolute;left:50%;top:-5px;width:9px;height:9px;z-index:1;
+  background:var(--paper-lift);border-right:1px solid var(--slate);border-bottom:1px solid var(--slate);
+  transform:translateX(-50%) rotate(45deg);
+}
+.tier+.tier{border-top:0}
+.tier-h{font-size:11px;color:var(--ink);margin-bottom:7px}
+.tier-h b{color:var(--slate);font-weight:400}
+.row4{display:grid;gap:7px;grid-template-columns:repeat(4,1fr)}
+.row2{display:grid;gap:7px;grid-template-columns:repeat(2,1fr)}
+.row3{display:grid;gap:7px;grid-template-columns:repeat(3,1fr)}
+.box{border:1px solid var(--ink);background:var(--paper);padding:6px 9px;font-size:11px;line-height:1.3}
+.box b{display:block;font-weight:500;font-size:11.5px}
+.box span{color:var(--slate);font-size:10.5px}
+.box.d{border-style:dashed;border-color:var(--slate);color:var(--slate)}
+.dom{display:grid;gap:6px;grid-template-columns:repeat(4,1fr)}
+.dom-grp{border-left:2px solid var(--ink);padding-left:8px}
+.dom-grp h4{margin:0 0 4px;font-size:10.5px;font-weight:500;color:var(--ink)}
+.dom-grp ul{list-style:none;padding:0}
+.dom-grp li{font-size:10.5px;line-height:1.3;padding:2px 0;border-bottom:1px solid var(--rule-soft);margin:0}
+.dom-grp li:last-child{border-bottom:0}
+.dom-grp li i{font-style:normal;color:var(--slate);display:block;font-size:9.5px}
+.dom-grp li .exc2,.box .exc2{font-style:normal;color:var(--red);font-weight:600}
+.dom-grp li.hot{font-weight:500}
+.side{border:1px dashed var(--slate);padding:10px}
+.side h4{margin:0 0 7px;font-size:11px;font-weight:500;color:var(--ink)}
+.side ul{padding:0}
+.side li{list-style:none;font-size:10.5px;line-height:1.3;padding:4px 0;border-bottom:1px solid var(--rule-soft);color:var(--slate);margin:0}
+.side li:last-child{border-bottom:0}
+.side li b{color:var(--ink);font-weight:500;display:block}
+
+/* переключатели последовательностей */
+.flow{display:flex;flex-wrap:wrap}
+.flow button{
+  appearance:none;font:inherit;text-align:left;cursor:pointer;
+  border:1px solid var(--rule);background:var(--paper-lift);padding:7px 10px;
+  font-size:11px;flex:1 1 auto;min-width:112px;color:var(--ink);
+}
+.flow button+button{border-left:0}
+.flow button b{display:block;font-weight:500;font-size:11.5px}
+.flow button span{color:var(--slate);font-size:10px}
+.flow button[aria-selected="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.flow button[aria-selected="true"] b,.flow button[aria-selected="true"] span{color:var(--paper)}
+.flow-out{border:1px solid var(--rule);border-top:0;background:var(--paper);padding:10px 12px;font-size:11.5px;color:var(--slate);min-height:52px}
+.flow-out b{color:var(--ink);font-weight:500}
+
+/* календарный план */
+.gantt{display:grid;grid-template-columns:230px repeat(18,1fr);gap:3px;font-size:10.5px;align-items:center}
+.gantt .lab{color:var(--ink);padding-right:8px;font-size:11px}
+.gantt .hd{color:var(--slate);text-align:center;font-size:9.5px;border-bottom:1px solid var(--rule);padding-bottom:3px}
+.gantt .hd.rel{color:var(--red);font-weight:500}
+.gantt .bar{height:14px;background:var(--ink)}
+.gantt .bar.soft{background:var(--slate);opacity:.45}
+.gantt .bar.acc{background:var(--red)}
+.gantt .mark{height:14px;border-left:2px solid var(--red)}
+
+/* смета */
+.bars{display:flex;flex-direction:column;gap:5px;font-size:11px}
+.bars div{display:grid;grid-template-columns:190px 1fr 90px;gap:10px;align-items:center}
+.bars i{font-style:normal;height:13px;background:var(--ink);display:block}
+.bars i.acc{background:var(--red);opacity:.75}
+.bars b{font-weight:400;text-align:right;font-variant-numeric:tabular-nums;color:var(--slate)}
+.opts{display:flex;flex-direction:column;gap:6px;font-size:11.5px}
+.opts label{display:grid;grid-template-columns:16px 1fr auto;gap:9px;align-items:baseline;cursor:pointer}
+.opts input{margin:0;accent-color:var(--red)}
+.opts em{font-style:normal;color:var(--slate);font-variant-numeric:tabular-nums;font-size:11px}
+.opts strong{font-weight:500;font-variant-numeric:tabular-nums}
+.totbox{border:1px solid var(--ink);background:var(--paper-lift);padding:11px 13px;display:flex;flex-direction:column;gap:4px}
+.totbox.wide{flex-direction:row;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:6px 18px}
+.totbox .big{font-family:"Source Serif 4",Georgia,serif;font-size:clamp(1.4rem,2.4vw,2rem);font-variant-numeric:tabular-nums;line-height:1.1}
+.totbox span{font-size:11px;color:var(--slate)}
+
+.acc{display:flex;flex-direction:column}
+.acc details{border:1px solid var(--rule);background:var(--paper-lift)}
+.acc details+details{border-top:0}
+.acc summary{
+  cursor:pointer;list-style:none;padding:8px 11px;font-size:12px;font-weight:500;
+  display:flex;gap:9px;align-items:baseline;
+}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary::before{content:'+';color:var(--ink);font-weight:400;width:.75em;flex:none}
+.acc details[open] summary::before{content:'\2212'}
+.acc details[open] summary{border-bottom:1px solid var(--rule)}
+.acc summary:hover{color:var(--red)}
+.acc .nda{
+  font-style:normal;color:var(--slate);font-size:9.5px;border:1px solid var(--slate);
+  padding:0 4px;margin-left:auto;flex:none;letter-spacing:.04em;
+}
+.acc .tag{
+  font-style:normal;color:var(--slate);font-size:9.5px;border:1px solid var(--rule);
+  padding:0 5px;margin-left:auto;flex:none;letter-spacing:.03em;background:var(--paper);
+}
+.acc .in{padding:9px 12px 11px 31px;font-size:11.5px;color:var(--slate);line-height:1.45}
+.acc .in b{color:var(--ink);font-weight:500}
+.acc .exc{color:var(--red);font-weight:600;flex:none}
+.acc details.k summary{font-size:13.5px;padding:10px 11px}
+.acc details.hi{border:2px solid var(--red);background:var(--paper)}
+.acc details.hi summary{font-weight:600;font-size:13px}
+.acc details.hi[open] summary{border-bottom-color:var(--red)}
+.acc details.hi .in{color:var(--ink)}
+.acc details.hi .in .keys li{color:var(--slate)}
+.acc details.hi .in .keys li b{color:var(--ink)}
+.acc details.hi .in .keys li b.acc-b{color:var(--red)}
+.acc .in a{color:var(--ink);text-decoration:underline;text-underline-offset:2px}
+.acc figure{margin:11px 0 0}
+.acc figcaption{font-size:10px;color:var(--slate);line-height:1.35;padding-top:5px}
+.lead b{color:var(--ink);font-weight:500}
+.sub{font-size:10.5px;color:var(--slate);letter-spacing:.02em;text-transform:uppercase;letter-spacing:.06em}
+.mini{list-style:none;padding:0;margin:0}
+.mini li{
+  display:grid;grid-template-columns:7em 1fr;gap:10px;font-size:11.5px;line-height:1.4;
+  padding:5px 0;border-bottom:1px solid var(--rule-soft);margin:0;color:var(--slate);
+}
+.mini li:last-child{border-bottom:0}
+.mini li b{font-weight:500;color:var(--ink)}
+.keys{list-style:none;padding:0;margin:0;display:grid;gap:4px}
+.keys li{
+  font-size:11.5px;line-height:1.35;margin:0;padding-left:12px;position:relative;color:var(--slate);
+}
+.keys li::before{content:'';position:absolute;left:0;top:.5em;width:5px;height:1px;background:var(--ink)}
+.keys li b{font-weight:500;color:var(--ink)}
+.steps{display:flex;flex-wrap:wrap;gap:4px}
+.steps span{
+  border:1px solid var(--rule);background:var(--paper);font-size:10.5px;
+  padding:3px 7px;color:var(--ink);display:flex;gap:5px;
+}
+.steps span i{font-style:normal;color:var(--slate);font-variant-numeric:tabular-nums}
+.gain{border:1px solid var(--ink);background:var(--paper-lift);padding:14px 16px;max-width:84ch}
+.gain b{
+  display:block;margin-bottom:6px;font-weight:600;
+  font-family:"Source Serif 4",Georgia,serif;font-size:clamp(1.05rem,1.6vw,1.35rem);line-height:1.2;
+}
+.gain p{font-size:12.5px;color:var(--slate)}
+
+.title-meta{display:grid;grid-template-columns:auto 1fr;gap:5px 20px;font-size:12.5px;max-width:64ch;margin-top:6px}
+.title-meta dt{color:var(--slate)}
+.title-meta dd{margin:0}
+
+.counter{position:fixed;right:14px;bottom:12px;font-size:11px;color:var(--slate);background:var(--paper);padding:3px 7px;border:1px solid var(--rule);font-variant-numeric:tabular-nums;z-index:9}
+:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+svg{display:block;max-width:100%;height:auto}
+
+@media (max-width:820px){
+  :root{--gut:52px}
+  .gut span{display:none}
+  .thesis{grid-template-columns:1fr}
+  .thesis .fig{text-align:left}
+  .thesis .fig span{margin-left:0}
+  .slide{min-height:auto}
+  .deck{height:auto;overflow:visible}
+  .arch{grid-template-columns:1fr}
+  .dom,.row4{grid-template-columns:repeat(2,1fr)}
+  .gantt{grid-template-columns:130px repeat(18,1fr)}
+  .bars div{grid-template-columns:130px 1fr 80px}
+}
+@media print{
+  @page{size:A4 landscape;margin:9mm}
+  .tip{display:block;border:0;color:var(--slate)}
+  .tip::before{display:none}
+  .tip::after{position:static;display:block;opacity:1;visibility:visible;width:auto;background:none;color:var(--slate);padding:2px 0 0;font-size:9pt}
+  .acc details>*:not(summary){display:block}
+  .acc summary::before{content:''}
+  body{background:#fff;font-size:9.2pt}
+  .deck{height:auto;overflow:visible}
+  .slide{min-height:auto;page-break-after:always;border:0}
+  .counter,.jump{display:none}
+  h2{font-size:16pt}h1{font-size:25pt}
+}
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+<!-- 1 -->
+<section class="slide" id="s1">
+  <div class="gut"><b>01</b><span>Условие</span></div>
+  <div class="body">
+    <h2>Коммерческое предложение</h2>
+    <div class="figs">
+      <div class="red"><b>6 200 000 руб.</b><span>базовый объём без рендеров, при допущениях слайда 8</span></div>
+      <div><b>4 недели</b><span>предпроект: аналитика, прототипы, дизайн главной</span></div>
+      <div><b>125 дней</b><span>общий срок проекта от начала первого этапа</span></div>
+    </div>
+    <ol class="contents">
+      <li><button data-goto="s2">Ключевые вызовы проекта</button> <em>— шесть требований, определяющих устройство сайта</em></li>
+      <li><button data-goto="s4">Техническая методология</button> <em>— бюджет производительности, контентная модель, каталог как проекция CRM</em></li>
+      <li><button data-goto="s5">Модель системы</button> <em>— сайт, контентное ядро, каталог, хранилища, внешние границы</em></li>
+      <li><button data-goto="s3">Релевантный опыт и подход к работе</button> <em>— проекты, принципы, состав команды</em></li>
+      <li><button data-goto="s6">Этапы, два релиза, приёмка</button> <em>— календарный план на 18 недель и критерии готовности</em></li>
+      <li><button data-goto="s7">Предложения к первой версии</button> <em>— позиции, увеличивающие число заявок</em></li>
+      <li><button data-goto="s8">Смета: 6 200 000 руб.</button> <em>— разбивка по этапам и блокам, опции</em></li>
+      <li><button data-goto="s9">Данные и решения, требуемые от заказчика</button></li>
+      <li><button data-goto="s10">Дальнейшие шаги</button></li>
+    </ol>
+    <dl class="title-meta">
+      <dt>Заказчик</dt><dd><span class="tbd">Застройщик</span>, сайт жилого проекта <span class="tbd">«Название проекта»</span>: две очереди, бизнес-класс и премиум</dd>
+      <dt>Исполнитель</dt><dd>Bang Digital, версия документа 1.0 от 18.09.2026</dd>
+      <dt>Стоимость и срок</dt><dd>6 200 000 руб. Главная страница выпускается в продакшен через 45 календарных дней, итоговый продукт — через 125 календарных дней от начала первого этапа</dd>
+      <dt>Основание</dt><dd>Техническое задание на расчёт стоимости сайта: «Бизнес-функциональные требования к продукту» и «Общие и технические требования к продукту»</dd>
+    </dl>
+    <span class="tip" tabindex="0" data-tip="Пункты содержания и карточки вызовов открывают соответствующие разделы. Схемы, раскрывающиеся блоки и смета интерактивны. Навигация по документу выполняется клавишами со стрелками; при печати в PDF раскрывающиеся блоки разворачиваются.">Как читать документ</span>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="slide" id="s2">
+  <div class="gut"><b>02</b><span>Проблема</span></div>
+  <div class="body">
+    <h2 class="wide">Ключевые вызовы проекта</h2>
+    <div class="thesis"><p>Ниже перечислены требования технического задания, которые определяют устройство сайта и стоимость ошибки.</p><div class="fig"><b>6</b><span>требований технического задания</span></div></div>
+    <div class="chal">
+      <article>
+        <h3>Wow-эффект при заданном бюджете скорости</h3>
+        <p>Видео в hero, анимация, интерактивный генплан и 3D-туры сочетаются с требованиями к скорости: PageSpeed выше 80 на телефоне, интерфейс за 1,5 секунды, графика за 2 секунды. Скорость считается вместе с внешними скриптами: Метрика, UIS, Ботфактор, Смартис. Каждый добавленный виджет расходует общий бюджет.</p>
+        <footer><button class="jump" data-open="d-speed">Слайд 3: бюджет производительности</button></footer>
+      </article>
+      <article>
+        <h3>Источник данных о лотах: Microsoft Dynamics</h3>
+        <p>Цены, статусы и остатки меняются ежедневно в Microsoft Dynamics. Показ проданного лота или вчерашней цены не допускается, подбор по двенадцати параметрам выполняется мгновенно. Контракт API в задании не описан.</p>
+        <footer><button class="jump" data-open="d-crm">Слайд 3: каталог как проекция CRM</button></footer>
+      </article>
+      <article>
+        <h3>Запрет хардкода: редактирование из административной панели</h3>
+        <p>Тексты, рендеры, видео, ссылки на туры и потоки, программы покупки, пины на карте, robots.txt. Программы покупки будут добавляться и заменяться после запуска. Если блок описан кодом, каждая правка маркетинга становится выпуском версии.</p>
+        <footer><button class="jump" data-open="d-content">Слайд 3: контентная модель</button></footer>
+      </article>
+      <article>
+        <h3>Интерактивные модули внешнего подрядчика</h3>
+        <p>Генплан, шахматка, 3D-туры и макет транспортной доступности приходят от virtualland как встраиваемые виджеты. Они должны выглядеть частью сайта и вести на страницы лотов и в выборщик.</p>
+        <footer><button class="jump" data-open="d-widgets">Слайд 3: контракт с виджетами</button></footer>
+      </article>
+      <article>
+        <h3>Пять брейкпоинтов, складные экраны, шесть браузеров</h3>
+        <p>От 320px на складных смартфонах до широких экранов, обе ориентации планшетов, «почти квадратный» вьюпорт при раскрытии, работа под VPN и блокировщиком рекламы. Премиальный минимализм сохраняется во всех перечисленных состояниях.</p>
+        <footer><button class="jump" data-open="d-adaptive">Слайд 3: дизайн-система и адаптивы</button></footer>
+      </article>
+      <article>
+        <h3>Два релиза на одной архитектуре</h3>
+        <p>Главная страница выходит через 45 дней, остальные страницы — через 125. Главная собирается на каркасе итогового продукта: генплан, карта, форма заявки и административная панель с первого релиза работают на том каркасе, который затем несёт каталог и лоты.</p>
+        <footer><button class="jump" data-open="d-stages">Слайд 3: порядок работ</button> <span class="tip" tabindex="0" data-tip="Административная панель отнесена к первому релизу: без неё главная страница не редактируется, а заявки не сохраняются. В смете она выделена отдельным блоком второго этапа.">Примечание об административной панели</span></footer>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="slide" id="s4">
+  <div class="gut"><b>03</b><span>Решение</span></div>
+  <div class="body">
+    <h2 class="wide">Техническая методология</h2>
+    <div class="thesis"><p>Ниже описаны три инструмента, применяемые на этом проекте, и указано, какой из вызовов слайда 2 каждый из них закрывает.</p><div class="fig"><b>80+</b><span>PageSpeed на каждом релизе, замер встроен в сборку</span></div></div>
+    <div class="cols">
+
+      <div class="stack">
+        <h3>Бюджет производительности</h3>
+        <p class="lead">Скорость задаётся ограничением, которое действует с первого макета. Каждый блок и каждый внешний скрипт получает лимит веса и момент загрузки, а сборка проверяет лимиты автоматически.</p>
+        <ul class="keys">
+          <li><b>Серверный рендер и статическая генерация.</b> Страницы отдаются готовым HTML с CDN, каталог пересобирается инкрементально по событию из CRM</li>
+          <li><b>Медиа-пайплайн.</b> Рендеры и планировки автоматически получают нужные размеры и форматы, видео hero стартует с постера и подгружается после интерактивности</li>
+          <li><b>Порядок загрузки внешних скриптов.</b> Виджеты virtualland и счётчики загружаются при приближении к блоку или после готовности страницы и не участвуют в критическом пути</li>
+          <li><b>Lighthouse в сборке.</b> Каждый релиз измеряется на мобильном профиле со включёнными счётчиками; падение ниже порога блокирует выпуск</li>
+        </ul>
+      </div>
+
+      <div class="stack">
+        <h3>Каталог как проекция CRM</h3>
+        <p class="lead">Сайт не ведёт собственный источник данных о лотах. Он хранит проекцию данных Microsoft Dynamics, обновляемую по расписанию и по событию, и дополняет её тем, чего в CRM нет: планировками, видами из окна, УТП.</p>
+        <div>
+          <div class="flow" id="sd" data-out="sd-out">
+            <button data-t="Номенклатура лотов, цены, статусы и сроки сдачи ведутся в Microsoft Dynamics. Сайт читает их по API, вручную на сайте эти поля не редактируются ни одной ролью." aria-selected="true"><b>CRM</b><span>единственный источник</span></button>
+            <button data-t="Инкрементальная синхронизация каждые несколько минут и полная сверка ночью. Снятый с продажи лот исчезает из каталога в пределах интервала, изменение цены сохраняется в истории. Сбой API не ломает сайт: показывается последняя успешная проекция с отметкой времени." aria-selected="false"><b>Синхронизация</b><span>расписание и сверка</span></button>
+            <button data-t="Проекция индексируется под двенадцать фильтров жилья и девять фильтров коммерции. Подбор отвечает из индекса без обращения к CRM, состояние фильтров живёт в URL и открывается по ссылке." aria-selected="false"><b>Каталог</b><span>индекс подбора</span></button>
+            <button data-t="Страница лота собирается из двух источников: параметры из проекции CRM, визуалы из административной панели по коду лота: планировка, с мебелью, на этаже, вид из окна. Движение солнца рассчитывается по ориентации корпуса и этажу." aria-selected="false"><b>Лот</b><span>CRM плюс медиа</span></button>
+            <button data-t="PDF лота и избранное строятся на тех же данных, поэтому в PDF никогда не попадает устаревшая цена. Генплан и шахматка virtualland ведут на страницу лота по тому же коду CRM." aria-selected="false"><b>PDF, избранное</b><span>те же данные</span></button>
+            <button data-t="Заявка с контекстом лота уходит в Dynamics и UIS в течение минуты и одновременно сохраняется в административной панели. При недоступности CRM заявка сохраняется в очереди: отправка повторяется, менеджер получает уведомление." aria-selected="false"><b>Заявка</b><span>обратно в CRM</span></button>
+          </div>
+          <div class="flow-out" id="sd-out">Номенклатура лотов, цены, статусы и сроки сдачи ведутся в Microsoft Dynamics. Сайт читает их по API, вручную на сайте эти поля не редактируются ни одной ролью.</div>
+        </div>
+        <span class="tip" tabindex="0" data-tip="Объём работ описан теми же формулировками, что и смета, поэтому сокращение состава считается построчно и не требует пересмотра архитектурных решений.">Связь со сметой</span>
+      </div>
+
+      <div class="stack">
+        <h3>Контентная модель и дизайн-система</h3>
+        <p class="lead">Страница описывается упорядоченным набором блоков известных типов. Тип блока разрабатывается один раз, далее маркетолог собирает из типов любые страницы и наполняет их без разработчика.</p>
+        <ul class="keys">
+          <li><b>Блок как единица.</b> Hero, галерея рендеров, карточки УТП, карта с пинами, генплан, ФОС, новости — каждый тип имеет поля, превью и адаптивы. На старте предусмотрено более 20 типов</li>
+          <li><b>Справочники вместо кода.</b> Программы покупки, категории и пины карты, команда, награды, этапы стройки заводятся записями и появляются на всех связанных страницах</li>
+          <li><b>Дизайн-система как контракт.</b> Токены цвета, типографики и отступов общие для макетов и кода. Пять брейкпоинтов и складные экраны описаны правилами компонентов, поэтому отдельные макеты для каждого блока не выпускаются</li>
+        </ul>
+        <span class="tip" tabindex="0" data-tip="Типы блоков, черновики, медиатека и права ролей реализуются средствами коробочной CMS и заново не разрабатываются. Ограничение решения: новый тип блока требует разработки. Поэтому состав типов утверждается на первом этапе по прототипам всех страниц, включая внутренние.">Ограничение решения</span>
+      </div>
+    </div>
+
+    <h3 style="margin:0;font-size:12px;font-weight:500;color:var(--ink);padding-bottom:5px;border-bottom:1px solid var(--rule)">Соответствие решений вызовам проекта</h3>
+    <div class="cols two">
+      <div class="acc">
+          <details class="k" id="d-speed">
+            <summary>Wow-эффект при заданном бюджете скорости <span class="exc">!</span> <span class="tag">Бюджет производительности</span></summary>
+            <div class="in">Готовая страница отображается и становится управляемой за полторы секунды. Тяжёлые элементы загружаются после этого момента: видео, интерактивный генплан, счётчики. Для этого каждый элемент страницы получает своё место в очереди: сначала текст и постер hero, затем шрифты и элементы управления, затем видео, затем виджеты при приближении к ним, и в самом конце внешние скрипты.<br><br>Бюджет фиксируется в цифрах: <b>вес критического пути</b>, <b>момент интерактивности</b> и <b>момент полной загрузки графики</b> отдельно для десктопа и для 4G. Сборка измеряет каждый релиз инструментом Lighthouse на мобильном профиле со включёнными счётчиками и блокирует выпуск, если показатель падает ниже 80. Скрипты, подключаемые заказчиком через Яндекс Tag Manager, попадают в тот же замер, поэтому их влияние на скорость фиксируется на ближайшем релизе.<br><br><b>Результат:</b> Требование «более 80% в Google Insights» проверяется автоматически на каждом релизе. Видео и анимация присутствуют и находятся вне критического пути загрузки.<figure>
+<svg viewBox="0 0 620 300" role="img" aria-label="Схема очереди загрузки страницы и бюджета производительности">
+  <g stroke="var(--rule)" stroke-width="1" fill="none">
+    <path d="M150 20 V266"/><path d="M270 20 V266"/><path d="M390 20 V266"/><path d="M510 20 V266"/>
+  </g>
+  <g stroke="var(--red)" stroke-width="1.3" fill="none" stroke-dasharray="4 3">
+    <path d="M330 14 V270"/><path d="M390 14 V270"/>
+  </g>
+  <g font-family="IBM Plex Sans, sans-serif" fill="var(--slate)" font-size="9.5">
+    <text x="150" y="14" text-anchor="middle">0,5 с</text>
+    <text x="270" y="14" text-anchor="middle">1 с</text>
+    <text x="510" y="14" text-anchor="middle">2 с</text>
+  </g>
+  <g font-family="IBM Plex Sans, sans-serif" fill="var(--red)" font-size="9.5">
+    <text x="330" y="284" text-anchor="middle">1,5 с: блоки и управление</text>
+    <text x="410" y="296" text-anchor="middle">2 с: графика, десктоп</text>
+  </g>
+  <g fill="var(--ink)">
+    <rect x="30" y="30" width="96" height="16"/>
+    <rect x="60" y="62" width="150" height="16"/>
+    <rect x="126" y="94" width="180" height="16"/>
+  </g>
+  <g fill="var(--slate)" opacity=".55">
+    <rect x="300" y="126" width="180" height="16"/>
+  </g>
+  <g fill="none" stroke="var(--slate)" stroke-width="1" stroke-dasharray="3 3">
+    <rect x="390" y="158" width="200" height="16"/>
+    <rect x="450" y="190" width="150" height="16"/>
+  </g>
+  <g fill="var(--red)" opacity=".75">
+    <rect x="510" y="222" width="90" height="16"/>
+  </g>
+  <g font-family="IBM Plex Sans, sans-serif" fill="var(--ink)" font-size="10.5">
+    <text x="30" y="26">HTML с CDN, критический CSS</text>
+    <text x="60" y="58">Постер hero, subset-шрифты, текст блоков</text>
+    <text x="126" y="90">Элементы управления, меню, фильтры</text>
+    <text x="300" y="122">Видео hero — после интерактивности</text>
+    <text x="390" y="154">Виджеты virtualland — при приближении к блоку</text>
+    <text x="450" y="186">Карта инфраструктуры, галереи — лениво</text>
+    <text x="510" y="218">Счётчики и Tag Manager — после загрузки</text>
+  </g>
+  <g font-family="IBM Plex Sans, sans-serif" fill="var(--slate)" font-size="9">
+    <text x="30" y="258">Сплошное — критический путь, измеряется сборкой. Пунктир — вне критического пути. Красное — внешние скрипты заказчика, участвуют в замере.</text>
+  </g>
+</svg>
+<figcaption>Очередь загрузки страницы для мобильного профиля на 4G. Пунктирные вертикали — пороги технического задания. Всё, что правее порога, не должно влиять на момент интерактивности.</figcaption>
+</figure></div>
+          </details>
+          <details class="k" id="d-crm">
+            <summary>Источник данных о лотах: Microsoft Dynamics <span class="exc">!</span> <span class="tag">Каталог как проекция CRM</span></summary>
+            <div class="in">Сайт не ведёт собственную базу квартир. Он запрашивает у Microsoft Dynamics состав лотов, цены и статусы и сохраняет ответ как <b>проекцию</b>, копию для чтения. Каталог, страница лота и PDF читают проекцию, поэтому подбор выполняется мгновенно и не зависит от скорости CRM. Изменения переносятся каждые несколько минут, ночью проводится полная сверка.<br><br>Данные, отсутствующие в CRM, хранятся в административной панели и привязываются по <b>коду лота</b>: планировки в нескольких видах, вид из окна, планировочные УТП, тексты. Маркетолог загружает планировку один раз, и она появляется на странице лота, в PDF и в карточке избранного. Если CRM недоступна, сайт продолжает показывать последнюю успешную проекцию с отметкой времени, а заявки накапливаются в очереди и доотправляются.<br><br><b>Результат:</b> Проданный лот исчезает из каталога в пределах интервала синхронизации, история цен сохраняется, а контракт API CRM затрагивает только один модуль. Смена CRM в дальнейшем выполняется заменой адаптера.<figure>
+<svg viewBox="0 0 620 420" role="img" aria-label="Концепт схемы данных каталога как проекции CRM">
+  <g fill="none" stroke="var(--ink)" stroke-width="1">
+    <rect x="140" y="3" width="340" height="26"/>
+    <rect x="24" y="118" width="164" height="90"/>
+    <rect x="220" y="118" width="180" height="152"/>
+    <rect x="432" y="118" width="164" height="76"/>
+    <rect x="24" y="226" width="164" height="66"/>
+    <rect x="432" y="212" width="164" height="66"/>
+    <rect x="220" y="290" width="180" height="58"/>
+    <rect x="140" y="382" width="340" height="26"/>
+  </g>
+  <rect x="432" y="296" width="164" height="52" fill="none" stroke="var(--slate)" stroke-width="1" stroke-dasharray="3 3"/>
+  <rect x="24" y="310" width="164" height="38" fill="none" stroke="var(--red)" stroke-width="1.4"/>
+  <rect x="8" y="88" width="604" height="280" fill="none" stroke="var(--slate)" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="40" y="44" width="540" height="30" fill="none" stroke="var(--red)" stroke-width="1.3"/>
+  <g stroke="var(--slate)" stroke-width="1" fill="none">
+    <path d="M310 29 V44"/><path d="M310 74 V118"/>
+    <path d="M188 160 H220"/><path d="M432 156 H400"/>
+    <path d="M188 259 H204 V200 H220"/><path d="M400 245 H432"/>
+    <path d="M310 270 V290"/><path d="M400 320 H432"/>
+    <path d="M188 329 H204 V300 H220"/>
+    <path d="M310 348 V382"/>
+  </g>
+  <g font-family="IBM Plex Sans, sans-serif" fill="var(--ink)" font-size="11">
+    <text x="152" y="20">Microsoft Dynamics CRM: номенклатура лотов</text>
+    <text x="34" y="135">Синхронизация</text>
+    <text x="230" y="135">Лот, проекция</text>
+    <text x="442" y="135">Медиа лота</text>
+    <text x="34" y="243">История цены</text>
+    <text x="442" y="229">Планировочное УТП</text>
+    <text x="230" y="307">Индекс подбора</text>
+    <text x="152" y="399">Каталог, страница лота, PDF, генплан virtualland</text>
+  </g>
+  <g font-family="IBM Plex Sans, sans-serif" fill="var(--red)" font-size="11">
+    <text x="34" y="327">Ручная правка запрещена</text>
+  </g>
+  <g font-family="IBM Plex Sans, sans-serif" fill="var(--red)" font-size="10">
+    <text x="52" y="57">Адаптер CRM, единственная точка контакта с API</text>
+  </g>
+  <g font-family="IBM Plex Sans, sans-serif" fill="var(--slate)" font-size="9.5">
+    <text x="52" y="69">получить изменения с момента, получить всё для сверки, отправить заявку</text>
+    <text x="16" y="102">Домен Catalog, логика изолирована</text>
+    <text x="34" y="150">инкрементально каждые</text>
+    <text x="34" y="163">несколько минут</text>
+    <text x="34" y="176">полная сверка ночью</text>
+    <text x="34" y="189">отметка последнего успеха</text>
+    <text x="34" y="202">повтор при сбое API</text>
+    <text x="230" y="150">код лота в CRM</text>
+    <text x="230" y="164">очередь, корпус, секция, этаж</text>
+    <text x="230" y="178">комнатность, площадь, потолки</text>
+    <text x="230" y="192">цена, цена за м², отделка</text>
+    <text x="230" y="206">статус, срок сдачи, рассрочка</text>
+    <text x="230" y="220">класс, назначение коммерции</text>
+    <text x="230" y="234">тип: жильё или коммерция</text>
+    <text x="230" y="248">версия и время обновления</text>
+    <text x="230" y="262">только из CRM</text>
+    <text x="442" y="150">из админ-панели, по коду лота</text>
+    <text x="442" y="163">планировка, с размерами,</text>
+    <text x="442" y="176">с мебелью, на этаже,</text>
+    <text x="442" y="189">на схеме дома, вид из окна</text>
+    <text x="34" y="258">цена и дата, только вставка</text>
+    <text x="34" y="271">для «было / стало»</text>
+    <text x="34" y="284">и аналитики</text>
+    <text x="442" y="244">карточка, галерея, 3D-прогулка</text>
+    <text x="442" y="257">список лотов с этим УТП</text>
+    <text x="442" y="270">фильтр в выборщике</text>
+    <text x="230" y="322">12 фильтров жилья, 9 коммерции</text>
+    <text x="230" y="336">перестраивается после синхронизации</text>
+    <text x="442" y="313">Избранное</text>
+    <text x="442" y="326">коды лотов, в браузере</text>
+    <text x="442" y="339">цена всегда актуальная</text>
+    <text x="34" y="341">поля CRM не редактируются на сайте</text>
+  </g>
+</svg>
+<figcaption>Концепт схемы данных. Всё, что внутри пунктирной границы, обновляется только синхронизацией. Красным выделено правило: поля, пришедшие из CRM, не редактируются в административной панели ни одной ролью, иначе возникает второй источник данных о цене.</figcaption>
+</figure></div>
+          </details>
+          <details class="k" id="d-content">
+            <summary>Запрет хардкода: редактирование из административной панели <span class="exc">!</span> <span class="tag">Контентная модель</span></summary>
+            <div class="in">Каждая страница сайта представляет собой список блоков, каждый блок — запись в административной панели с полями: заголовок, текст, изображения, видео, ссылка на тур. Маркетолог добавляет блок, меняет порядок, скрывает и публикует; сайт перестраивает только затронутую страницу и раздаёт её с CDN. Смена рендера, добавление программы покупки и нового пина на карте выполняются без разработчика.<br><br>Элементы, повторяющиеся на разных страницах, заведены <b>справочниками</b>: программы покупки, пины и категории карты инфраструктуры, команда проекта, награды, ссылки на туры и видеопотоки. Программа покупки добавляется один раз и появляется на странице «Способы покупки», в карточках лота и в PDF. Robots.txt редактируется как текстовый файл, SEO-теги — на каждой странице по правилам раздела 3 ТЗ, с подсказкой длины.<br><br><b>Результат:</b> Требование «избегать хардкода» проверяется чек-листом на приёмке: для каждого видимого элемента указано, где он редактируется. Вне административной панели ведутся только данные лотов, источником которых остаётся CRM.<figure>
+<svg viewBox="0 0 620 330" role="img" aria-label="Концепт контентной модели: страницы, блоки, справочники">
+  <g fill="none" stroke="var(--ink)" stroke-width="1">
+    <rect x="24" y="24" width="164" height="90"/>
+    <rect x="220" y="24" width="180" height="138"/>
+    <rect x="432" y="24" width="164" height="76"/>
+    <rect x="24" y="140" width="164" height="76"/>
+    <rect x="432" y="118" width="164" height="118"/>
+    <rect x="220" y="186" width="180" height="50"/>
+  </g>
+  <rect x="140" y="278" width="340" height="26" fill="none" stroke="var(--red)" stroke-width="1.3"/>
+  <g stroke="var(--slate)" stroke-width="1" fill="none">
+    <path d="M188 60 H220"/><path d="M400 60 H432"/>
+    <path d="M188 178 H204 V120 H220"/>
+    <path d="M400 210 H432"/>
+    <path d="M310 162 V186"/>
+    <path d="M310 236 V278"/>
+  </g>
+  <g font-family="IBM Plex Sans, sans-serif" fill="var(--ink)" font-size="11">
+    <text x="34" y="41">Страница</text>
+    <text x="230" y="41">Блок</text>
+    <text x="442" y="41">Медиа</text>
+    <text x="34" y="157">Тип блока</text>
+    <text x="442" y="135">Справочники</text>
+    <text x="230" y="203">Публикация</text>
+  </g>
+  <g font-family="IBM Plex Sans, sans-serif" fill="var(--red)" font-size="10.5">
+    <text x="152" y="295">Пересборка только затронутых страниц, раздача с CDN</text>
+  </g>
+  <g font-family="IBM Plex Sans, sans-serif" fill="var(--slate)" font-size="9.5">
+    <text x="34" y="56">URL без спецсимволов</text>
+    <text x="34" y="69">title, description, h1</text>
+    <text x="34" y="82">порядок блоков</text>
+    <text x="34" y="95">черновик и публикация</text>
+    <text x="34" y="108">15 типов страниц из ТЗ</text>
+    <text x="230" y="56">тип блока и порядок</text>
+    <text x="230" y="70">поля по схеме типа</text>
+    <text x="230" y="84">ссылки на медиа и справочники</text>
+    <text x="230" y="98">виден или скрыт</text>
+    <text x="230" y="112">автор и время изменения</text>
+    <text x="230" y="126">hero, УТП, генплан, карта,</text>
+    <text x="230" y="140">галерея, ФОС, новости, туры —</text>
+    <text x="230" y="154">20+ типов на старте</text>
+    <text x="442" y="56">фото, рендеры, видео</text>
+    <text x="442" y="69">размеры и форматы</text>
+    <text x="442" y="82">создаются автоматически</text>
+    <text x="442" y="95">alt и подпись</text>
+    <text x="34" y="172">схема полей, превью</text>
+    <text x="34" y="185">правила адаптива</text>
+    <text x="34" y="198">разрабатывается один раз,</text>
+    <text x="34" y="211">используется на любой странице</text>
+    <text x="442" y="150">программы покупки</text>
+    <text x="442" y="163">пины и категории карты</text>
+    <text x="442" y="176">команда, награды</text>
+    <text x="442" y="189">этапы стройки, альбомы</text>
+    <text x="442" y="202">ссылки на туры и потоки</text>
+    <text x="442" y="215">офис продаж, контакты</text>
+    <text x="442" y="228">robots.txt как файл</text>
+    <text x="230" y="218">кнопка «Опубликовать» для маркетолога</text>
+    <text x="230" y="231">роль редактора не видит заявки и настройки</text>
+  </g>
+</svg>
+<figcaption>Концепт контентной модели. Страница собирается из блоков известных типов; справочники подключаются к любому блоку. Публикация пересобирает только затронутые страницы, поэтому правка контента не влияет на скорость.</figcaption>
+</figure></div>
+          </details>
+      </div>
+      <div class="acc">
+          <details id="d-widgets">
+            <summary>Интерактивные модули внешнего подрядчика <span class="tag">Контракт с виджетами</span></summary>
+            <div class="in">Генплан, шахматка, туры и макеты virtualland встраиваются как виджеты, но по правилам сайта: они загружаются только при приближении к блоку, получают оформление из дизайн-системы там, где это допускает подрядчик, и обмениваются с сайтом событиями. Клик по помещению на генплане открывает страницу лота на сайте по коду CRM, переход «в выборщик с этапа генплан → корпус → подъезд → этаж» передаёт предвыбранные фильтры в URL каталога.<br><br>Состав событий и способ встраивания фиксируются на первом этапе документом, который согласуют обе стороны. Отсутствие нужного события на стороне подрядчика выявляется на второй неделе работ.<br><br><b>Результат:</b> Виджеты не влияют на скорость страницы и ведут на страницы сайта, а зависимость от подрядчика ограничена одним согласованным документом и одним модулем встраивания.</div>
+          </details>
+          <details id="d-adaptive">
+            <summary>Пять брейкпоинтов, складные экраны, шесть браузеров <span class="tag">Дизайн-система</span></summary>
+            <div class="in">Макеты выполняются для 1920, 1440, 1280, 768, 375 и 320 пикселей, вёрстка описывается правилами поведения компонентов между брейкпоинтами: перенос сетки, сворачивание меню, переход галереи в ленту. «Почти квадратный» вьюпорт раскрытого складного смартфона и планшет в горизонтальной ориентации попадают на ту же непрерывную шкалу и отдельных макетов не требуют.<br><br>Матрица приёмки: шесть брейкпоинтов, две ориентации, шесть десктопных и два мобильных браузера, режимы с VPN и блокировщиком рекламы. Автотесты снимают скриншоты ключевых страниц на матрице при каждом релизе и показывают, что изменилось.<br><br><b>Результат:</b> Вёрстка сохраняет целостность при любой ширине экрана, регресс после правок обнаруживается до выпуска.</div>
+          </details>
+          <details id="d-stages">
+            <summary>Два релиза на одной архитектуре <span class="tag">Порядок работ</span></summary>
+            <div class="in">Первый релиз выпускается на каркасе итогового продукта. За 45 дней выходит главная страница вместе с рабочими окружениями, CDN, административной панелью с контентной моделью, медиа-пайплайном, формой заявки с отправкой в CRM и UIS, счётчиками, генпланом и картой инфраструктуры. К моменту выхода главной вся инфраструктура итогового продукта уже работает, следующие 80 дней команда добавляет страницы и каталог на готовой основе.<br><br>Дизайн ведётся с опережением разработки на две–три недели: пока верстается главная, проектируются каталог и лот; пока делается каталог, рисуются контентные страницы. Состав типов блоков утверждается по прототипам всех страниц на первом этапе, поэтому главная собирается из тех же типов, что и остальной сайт.<br><br><b>Результат:</b> Главная страница выходит в срок и входит в итоговый продукт. Итоговый продукт является расширением первого релиза.</div>
+          </details>
+          <details>
+            <summary>Сохранность заявок и защита данных клиента <span class="tag">Лиды и безопасность</span></summary>
+            <div class="in">Трёхшаговая форма отправляет заявку в Dynamics и UIS и одновременно сохраняет её в административной панели с источником, страницей и лотом. SmartCaptcha отсекает автоматические отправки, очередь повторяет отправку при недоступности CRM, менеджер получает уведомление. Административная панель закрыта от индексации, доступ предоставляется только со вторым фактором, действия пишутся в журнал.<br><br><b>Результат:</b> Заявка сохраняется при сбое интеграции. Требования раздела 4 ТЗ проверяются автоматически при каждой сборке и входят в приёмку: HTTPS, защита от XSS, инъекций, CSRF и IDOR, резервное копирование раз в две недели.</div>
+          </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 -->
+<section class="slide" id="s5">
+  <div class="gut"><b>04</b><span>Решение</span></div>
+  <div class="body">
+    <h2 class="wide">Модель системы</h2>
+    <div class="thesis"><p>Контентное ядро берётся коробочным: дерево страниц, блочный редактор, медиатека, черновики, роли и журнал не разрабатываются заново, разработка сводится к описанию типов блоков и справочников проекта.</p></div>
+    <div class="arch">
+      <div class="arch-main">
+        <div class="tier">
+          <div class="tier-h">Клиентская часть <b>· публичный сайт на Next.js с серверным рендером и статической генерацией, администрирование в интерфейсе коробочной CMS</b></div>
+          <div class="row3">
+            <div class="box"><b>Публичный сайт</b><span>15 типов страниц из ТЗ, каталог жилья и коммерции, страницы лотов, избранное, ФОС, PDF лота. Готовый HTML с CDN, фильтры работают на клиенте по индексу</span></div>
+            <div class="box"><b>Административный интерфейс CMS</b><span>страницы и блоки, медиатека, планировки лотов, заявки, программы покупки, карта, новости и стройка, SEO и robots.txt, роли, второй фактор, журнал действий. Базовый интерфейс берётся из CMS, под проект настраивается состав полей и блоков</span></div>
+            <div class="box d"><b>Виджеты virtualland</b><span>генплан, шахматка, 3D-туры, макет транспортной доступности. Встраиваются лениво, связаны с сайтом событиями и кодом лота</span></div>
+          </div>
+        </div>
+        <div class="tier">
+          <div class="tier-h">Слой API <b>· контент отдаётся API контентного ядра, каталог — собственным API. Кэш и инкрементальная пересборка, бизнес-логика размещается в серверной части</b></div>
+          <div class="row2">
+            <div class="box"><b>Публичное API сайта</b><span>каталог и подбор из индекса, страница лота, отправка форм, PDF по коду лота. Ревалидация страниц по событию из CRM и админ-панели</span></div>
+            <div class="box"><b>Административный контур</b><span>отдельный контур: аутентификация со вторым фактором, права ролей, журнал средствами CMS. Закрыт от индексации и от публичной сети</span></div>
+          </div>
+        </div>
+        <div class="tier">
+          <div class="tier-h">Серверная часть <b>· Python: контентное ядро на коробочной CMS и приложение каталога с собственным кодом. <span class="tbd">Engine фиксируется в проектной документации первого этапа</span></b> <span class="tip" tabindex="0" data-tip="Каталог, синхронизация с Microsoft Dynamics и лиды вынесены в отдельное приложение и не зависят от внутренних моделей CMS, связь выполняется по коду лота и через API. Развёртывание единое, синхронизация и отправка заявок выполняются фоновым процессом. Вынос синхронизации или генерации PDF в отдельный сервис возможен без переработки контентной части, например при подключении второго проекта застройщика к той же CMS.">Границы приложений</span></div>
+          <div class="dom">
+            <div class="dom-grp"><h4>Каталог, собственный код</h4><ul>
+              <li class="hot">Lots <em class="exc2">!</em><i>проекция CRM, история цены</i></li>
+              <li class="hot">CRM Sync <em class="exc2">!</em><i>адаптер Dynamics, расписание, сверка</i></li>
+              <li>Search Index<i>12 фильтров жилья, 9 коммерции</i></li>
+              <li>Lot Media<i>планировки и виды по коду лота</i></li>
+              <li>Lot PDF<i>6 страниц по шаблону, QR</i></li>
+            </ul></div>
+            <div class="dom-grp"><h4>Контент, коробочная CMS</h4><ul>
+              <li class="hot">Pages &amp; Blocks <em class="exc2">!</em><i>дерево страниц, типы блоков, черновик и публикация</i></li>
+              <li>Media<i>медиатека CMS, размеры и форматы</i></li>
+              <li>News &amp; Construction<i>новости, альбомы, трансляция</i></li>
+              <li>Reference Data<i>программы, пины, команда, награды</i></li>
+              <li>Map<i>категории и пины инфраструктуры</i></li>
+            </ul></div>
+            <div class="dom-grp"><h4>Лиды, собственный код</h4><ul>
+              <li>Forms<i>ФОС в три шага, валидация, капча</i></li>
+              <li>Leads<i>хранение, источник, лот, статус отправки</i></li>
+              <li>CRM Push<i>заявка в Dynamics, очередь повторов</i></li>
+              <li>Telephony<i>UIS: подмена номера, коллтрекинг</i></li>
+              <li>Subscriptions<i>подписка на рассылку</i></li>
+            </ul></div>
+            <div class="dom-grp"><h4>Платформа</h4><ul>
+              <li class="hot">Performance <em class="exc2">!</em><i>бюджет, медиа-пайплайн, Lighthouse в CI</i></li>
+              <li>SEO &amp; Redirects<i>теги, sitemap, robots, 301, ошибки</i></li>
+              <li>Identity<i>роли, второй фактор</i></li>
+              <li>Audit<i>журнал действий в админ-панели</i></li>
+              <li>Analytics Events<i>события воронки в Метрику</i></li>
+            </ul></div>
+          </div>
+        </div>
+        <div class="tier">
+          <div class="tier-h">Хранилища</div>
+          <div class="row4">
+            <div class="box"><b>PostgreSQL</b><span>одна база, отдельные схемы для контента CMS и для проекции лотов</span></div>
+            <div class="box"><b>S3</b><span>медиа, планировки, PDF лотов, резервные копии раз в две недели</span></div>
+            <div class="box"><b>Redis</b><span>кэш выборок каталога, очередь синхронизации и отправки заявок</span></div>
+            <div class="box"><b>CDN</b><span>HTML, статика, изображения с ресайзом, видео hero. Сжатие brotli</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="side">
+        <h4>Внешние границы и адаптеры</h4>
+        <ul>
+          <li><b>Microsoft Dynamics CRM</b>Получение лотов, цен и статусов, передача заявок. Контракт API уточняется <span class="tbd">на первой встрече</span></li>
+          <li><b>UIS</b>Коллтрекинг, подмена номера, передача заявок</li>
+          <li><b>virtualland</b>Генплан, шахматка, туры, макеты. События и способ встраивания фиксируются документом</li>
+          <li><b>Яндекс</b>Метрика, Вебмастер, SmartCaptcha. Через Tag Manager заказчик подключает Ботфактор и Смартис самостоятельно</li>
+          <li><b>Никфорт</b><span class="tbd">состав интеграции уточняется</span></li>
+          <li><b>Видеопоток стройки</b>Ссылка на поток заводится в админ-панели, плеер на сайте</li>
+          <li><b>Почта и рассылка</b>Уведомления менеджерам, подписчики выгружаются в сервис рассылки</li>
+        </ul>
+      </div>
+    </div>
+    <span class="tip" tabindex="0" data-tip="Обозначения: сплошная рамка — разрабатывается в рамках проекта; пунктирная — внешние системы и виджеты подрядчика; восклицательным знаком отмечены домены, закрывающие ключевые вызовы слайда 2.">Обозначения схемы</span>
+
+    <div class="acc" style="margin-top:6px">
+      <details>
+        <summary>Выбор контентного ядра: кандидаты и условия выбора</summary>
+        <div class="in">
+    <p class="lead">Рассматриваются коробочные решения на Python. <span class="tbd">Итоговый стек фиксируется в проектной документации первого этапа</span> по прототипам всех страниц и составу типов блоков.</p>
+    <table class="tight zebra">
+      <thead><tr><th>Вариант</th><th>Что даёт из коробки</th><th>Ограничение</th><th>Условие выбора</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>Wagtail</b>, Django</td>
+          <td>дерево страниц, блочный редактор StreamField, черновик и публикация, медиатека с вариантами изображений, роли и журнал, API для внешнего фронтенда, редиректы и sitemap</td>
+          <td>тип блока описывается кодом, новый тип выходит с релизом</td>
+          <td>контентная модель задана дизайн-системой, фронтенд отделён от ядра</td>
+        </tr>
+        <tr>
+          <td><b>django CMS</b></td>
+          <td>страницы и плагины, правка содержимого на самой странице, версии, многоязычность</td>
+          <td>свобода редактора шире, соответствие дизайн-системе поддерживается правилами; подача во внешний фронтенд требует дополнительного пакета</td>
+          <td>маркетингу нужна правка по месту и самостоятельный ввод новых страниц</td>
+        </tr>
+        <tr>
+          <td><b>Собственное ядро</b></td>
+          <td>полное соответствие техническому заданию без компромиссов</td>
+          <td>разработка с нуля, срок и стоимость выше</td>
+          <td>требования выходят за модель обеих систем</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="mono-note">Состояние на сентябрь 2026: Wagtail 8.0 от 25.08.2026 (график релизов проекта), django CMS 5.0.7 от 08.05.2026 (данные PyPI). Обе системы работают на Django, LTS-ветка 5.2 поддерживается до апреля 2028 (djangoproject.com). Публичный сайт остаётся на Next.js и получает контент по API ядра. Вариант подачи страниц шаблонами CMS без отдельного фронтенда рассматривается на первом этапе как способ сократить объём работ, решение принимается вместе с выбором ядра.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="slide" id="s3">
+  <div class="gut"><b>05</b><span>Доказательство</span></div>
+  <div class="body">
+    <h2 class="wide">Релевантный опыт и подход к работе</h2>
+    <div class="thesis"><p>Проект относится к типовому для компании классу задач.</p></div>
+    <div class="cols two">
+
+      <div class="stack panel">
+        <h3>1. Релевантный опыт</h3>
+        <div class="acc">
+          <details class="hi" open>
+            <summary>Система управления жилищным фондом застройщика <span class="tag">домен недвижимости</span></summary>
+            <div class="in">Комплексная система для застройщика: объекты, жители, услуги, оплаты и документы в одном контуре. Разработана под ключ без готового технического задания: бизнес-анализ, проектирование, разработка и запуск выполнены силами исполнителя.
+              <ul class="keys" style="margin-top:8px">
+                <li><b>Кроссплатформенная система.</b> Единый продукт для жителей, управляющей компании и застройщика на всех платформах пользователя</li>
+                <li><b>Интеграции с 1С, Битрикс, <b class="acc-b">Profitbase</b>, <b class="acc-b">Ecvi</b></b> и рядом других систем застройщика: тот же класс задач, что синхронизация лотов с Microsoft Dynamics на этом проекте</li>
+                <li><b>Оплаты и финансы.</b> Работа с платежами, начислениями и финансовыми документами</li>
+                <li><b>Работа с документами.</b> Договоры, акты и заявки: формирование, хранение, выдача пользователю</li>
+                <li><b>Дашборды и аналитический контур</b> для управляющей компании и застройщика</li>
+                <li><b>Маркетплейс услуг</b> внутри продукта</li>
+                <li><b>Техническая поддержка с SLA</b> после запуска</li>
+              </ul>
+              <p style="margin-top:8px">Что переносится на этот проект: номенклатура объектов застройщика и её синхронизация из внешних систем, интерфейсы для конечного покупателя и эксплуатация под SLA. Показатели проекта: <span class="tbd">число объектов, пользователей, объём платежей</span>.</p>
+            </div>
+          </details>
+          <details class="hi">
+            <summary>3D-экскурсия по производственному комплексу «Аквариус» в Шуе <span class="tag">интерактивная сцена на сайте</span></summary>
+            <div class="in">Интерактивная экскурсия по цехам производственного комплекса: перемещение по точкам маршрута, подсказки на участках и оборудовании, сопровождающий текст и медиа в каждой точке. Публичный адрес: <a href="https://www.aq.ru/industries/factory/shuya-factory" target="_blank" rel="noopener">aq.ru/industries/factory/shuya-factory</a>. Заказчик — производитель компьютерной техники, два производственных комплекса в Шуе и Твери (данные сайта заказчика).
+              <p style="margin-top:8px">Что переносится на этот проект: встраивание тяжёлой интерактивной сцены в страницу сайта, связь точек сцены с контентными разделами и управление содержимым подсказок без разработчика. Это тот же класс задач, что генплан, шахматка и 3D-туры virtualland на сайте жилого проекта.</p>
+              <p style="margin-top:8px;border-left:2px solid var(--red);padding-left:8px;color:var(--red)">Ограничение кейса: скорость загрузки в этом проекте не оптимизировалась. Продукт использовался в презентациях на подготовленном оборудовании и канале связи, требование к PageSpeed не ставилось. Предложенные исполнителем решения по оптимизации — прогрессивная загрузка сцены, сжатие геометрии и текстур, уровни детализации — заказчиком приняты не были. На сайте жилого проекта этот сценарий закрыт бюджетом производительности слайда 3: интерактивные сцены и виджеты выносятся из критического пути и загружаются при приближении к блоку.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Система сбора, хранения и агрегации данных, Data Lake <span class="nda">NDA</span></summary>
+            <div class="in">Комплексная интеграция с внешними системами и синхронизация данных из разных источников. Автоматизация построения дашбордов. Построение портрета более чем 20 млн пользователей, более 200 подключённых филиалов с проведённым онбордингом.</div>
+          </details>
+          <details>
+            <summary>Сервис автоматизации и оптимизации закупки рекламы <span class="nda">NDA</span></summary>
+            <div class="in">Сложные интеграции по API. Простройка UX-сценариев. Математический алгоритм оптимизации. Продуктовое ведение, работа с маркетинговой аналитикой. Техническая поддержка с SLA.</div>
+          </details>
+          <details>
+            <summary>Сервис ИИ-автоматизации написания специализированных текстов <span class="nda">NDA</span></summary>
+            <div class="in">Сложные UX-сценарии. Контур пользователя и контур администратора. Формирование хранилища контента для заказчика. Онбординг операторов. Развёрнутая форма регистрации, SSO.</div>
+          </details>
+        </div>
+        <p class="lead">Состав ключевых вызовов сайта жилого проекта определён:</p>
+        <ul class="keys">
+          <li><b>Премиальный визуал</b> внутри заданного бюджета скорости</li>
+          <li><b>Каталог</b> как проекция CRM с обновлением из источника</li>
+          <li><b>Содержимое сайта</b> редактируется маркетингом без участия разработчика</li>
+          <li><b>Внешние интерактивы virtualland</b> как часть сайта</li>
+        </ul>
+        <p class="lead">Состав страниц задан техническим заданием, результат определяется дизайном, скоростью и точностью данных. Работа состоит из шести шагов:</p>
+        <div class="steps">
+          <span><i>1</i>Допрояснение требований</span>
+          <span><i>2</i>Прототипы и дизайн</span>
+          <span><i>3</i>Архитектура и контентная модель</span>
+          <span><i>4</i>Разработка двумя релизами</span>
+          <span><i>5</i>Оптимизация, тестирование, ввод</span>
+          <span><i>6</i>Передача, обучение, гарантия</span>
+        </div>
+      </div>
+
+      <div class="stack panel">
+        <h3>2. Подход к работе</h3>
+        <div class="acc">
+          <details>
+            <summary>Совпадение интереса исполнителя с результатом клиента</summary>
+            <div class="in">Со стороны исполнителя видны возможности повысить эффективность проекта, поэтому тактические и стратегические предложения передаются клиентам и партнёрам регулярно. Для сайта жилого проекта это означает, что предлагаемые решения оцениваются по числу качественных заявок.</div>
+          </details>
+          <details>
+            <summary>Структура портфеля: повторные транзакции и партнёрства</summary>
+            <div class="in">Бо́льшую часть портфеля составляют повторные транзакции с ключевыми клиентами, заметную часть — долгосрочные партнёрства (оценка по внутреннему учёту). Доля повторных продаж растёт за счёт вовлечённости в задачу клиента, эффективности и принятого порядка коммуникации: повторные продажи переходят в партнёрские соглашения с предсказуемой выручкой.</div>
+          </details>
+          <details>
+            <summary>Состав и устойчивость команды</summary>
+            <div class="in">Бо́льшая часть разработчиков и часть менеджеров имеют профильное математическое образование. За четыре года работы по собственному желанию не уволился ни один сотрудник. Разработчики и менеджеры совместно проводят сессии риск-менеджмента для управления ожиданиями: устойчивость решения определяет отношения с клиентом.</div>
+          </details>
+          <details>
+            <summary>Агентная разработка по внутренней методологии</summary>
+            <div class="in">ИИ применяется в проектировании и разработке. Внутренняя методология работы с агентами дорабатывается постоянно, за её внедрение и проверку новых подходов отвечает отдельный отдел. Состав команды при этом сохраняется: ИИ повышает эффективность рутинных процессов и ускоряет поставку решений.</div>
+          </details>
+        </div>
+        <p class="lead">На проект выделяются менеджер, техлид и арт-директор.</p>
+        <ul class="mini">
+          <li><b>Менеджер</b>Коммуникация с заказчиком, управление ожиданиями и рисками, перевод бизнес-задач в задачи разработки, документооборот, сбор контента и вводных, координация с virtualland</li>
+          <li><b>Техлид</b>Проектирует решения, отвечает за бюджет производительности и интеграцию с CRM, защищает решения и распределяет их по команде. По ключевым вопросам общается с заказчиком напрямую</li>
+          <li><b>Арт-директор</b>Отвечает за премиальность: платформа бренда, дизайн-система, моушн-концепция, приёмка вёрстки на соответствие макетам</li>
+          <li><b>Команда</b>Два дизайнера, два или три фронтенд-разработчика, один или два бэкенд-разработчика, QA-инженер на матрицу устройств и браузеров, DevOps-инженер на окружения, CDN, доставку и резервное копирование</li>
+        </ul>
+        <p class="sub">Дальнейший ритм</p>
+        <div class="steps">
+          <span><i>1</i>Согласованный формат взаимодействия и статус</span>
+          <span><i>2</i>Демонстрации по мере результатов</span>
+          <span><i>3</i>Онбординг маркетинга в админ-панель, документация</span>
+          <span><i>4</i>Гарантия, поддержка или развитие</span>
+        </div>
+      </div>
+    </div>
+    <div class="gain">
+      <b>Ключевой принцип разработки: прозрачность и качество</b>
+      <p>На практике принцип выражается в трёх правилах. Статус и риски передаются заказчику до того, как превращаются в срыв срока. Архитектурные решения и бюджет производительности защищаются и передаются вместе с кодом и документацией. После запуска контент ведёт маркетолог заказчика, данные о лотах ведутся в CRM заказчика. Обращение к исполнителю требуется в трёх случаях: новый тип блока, новая интеграция, развитие сайта.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 6 -->
+<section class="slide" id="s6">
+  <div class="gut"><b>06</b><span>План</span></div>
+  <div class="body">
+    <h2 class="wide">Этапы, два релиза, приёмка</h2>
+    <div class="thesis"><p>Порядок этапов выбран так, чтобы главная вышла на 45-й день на полной инфраструктуре, а дизайн опережал разработку на две–три недели.</p><div class="fig"><b>45 / 125</b><span>календарных дней: главная страница и итоговый продукт</span></div></div>
+    <span class="tip" tabindex="0" data-tip="Календарный план приведён в неделях от старта; 45 календарных дней — конец 7-й недели, 125 дней — конец 18-й.">О календарном плане</span>
+    <div class="gantt">
+      <div class="lab"></div>
+      <div class="hd">1</div><div class="hd">2</div><div class="hd">3</div><div class="hd">4</div><div class="hd">5</div><div class="hd">6</div><div class="hd rel">7</div><div class="hd">8</div><div class="hd">9</div><div class="hd">10</div><div class="hd">11</div><div class="hd">12</div><div class="hd">13</div><div class="hd">14</div><div class="hd">15</div><div class="hd">16</div><div class="hd">17</div><div class="hd rel">18</div>
+      <div class="lab">Этап 1. Аналитика, прототипы, дизайн главной</div><div class="bar acc" style="grid-column:2/6"></div>
+      <div class="lab">Этап 2. Предварительный продукт</div><div class="bar" style="grid-column:3/9"></div>
+      <div class="lab">Каркас, окружения, CDN, админ-панель</div><div class="bar soft" style="grid-column:3/7"></div>
+      <div class="lab">Главная, генплан, карта, ФОС → CRM и UIS</div><div class="bar soft" style="grid-column:5/9"></div>
+      <div class="lab">Дизайн остальных страниц и адаптивы</div><div class="bar soft" style="grid-column:6/12"></div>
+      <div class="lab">Этап 3. Итоговый продукт</div><div class="bar" style="grid-column:8/20"></div>
+      <div class="lab">Синхронизация CRM, каталог, лоты</div><div class="bar soft" style="grid-column:8/15"></div>
+      <div class="lab">Страницы проекта, новости, стройка</div><div class="bar soft" style="grid-column:10/17"></div>
+      <div class="lab">PDF лота, избранное, способы покупки</div><div class="bar soft" style="grid-column:13/17"></div>
+      <div class="lab">Производительность, SEO, безопасность</div><div class="bar soft" style="grid-column:14/19"></div>
+      <div class="lab">Тестирование и приёмка</div><div class="bar acc" style="grid-column:16/20"></div>
+    </div>
+    <div class="cols">
+      <div class="stack"><h3>Критерии готовности</h3>
+        <ul><li>PageSpeed не ниже 80 на мобильном и десктопном профиле для каждого типа страницы со включёнными счётчиками; замер встроен в сборку и повторяется на каждом релизе</li>
+        <li>Вёрстка принята на матрице: шесть брейкпоинтов, две ориентации, шесть десктопных и два мобильных браузера, режимы с VPN и блокировщиком рекламы</li>
+        <li>Чек-лист «ноль хардкода»: для каждого видимого элемента каждой страницы указано место редактирования в административной панели</li>
+        <li>Заявка из любой формы появляется в Dynamics и UIS в течение минуты и сохраняется в административной панели; лот, снятый с продажи в CRM, исчезает из каталога в пределах интервала синхронизации</li>
+        <li>Редиректы, sitemap, robots, favicon-набор, шесть страниц ошибок и правила SEO-тегов проверены автоматическим аудитом; события воронки собираются с первого релиза</li></ul></div>
+      <div class="stack"><h3>Разграничение ответственности после запуска</h3>
+        <ul><li>Контент, медиа, программы покупки, пины карты, новости, альбомы стройки, ссылки на туры и потоки — маркетолог в административной панели, без разработчика</li>
+        <li>Данные лотов — только из CRM. На сайте они не редактируются ни одной ролью, чтобы исключить второй источник данных о цене</li>
+        <li>Robots.txt и SEO-теги — редактор в административной панели; sitemap и редиректы формируются автоматически</li>
+        <li>Роль редактора не видит заявки и настройки интеграций; роль администратора — со вторым фактором и журналом</li>
+        <li>Обращение к исполнителю: новый тип блока, новая интеграция, развитие. В гарантийный период выполняются исправление дефектов и обновление зависимостей</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section class="slide" id="s7">
+  <div class="gut"><b>07</b><span>Цена</span></div>
+  <div class="body">
+    <h2 class="wide">Предложения к первой версии</h2>
+    <div class="thesis"><p>Три позиции, отсутствующие в техническом задании.</p><div class="fig red"><b>700 000 — 3 000 000 руб.</b><span>рендеры и контент: оценка после уточнения требований</span></div></div>
+    <p class="lead">Предлагается включить их в итоговый продукт: каждая увеличивает число заявок или обходится дороже при добавлении после запуска. <span class="tip" tabindex="0" data-tip="В смете они вынесены отдельным блоком, решение принимается по каждой позиции отдельно.">Как учтено в смете</span></p>
+    <div class="tiles">
+      <div class="tile"><b>Ипотечный калькулятор на лоте и в «Способах покупки»</b><span>Ставки, первоначальный взнос и срок заводятся справочником в административной панели, расчёт показывается на странице лота рядом с ценой и попадает в PDF. Покупатель рассчитывает платёж до обращения в отдел продаж. Калькулятор относится к частым точкам входа в заявку на сайтах жилых комплексов (оценка исполнителя).</span></div>
+      <div class="tile"><b>SEO-посадочные страницы под фильтры каталога</b><span>«Двухкомнатные квартиры», «квартиры с отделкой», «коммерция под общепит» — страницы формируются из индекса каталога с уникальными тегами и текстом из административной панели. Без них поисковый трафик на каталог идёт на одну страницу с фильтрами, которую поисковик индексирует плохо.</span></div>
+      <div class="tile"><b>Сравнение лотов и PDF-подборка из избранного</b><span>До четырёх лотов рядом по параметрам и планировкам, подборка избранного одним PDF на тех же данных, что и PDF лота. Менеджер отправляет клиенту подборку, сформированную сайтом, без ручной сборки.</span></div>
+    </div>
+    <h3 style="margin:0;font-size:12px;font-weight:500;color:var(--ink);padding-bottom:5px;border-bottom:1px solid var(--rule)">Контроль качества лидов и скорости после запуска</h3>
+    <p class="lead">В техническом задании эти позиции описаны как требования к результату, средства их удержания после запуска не предусмотрены. Включение в сборку на этапе разработки обходится дешевле доработки работающего сайта (оценка исполнителя). <span class="tip" tabindex="0" data-tip="В смете каждая позиция идёт отдельной строкой в том же блоке предложений.">Как учтено в смете</span></p>
+    <div class="tiles">
+      <div class="tile"><b>Уведомления менеджерам в Telegram и резервный канал лидов</b><span>Заявка приходит менеджеру в мессенджер в момент отправки с контекстом лота. При недоступности CRM или UIS заявка дублируется на почту и в чат, поэтому скорость ответа не зависит от интеграций</span></div>
+      <div class="tile"><b>Сквозная аналитика воронки лота</b><span>События «просмотр лота — избранное — PDF — заявка» с параметрами лота передаются в Метрику и в заявку. Маркетинг видит, какие планировки и УТП приводят к заявкам, в дополнение к источнику визита</span></div>
+      <div class="tile"><b>Мониторинг скорости на реальных пользователях</b><span>Core Web Vitals собираются с реальных сессий в дополнение к лабораторным замерам. Когда через Tag Manager подключается новый скрипт и скорость падает, уведомление приходит в тот же день</span></div>
+    </div>
+    <h3 style="margin:0;font-size:12px;font-weight:500;color:var(--ink);padding-bottom:5px;border-bottom:1px solid var(--rule)">Рендеры, качество и объём контента</h3>
+    <p class="lead">Позиция вынесена отдельно, поскольку <span class="tbd">до уточнения требований оценка невозможна</span>: итоговые пожелания по качеству и объёму определяют сумму в пределах приведённого диапазона.</p>
+    <div class="tiles">
+      <div class="tile mark"><b>Производство рендеров и контента, от 700 000 до 3 000 000 руб.</b><span>По техническому заданию рендеры, видео, тексты и съёмка хода строительства предоставляются заказчиком, перечень приведён на слайде 9. Производство может быть передано исполнителю целиком или частями: рендеры экстерьеров и интерьеров, визуализация планировок, видов из окна и благоустройства, видео для hero, фотосъёмка офиса продаж и хода строительства, тексты разделов и планировочных УТП, подготовка изображений под медиа-пайплайн. Сумма зависит от числа сцен и планировок, требуемого уровня визуализации, количества итераций согласования и срока поставки. Диапазон приведён как оценка исполнителя по опыту сопоставимых проектов и уточняется брифом на первом этапе; в базовый объём и в итог сметы позиция не входит.</span></div>
+    </div>
+    <h3 style="margin:0;font-size:12px;font-weight:500;color:var(--ink);padding-bottom:5px;border-bottom:1px solid var(--rule)">Продвижение после запуска</h3>
+    <div class="tiles">
+      <div class="tile mark"><b>GEO-продвижение, 160 000 руб. в месяц</b><span>Часть поисковых запросов обрабатывается генеративными системами: Яндекс Нейро, Алиса, ChatGPT. Ответ о проекте собирается ими из внешних источников и структурированных данных сайта. Работа ведётся ежемесячно: машиночитаемое описание проекта, лотов и условий покупки, ответы на вопросы покупателя в формате, пригодном для цитирования, публикации и упоминания в источниках, попадающих в генеративную выдачу, контроль того, что система отвечает о проекте. Результат измеряется долей ответов с упоминанием проекта и переходами из генеративных систем. Услуга ежемесячная, в итог сметы не входит.</span></div>
+    </div>
+    <span class="tip" tabindex="0" data-tip="Ни одно из предложений не меняет архитектуру и не влияет на срок первого релиза. Позиция «Личный кабинет покупателя» в смете отмечена как требующая описания API CRM по сделкам: до его получения сумма приведена как оценка исполнителя.">Влияние на архитектуру и срок</span>
+  </div>
+</section>
+
+<!-- 8 -->
+<section class="slide" id="s8">
+  <div class="gut"><b>08</b><span>Цена</span></div>
+  <div class="body">
+    <h2 class="wide">Смета</h2>
+    <p class="lead">Стоимость базового объёма составляет 6 200 000 руб. Главная страница выпускается в продакшен через 45 календарных дней, итоговый продукт — через 125 календарных дней. Названия блоков повторяют разделы технического задания, чтобы объём можно было сокращать построчно. Суммы приведены как расчёт исполнителя по составу работ технического задания.</p>
+    <table class="tight">
+      <thead><tr><th class="num">Эт.</th><th>Блок</th><th class="sum">Стоимость, руб.</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1</td><td>Аналитика и прототипы: функциональная спецификация, информационная архитектура, UX-прототипы 15 типов страниц, состав типов блоков, выбор контентного ядра и стека</td><td class="sum">326 000</td></tr>
+        <tr><td class="num">1</td><td>Дизайн-система и дизайн главной: платформа бренда в токены, UI-kit, моушн-концепция, hero, адаптивы главной</td><td class="sum">359 000</td></tr>
+        <tr><td class="num">2</td><td>Каркас и инфраструктура: Next.js и контентное ядро на Python, окружения stage и prod, CI/CD, CDN, сжатие, SSL и редиректы, мониторинг, резервное копирование</td><td class="sum">504 000</td></tr>
+        <tr><td class="num">2</td><td>Административная панель на коробочной CMS: настройка контентной модели, типы блоков, медиатека, роли и второй фактор, журнал, хранение заявок</td><td class="sum">342 000</td></tr>
+        <tr><td class="num">2</td><td>Главная страница: hero с видео и анимацией, блоки раздела 1, генплан virtualland, карта инфраструктуры с пинами, хедер и футер</td><td class="sum">585 000</td></tr>
+        <tr><td class="num">2</td><td>Лиды и счётчики: ФОС в три окна, SmartCaptcha, отправка в Dynamics и UIS, подписка, Метрика, Вебмастер, Никфорт</td><td class="sum">233 000</td></tr>
+        <tr><td class="num">3</td><td>Дизайн остальных страниц и адаптивы: 13 типов страниц, PDF лота, страницы ошибок, шесть разрешений включая складные</td><td class="sum">754 000</td></tr>
+        <tr><td class="num">3</td><td>Синхронизация с Microsoft Dynamics CRM: адаптер, расписание и сверка, проекция лотов, история цены, индекс подбора</td><td class="sum">310 000</td></tr>
+        <tr><td class="num">3</td><td>Каталог и подбор: выборщик жилья и коммерции, 12 и 9 фильтров, состояние в URL, интеграция шахматки</td><td class="sum">272 000</td></tr>
+        <tr><td class="num">3</td><td>Страницы лотов: жилой и коммерческий, табы визуалов, движение солнца, избранное, способы покупки, вызов ФОС</td><td class="sum">194 000</td></tr>
+        <tr><td class="num">3</td><td>PDF лота: шесть страниц по разделу 16, генерация по данным проекции и медиа, QR офиса продаж</td><td class="sum">116 000</td></tr>
+        <tr><td class="num">3</td><td>Страницы проекта: Коммерция, Паркинг, Локация, Благоустройство и МОПы, Способы покупки, Команда, О застройщике, Контакты</td><td class="sum">438 000</td></tr>
+        <tr><td class="num">3</td><td>Новости и ход строительства: альбомы по периодам, очередям и корпусам, фильтр по году, плеер трансляции, сквозные блоки</td><td class="sum">201 000</td></tr>
+        <tr><td class="num">3</td><td>Адаптивная вёрстка и кроссбраузерность: матрица 6 брейкпоинтов, складные экраны, обе ориентации, 8 браузеров, VPN и блокировщики</td><td class="sum">310 000</td></tr>
+        <tr><td class="num">3</td><td>Производительность и SEO: бюджет и медиа-пайплайн, PageSpeed 80+, Lighthouse в сборке, теги, sitemap, robots из админ-панели, 301, шесть страниц ошибок</td><td class="sum">342 000</td></tr>
+        <tr><td class="num">3</td><td>Безопасность по разделу 4 ТЗ: защита от XSS, инъекций, CSRF, IDOR и DDoS, второй фактор, закрытие админ-панели, аудит зависимостей</td><td class="sum">109 000</td></tr>
+        <tr><td class="num">3</td><td>Тестирование, документация и ввод в эксплуатацию: тест-план, регрессы двух релизов, описание функциональностей, инструкция по админ-панели, обучение</td><td class="sum">667 000</td></tr>
+        <tr><td class="num">3</td><td>Гарантийное сопровождение: 100 календарных дней после релиза итогового продукта, исправление дефектов, обновление зависимостей</td><td class="sum">138 000</td></tr>
+        <tr class="total"><td></td><td>Итого <span style="color:var(--red)">(без рендеров!)</span></td><td class="sum">6 200 000</td></tr>
+      </tbody>
+    </table>
+    <h3 style="margin:0;font-size:12px;font-weight:500;color:var(--red);padding-bottom:5px;border-bottom:1px solid var(--rule)">Допущения расчёта</h3>
+    <p class="lead">Смета рассчитана при перечисленных допущениях. Каждое из них снимается ответом на документ «Вопросы по техническому заданию»; изменение допущения меняет стоимость соответствующей строки базового объёма.</p>
+    <table class="tight">
+      <thead><tr><th>Допущение</th></tr></thead>
+      <tbody>
+        <tr><td>Визуальный контент производится заказчиком: рендеры, видео, инфографика, планировки во всех видах, виды из окна, фото и видео хода строительства</td></tr>
+        <tr><td>Генплан, шахматка, макет транспортной доступности, генплан благоустройства и 3D-туры поставляются virtualland как готовые модули</td></tr>
+        <tr><td>Страница «3D-тур проекта» из хедера в базовый объём не входит до определения её назначения</td></tr>
+        <tr><td>Страница «Паркинг» имиджевая, с формой заявки, без подбора машиномест</td></tr>
+        <tr><td>Избранное хранится в браузере покупателя, авторизация и личный кабинет в базовый объём не входят</td></tr>
+        <tr><td>Административная панель ведёт контент, медиа, справочники и состав блоков известных типов при фиксированной структуре страниц</td></tr>
+        <tr><td>Карта инфраструктуры реализуется исполнителем на одном картографическом сервисе</td></tr>
+        <tr><td>Показатель PageSpeed 80+ принимается на сборке исполнителя без сторонних тегов, для полной сборки порог согласуется отдельно</td></tr>
+        <tr><td>Целевые значения скорости достижимы при регламенте на вес, форматы и разрешения исходников</td></tr>
+        <tr><td>Ипотечный калькулятор в базовый объём не входит, поскольку в задании не упоминается</td></tr>
+        <tr><td>Тексты разделов и описания преимуществ предоставляются заказчиком, интерфейсные микротексты пишет исполнитель</td></tr>
+      </tbody>
+    </table>
+    <div class="cols two">
+      <div class="stack panel">
+        <h3>Этапы и график оплат</h3>
+        <p class="sub">Три этапа работ</p>
+        <div class="bars">
+          <div><span>Этап 1. Аналитика, прототипы, дизайн главной</span><i class="acc" style="width:18%"></i><b>685 000</b></div>
+          <div><span>Этап 2. Предварительный продукт, 45 дней</span><i style="width:43%"></i><b>1 664 000</b></div>
+          <div><span>Этап 3. Итоговый продукт, 125 дней</span><i style="width:100%"></i><b>3 851 000</b></div>
+        </div>
+        <p class="sub">График оплат</p>
+        <table>
+          <tbody>
+            <tr><td class="num">1</td><td>По защите прототипов, дизайн-системы и дизайна главной, то есть первого этапа целиком</td><td class="sum">685 000</td></tr>
+            <tr><td class="num">2</td><td>По выпуску главной страницы в продакшен с административной панелью, формой заявки в CRM и счётчиками: предварительный продукт</td><td class="sum">1 664 000</td></tr>
+            <tr><td class="num">3</td><td>По промежуточному результату: синхронизация с CRM, каталог и страницы лотов приняты на рабочем окружении</td><td class="sum">1 795 000</td></tr>
+            <tr><td class="num">4</td><td>По итогам полной приёмки итогового продукта: все страницы, PageSpeed, матрица устройств, чек-лист «ноль хардкода», документация</td><td class="sum" id="pay4">2 056 000</td></tr>
+          </tbody>
+        </table>
+        <p class="mono-note">Первый платёж совпадает со стоимостью первого этапа, поэтому решение о продолжении принимается на утверждённых прототипах и дизайне. Отмеченные предложения и опции добавляются к последнему платежу. Приёмка считается состоявшейся, если в течение десяти рабочих дней с передачи результата замечания не предъявлены. Задержка предоставления данных, перечисленных на слайде 9, сдвигает срок и связанный с ним платёж на тот же период.</p>
+      </div>
+      <div class="stack panel">
+        <h3>Предложения и опции</h3>
+        <p class="sub">Предложения к первой версии, слайд 7</p>
+        <div class="opts" id="props">
+          <label><input type="checkbox" data-c="107000"><span>Ипотечный калькулятор на лоте и в «Способах покупки»</span><strong>107 000</strong></label>
+          <label><input type="checkbox" data-c="143000"><span>SEO-посадочные страницы под фильтры каталога</span><strong>143 000</strong></label>
+          <label><input type="checkbox" data-c="125000"><span>Сравнение лотов и PDF-подборка из избранного</span><strong>125 000</strong></label>
+          <label><input type="checkbox" data-c="71000"><span>Уведомления менеджерам в Telegram и резервный канал лидов</span><strong>71 000</strong></label>
+          <label><input type="checkbox" data-c="71000"><span>Сквозная аналитика воронки лота</span><strong>71 000</strong></label>
+          <label><input type="checkbox" data-c="53000"><span>Мониторинг скорости на реальных пользователях</span><strong>53 000</strong></label>
+        </div>
+        <p class="sub">Позиция с открытой оценкой</p>
+        <div class="monthly">
+          <div class="mark"><span>Производство рендеров и контента: состав, качество и объём определяются брифом <span class="tbd">оценка после уточнения требований</span></span><strong>700 000 — 3 000 000</strong></div>
+        </div>
+        <p class="mono-note">Позиция в итог сметы и в пересчёт по отметкам не входит. Диапазон отражает разброс по числу сцен и планировок, уровню визуализации и количеству итераций; сумма фиксируется после брифа.</p>
+        <p class="sub">Опции вне базового объёма</p>
+        <div class="opts" id="opts">
+          <label><input type="checkbox" data-c="321000"><span>Собственная шахматка на данных CRM: корпус, подъезд, этаж, лот <span class="tbd">если virtualland не покрывает</span></span><strong>321 000</strong></label>
+          <label><input type="checkbox" data-c="285000"><span>Английская версия сайта: интерфейс и контент</span><strong>285 000</strong></label>
+          <label><input type="checkbox" data-c="713000"><span>Личный кабинет покупателя: бронирование, документы, статус сделки <span class="tbd">требуется API CRM по сделкам</span></span><strong>713 000</strong></label>
+          <label><input type="checkbox" data-c="107000"><span>Онлайн-трансляция стройки: стриминг-сервер, камеры, архив записей <span class="tbd">без стоимости стриминг-сервиса</span></span><strong>107 000</strong></label>
+          <label><input type="checkbox" data-c="71000"><span>Каждая дополнительная интеграция: Profitbase, 1С, чат-платформа, Смартис по коду</span><strong>71 000</strong></label>
+        </div>
+        <p class="sub">Ежемесячные услуги после запуска</p>
+        <div class="monthly">
+          <div><span>Поддержка, SLA и инфраструктура: менеджмент, контентные работы, администрирование, исправление дефектов и обновление компонентов <span class="tbd">SLA согласуется</span></span><strong>230 000</strong></div>
+          <div class="mark"><span>GEO-продвижение: присутствие проекта в ответах генеративных поисковых систем</span><strong>160 000</strong></div>
+        </div>
+        <p class="mono-note">Ежемесячные услуги оплачиваются помесячно после запуска, в итог сметы не входят и в пересчёте по отметкам не участвуют.</p>
+      </div>
+    </div>
+    <div class="totbox wide">
+      <div class="big" id="tot">6 200 000 руб.</div>
+      <span id="tot-note">Базовый объём: главная страница через 45 дней, итоговый продукт через 125. Отметка позиций пересчитывает итог.</span>
+    </div>
+  </div>
+</section>
+
+<!-- 9 -->
+<section class="slide" id="s9">
+  <div class="gut"><b>09</b><span>Обязательства</span></div>
+  <div class="body">
+    <h2 class="wide">Данные и решения, требуемые от заказчика</h2>
+    <div class="thesis"><p>Перечень составлен по документу «Вопросы по техническому заданию».</p><div class="fig"><b>2</b><span>условия, определяющие срок и состав работ</span></div></div>
+    <p class="lead">Контент по умолчанию производится на стороне заказчика: рендеры, видео, тексты, съёмка стройки, а также виджеты и лицензии virtualland; передача производства исполнителю оценивается отдельной позицией на слайде 7. <span class="tip" tabindex="0" data-tip="Включено только то, отсутствие чего останавливает конкретный этап или меняет состав работ.">Принцип отбора</span></p>
+    <table class="zebra">
+      <thead><tr><th>Что требуется</th><th class="ref">Для этапа</th><th class="ref">Неделя</th><th>Последствия задержки</th></tr></thead>
+      <tbody>
+        <tr><td><b>Вовлечённый владелец продукта со стороны маркетинга с быстрой обратной связью</b></td><td class="ref">1–3</td><td class="ref">постоянно</td><td>Ключевой риск проекта: цикл правок по дизайну не превышает двух рабочих дней, иначе срок 45 дней на главную страницу не выполняется</td></tr>
+        <tr><td><b>Ответы по составу сайта и производству контента: назначение пункта «3D-тур проекта», шахматка, подбор машиномест, избранное без авторизации, распределение производства визуального контента по таблице документа</b></td><td class="ref">1–3</td><td class="ref">1</td><td><b>Определяет итоговый состав работ и смету: до ответов по разделу о визуальном контенте объём производства не фиксируется, позиция на слайде 7 остаётся диапазоном, а строки базового объёма уточняются по каждому ответу.–18</b></td></tr>
+      </tbody>
+    </table>
+    <div class="acc">
+      <details>
+        <summary>Полный перечень данных и решений, 13 позиций</summary>
+        <div class="in">
+          <table class="zebra">
+      <thead><tr><th>Что требуется</th><th class="ref">Для этапа</th><th class="ref">Неделя</th><th>Последствия задержки</th></tr></thead>
+      <tbody>
+        <tr><td>Платформа бренда, фирменный стиль, брендбук: исходники Figma или PDF-гайдлайн, наличие веб-адаптации.</td><td class="ref">1</td><td class="ref">1</td><td>Без них не начинается дизайн-система; сдвигаются все последующие этапы</td></tr>
+        <tr><td>Встреча по API Microsoft Dynamics: состав полей лота и их наличие в CRM, направление обмена, источник истины по цене, хранение планировок и идентификатор связи, периодичность обновления, поведение при недоступности CRM, тестовый контур, ответственный со стороны заказчика.</td><td class="ref">2, 3</td><td class="ref">1</td><td>Для формы заявки требуется к неделе 4, для каталога — к неделе 7. Основное ограничение срока каталога</td></tr>
+        <tr><td>Порядок замера скорости: целевой показатель на сборке исполнителя без сторонних тегов, отдельный порог для полной сборки, статус аналитики под блокировщиком рекламы.</td><td class="ref">1–3</td><td class="ref">2</td><td>Без согласованного порядка замера критерий приёмки по PageSpeed остаётся неопределённым и проверяется на компонентах вне зоны влияния исполнителя</td></tr>
+        <tr><td>Договор и доступы virtualland: подтверждённый состав модулей, идентификатор связи помещений с лотами CRM, согласованный документ по событиям и встраиванию.</td><td class="ref">2</td><td class="ref">2</td><td>Главная выходит с заглушкой вместо генплана; переходы на лоты не работают</td></tr>
+        <tr><td>Решение по картам: интерактивный макет virtualland и карта инфраструктуры с пинами — один инструмент или два, зона реализации, картографический сервис.</td><td class="ref">2</td><td class="ref">2</td><td>Блок карты на главной и на странице «Локация» не проектируется; при варианте с двумя инструментами объём работ увеличивается</td></tr>
+        <tr><td>Состав интеграции «Никфорт» и документация по подключению.</td><td class="ref">2</td><td class="ref">2</td><td>Строка «Лиды и счётчики» оценена по аналогии со счётчиками Яндекса; иной состав интеграции меняет оценку</td></tr>
+        <tr><td>Контент главной и её состав в первом релизе: блоки, видео и рендеры для hero, генплан, тексты УТП, классы проекта, фото офиса продаж, поведение переходов в разделы, выходящие позже.</td><td class="ref">2</td><td class="ref">3</td><td>Hero без видео и рендеров к 45-му дню не выпускается; вёрстка ведётся на заглушках, приёмка откладывается</td></tr>
+        <tr><td>Регламент по исходникам: предельный вес, форматы и разрешения изображений и видео, загружаемых через административную панель.</td><td class="ref">2</td><td class="ref">3</td><td>Без регламента целевые значения 1,5 и 2 секунды не гарантируются: один несжатый рендер перекрывает оптимизацию на стороне разработки</td></tr>
+        <tr><td>Инфраструктура и доступы: зона администрирования серверной части и ограничения по стеку, домен и DNS, SSL, CDN, UIS, Метрика, Вебмастер, SmartCaptcha, хостинг или облако.</td><td class="ref">2</td><td class="ref">4</td><td>Останавливает выпуск главной в продакшен и подключение счётчиков</td></tr>
+        <tr><td>Политика конфиденциальности и текст согласия на обработку персональных данных</td><td class="ref">2</td><td class="ref">5</td><td>Блокирует форму заявки в продакшене</td></tr>
+        <tr><td>Планировки лотов во всех видах с привязкой к кодам лотов CRM, планировочные УТП с составом лотов, механика таба «вид из окна».</td><td class="ref">3</td><td class="ref">9</td><td>Страницы лотов принимаются без визуалов, PDF лота не формируется</td></tr>
+        <tr><td>Тексты и медиа страниц проекта, команда, награды, программы покупки с условиями, категории и пины карты</td><td class="ref">3</td><td class="ref">11</td><td>Заводятся в административную панель маркетологом, разработку не задерживают; влияют на дату приёмки страниц</td></tr>
+        <tr><td>Ссылка на видеопоток стройки, первые альбомы хода строительства</td><td class="ref">3</td><td class="ref">14</td><td>Плеер принимается на тестовом потоке, замена ссылки выполняется без участия разработчика</td></tr>
+      </tbody>
+    </table>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- 10 -->
+<section class="slide" id="s10">
+  <div class="gut"><b>10</b><span>Шаг</span></div>
+  <div class="body" style="justify-content:center">
+    <h2>Дальнейшие шаги</h2>
+    <div class="thesis"><p>Сайт жилого проекта: 6 200 000 руб. при допущениях, перечисленных на слайде 8.</p></div>
+    <ol style="max-width:76ch">
+      <li>Ответы на документ «Вопросы по техническому заданию». Первоочередные разделы: Microsoft Dynamics CRM, визуальный и интерактивный контент, требования к скорости. Ответы по этим разделам определяют итоговый состав работ и смету.</li>
+      <li>Встреча на два часа с участием техлида по пунктам, которые быстрее закрываются разговором: назначение страницы «3D-тур проекта», механика перехода с генплана на страницу лота, разграничение карт на главной и на странице «Локация», прочтение требования об отсутствии хардкода, пропущенный в нумерации раздел 6 между страницей лота коммерции и «Паркингом».</li>
+      <li>Заполненная таблица визуального и интерактивного контента по каждому элементу: материал имеется, готовится подрядчиком заказчика или производится исполнителем.</li>
+      <li>Уточнение сметы по итогам ответов: состав сайта, объём производства контента, порядок замера скорости, решения по предложениям слайда 7.</li>
+      <li>Фиксация крайнего срока по проекту, подписание договора и начало первого этапа.</li>
+    </ol>
+    <p class="lead" style="max-width:66ch">Главная страница выпускается через 45 календарных дней, итоговый продукт — через 125 календарных дней от начала первого этапа при соблюдении сроков предоставления данных со слайда 9.</p>
+  </div>
+</section>
+
+</div>
+<div class="counter" id="counter" aria-hidden="true"></div>
+<script>
+(function(){
+  const fmt=new Intl.NumberFormat('ru-RU');
+  const deck=document.getElementById('deck');
+  const slides=[...document.querySelectorAll('.slide')];
+  const counter=document.getElementById('counter');
+  let i=0;
+  const paint=()=>{counter.textContent=String(i+1).padStart(2,'0')+' / '+slides.length};
+  const topOf=sl=>sl.offsetTop-deck.offsetTop;
+  const go=n=>{i=Math.max(0,Math.min(slides.length-1,n));deck.scrollTo({top:topOf(slides[i]),behavior:'smooth'});paint()};
+  // на слайдах выше экрана стрелки сначала прокручивают его до конца
+  function step(dir){
+    const sl=slides[i], vh=deck.clientHeight, top=topOf(sl), bottom=top+sl.offsetHeight;
+    if(dir>0 && bottom-(deck.scrollTop+vh)>8){deck.scrollBy({top:vh*0.85,behavior:'smooth'});return}
+    if(dir<0 && deck.scrollTop-top>8){deck.scrollBy({top:-vh*0.85,behavior:'smooth'});return}
+    go(i+dir);
+  }
+
+  document.addEventListener('keydown',e=>{
+    if(e.target.matches('input')) return;
+    if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();step(1)}
+    if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();step(-1)}
+    if(e.key==='Home'){e.preventDefault();go(0)}
+    if(e.key==='End'){e.preventDefault();go(slides.length-1)}
+  });
+  let tick=false;
+  function current(){
+    const y=deck.scrollTop+deck.clientHeight*0.35;
+    let n=0;
+    slides.forEach((sl,k)=>{if(topOf(sl)<=y) n=k});
+    if(n!==i){i=n;paint()}
+  }
+  deck.addEventListener('scroll',()=>{
+    if(tick) return; tick=true;
+    requestAnimationFrame(()=>{tick=false;current()});
+  },{passive:true});
+  paint();
+  window.addEventListener('beforeprint',()=>document.querySelectorAll('details').forEach(d=>d.open=true));
+
+  // якоря: открывают дропдаун и прокручивают к нему
+  document.querySelectorAll('[data-open]').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const d=document.getElementById(b.dataset.open);
+      if(!d) return;
+      d.open=true;
+      const y=d.getBoundingClientRect().top-deck.getBoundingClientRect().top+deck.scrollTop-14;
+      deck.scrollTo({top:y,behavior:'smooth'});
+    });
+  });
+
+  // переходы по документу
+  document.querySelectorAll('[data-goto]').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const t=document.getElementById(b.dataset.goto);
+      if(t){i=slides.indexOf(t);deck.scrollTo({top:topOf(t),behavior:'smooth'});paint()}
+    });
+  });
+
+  // переключатели последовательностей
+  document.querySelectorAll('.flow[data-out]').forEach(g=>{
+    const out=document.getElementById(g.dataset.out);
+    g.querySelectorAll('button').forEach(b=>{
+      b.addEventListener('click',()=>{
+        g.querySelectorAll('button').forEach(x=>x.setAttribute('aria-selected','false'));
+        b.setAttribute('aria-selected','true');
+        if(out) out.textContent=b.dataset.t;
+      });
+    });
+  });
+
+  // итог сметы
+  const BASE=6200000, FIXED=685000+1664000+1795000, groups=[...document.querySelectorAll('.opts')];
+  const tot=document.getElementById('tot'), note=document.getElementById('tot-note');
+  function recount(){
+    let add=0,n=0;
+    document.querySelectorAll('.opts input:checked').forEach(x=>{add+=Number(x.dataset.c);n++});
+    tot.textContent=fmt.format(BASE+add)+' руб.';
+    const p4=document.getElementById('pay4');
+    if(p4) p4.textContent=fmt.format(BASE-FIXED+add);
+    note.textContent = n===0
+      ? 'Базовый объём: главная страница через 45 дней, итоговый продукт через 125. Отметка позиций пересчитывает итог.'
+      : 'Базовый объём 6 200 000 руб. и отмеченные позиции: '+n+' на сумму '+fmt.format(add)+' руб. Срок уточняется отдельно.';
+  }
+  if(tot&&groups.length){groups.forEach(g=>g.addEventListener('change',recount))}
+})();
+</script>
+</body>
+</html>
