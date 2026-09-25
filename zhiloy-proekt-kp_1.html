@@ -1,0 +1,2041 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Сайт жилого проекта: коммерческое предложение Bang Digital</title>
+<script>document.documentElement.classList.add('js');</script>
+<style>
+:root{--ink:#1B1B1B;--paper:#EFF0EE;--white:#FFFFFF;--border:#DCE0D8;--line:#E8E9E5;--muted:#555C52;--hover:#FAFAF7;--seg:#E5E7E2;
+  --o:#FF4F12;--o50:#FFF3EC;--o100:#FFE3D3;--o200:#FFC5A7;--o300:#FF9F75;--o600:#ED450B;--o700:#CF3B08;--o800:#A52E0A;--o900:#82270F;
+  --dark-t:#C6C9C1;--ease:cubic-bezier(.22,1,.36,1);--font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 var(--font);-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,p,ol,ul,figure{margin:0}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--o800);outline-offset:2px}
+a{color:var(--o800);text-decoration:none;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .18s var(--ease)}
+a:hover{background-size:100% 1px}
+.tab{font-variant-numeric:tabular-nums}
+
+/* каркас */
+.progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--o);z-index:60}
+.counter{position:fixed;right:18px;bottom:16px;z-index:60;display:flex;gap:4px;align-items:center;background:var(--white);border:1px solid var(--border);
+  border-radius:999px;padding:4px 12px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.counter-n{display:inline-block;min-width:1.2em;text-align:right;color:var(--ink);font-weight:600}
+.slide{position:relative;min-height:100vh;padding:72px 28px 88px;border-top:1px solid var(--border)}
+.slide:first-of-type{border-top:0;padding-top:28px}
+.wrap{max-width:1320px;margin:0 auto}
+.h2{font-size:38px;font-weight:650;letter-spacing:-.02em;line-height:1.12;margin:0 0 14px;max-width:40ch}
+.h3{font-size:20px;font-weight:650;letter-spacing:-.01em;line-height:1.3;margin:0 0 12px}
+.lead{font-size:18px;line-height:1.5;color:var(--muted);max-width:64ch;margin:0 0 28px}
+.lead-1{color:var(--ink);font-weight:500}
+.cap{font-size:13px;line-height:1.45;color:var(--muted)}
+.key{border-left:3px solid var(--o);background:var(--o50);border-radius:0 10px 10px 0;padding:12px 18px;font-size:19px;font-weight:600;line-height:1.4;max-width:64ch;margin-top:22px}
+mark{background:linear-gradient(transparent 55%,var(--o100) 55%);color:var(--ink)}
+.card{background:var(--white);border:1px solid var(--border);border-radius:14px}
+.mk{display:inline-flex;align-items:center;justify-content:center;flex:none;min-width:34px;height:24px;padding:0 8px;border-radius:999px;
+  background:var(--o100);color:var(--o900);font-size:13px;font-weight:650;font-variant-numeric:tabular-nums;line-height:1}
+.badge{display:inline-flex;align-items:center;flex:none;height:24px;padding:0 9px;border-radius:999px;border:1px solid var(--border);font-size:13px;color:var(--muted);white-space:nowrap}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+/* появление */
+.js .rv{opacity:0;transform:translateY(8px);transition:opacity .3s var(--ease),transform .3s var(--ease);transition-delay:calc(var(--d,0) * 50ms)}
+.js .in .rv{opacity:1;transform:none}
+.flash{animation:flash .9s var(--ease)}
+@keyframes flash{0%{background-color:var(--o50)}100%{background-color:transparent}}
+
+/* кнопки */
+.btn{appearance:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 16px;border-radius:7px;font-size:15px;font-weight:600;cursor:pointer;
+  border:1px solid var(--o);background:var(--o);color:var(--ink);transition:background .16s var(--ease),border-color .16s var(--ease),transform .16s var(--ease)}
+.btn:hover{background:var(--o600);border-color:var(--o600);transform:translateY(-1px)}
+.btn:active{background:var(--o700);border-color:var(--o700);transform:none}
+.btn:disabled{opacity:.45;pointer-events:none}
+.btn-2{background:var(--white);border-color:var(--border);font-weight:500}
+.btn-2:hover{background:var(--hover);border-color:var(--ink)}
+
+/* раскрывающиеся блоки */
+.dz{border-left:2px solid transparent;padding-left:12px;transition:border-color .18s var(--ease)}
+.dz.is-open{border-left-color:var(--ink)}
+.dz>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 0;font-size:16px;font-weight:500}
+.dz>summary::-webkit-details-marker{display:none}
+.pl{position:relative;flex:none;width:20px;height:20px;transition:transform .18s var(--ease)}
+.pl::before,.pl::after{content:"";position:absolute;left:4px;right:4px;top:9px;height:2px;border-radius:1px;background:var(--ink)}
+.pl::after{transform:rotate(90deg)}
+.dz.is-open>summary .pl{transform:rotate(45deg)}
+.dz-body{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .22s var(--ease),opacity .16s var(--ease)}
+.dz.is-open>.dz-body{grid-template-rows:1fr;opacity:1}
+.dz-in{overflow:hidden;min-height:0}
+.dz-pad{padding:2px 0 14px;display:flex;flex-direction:column;gap:10px;font-size:15px}
+.dz-list{border-top:1px solid var(--line)}
+.dz-list>.dz{border-bottom:1px solid var(--line)}
+
+/* переключатели */
+.tg{position:relative;display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 12px;border-radius:9px;cursor:pointer;transition:background .16s var(--ease)}
+.tg:hover{background:var(--hover)}
+.tg.is-on{background:var(--o50)}
+.swc{position:relative;display:block;width:36px;height:20px}
+.swc input{position:absolute;inset:0;margin:0;opacity:0;cursor:pointer}
+.sw{position:absolute;inset:0;border-radius:999px;background:var(--border);transition:background .18s var(--ease)}
+.sw::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:var(--white);transition:transform .18s var(--ease)}
+.swc input:checked+.sw{background:var(--o)}
+.swc input:checked+.sw::after{transform:translateX(16px)}
+.swc input:focus-visible+.sw{outline:2px solid var(--o800);outline-offset:2px}
+.tg-name{font-size:15px;line-height:1.35}
+.tg-cost{font-size:15px;font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right}
+
+/* таблицы */
+.tbl{width:100%;border-collapse:collapse;font-size:14.5px}
+.tbl th{font-size:13px;font-weight:550;color:var(--muted);text-align:left;padding:10px 14px;border-bottom:1px solid var(--ink);vertical-align:bottom}
+.tbl td{padding:9px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl tbody tr{transition:background .12s var(--ease)}
+.tbl tbody tr:hover{background:var(--hover)}
+.tbl .n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tbl .c{text-align:center}
+.tbl tr.tot td{border-top:3px double var(--ink);border-bottom:0;font-weight:600}
+.tbl tr.keyrow td{background:var(--o50)}
+.tbl tr.keyrow td:first-child{font-weight:600}
+.tbl .ref{color:var(--muted);font-size:13px;white-space:nowrap}
+.cond{border-bottom:1.5px dotted var(--o800)}
+
+/* 1. титул */
+.hero{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);border-radius:16px;overflow:hidden;min-height:460px}
+.hero-dark{background:var(--ink);color:var(--white);padding:40px 44px 44px;display:flex;flex-direction:column;gap:18px}
+.brand{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:650;margin-bottom:auto}
+.brand-sq{width:12px;height:12px;border-radius:3px;background:var(--o)}
+.hero-h1{font-size:64px;font-weight:650;letter-spacing:-.03em;line-height:1.02}
+.hero-sub{font-size:18px;line-height:1.5;color:var(--dark-t);max-width:48ch}
+.hero-meta{font-size:14px;color:var(--dark-t)}
+.hero-or{background:var(--o);color:var(--ink);padding:40px 36px;display:flex;flex-direction:column;justify-content:center;gap:26px}
+.bn{display:flex;flex-direction:column;gap:4px}
+.bn-n{font-size:52px;font-weight:650;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.bn-t{font-size:15px;line-height:1.35}
+.toc{margin-top:20px;padding:20px 24px 14px}
+.toc-h{font-size:14px;color:var(--muted);font-weight:500;margin:0 0 6px}
+.toc-l{list-style:none;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:28px}
+.toc-a{display:flex;gap:12px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);color:var(--ink);font-size:16px;background:none;transition:color .16s var(--ease)}
+.toc-a:hover{color:var(--o800)}
+.toc-n{min-width:22px;color:var(--muted);font-variant-numeric:tabular-nums;font-size:14px}
+
+/* 2. вызовы */
+.chal-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.chal{appearance:none;position:relative;text-align:left;background:var(--white);border:1px solid var(--border);border-radius:14px;padding:22px 22px 24px;
+  display:flex;flex-direction:column;gap:10px;min-height:210px;cursor:pointer;transition:border-color .16s var(--ease),background .16s var(--ease)}
+.chal:hover{border-color:var(--ink);background:var(--hover)}
+.chal .mk{align-self:flex-start}
+.chal-t{font-size:22px;font-weight:600;line-height:1.25;letter-spacing:-.01em;padding-right:24px}
+.chal-d{font-size:16px;color:var(--muted);margin-top:auto}
+.chal-go{position:absolute;right:18px;top:20px;width:22px;height:22px;opacity:0;transform:translateX(-4px);transition:opacity .16s var(--ease),transform .16s var(--ease)}
+.chal:hover .chal-go,.chal:focus-visible .chal-go{opacity:1;transform:none}
+
+/* 3. опыт */
+.two{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:24px;align-items:start}
+.col{display:flex;flex-direction:column;gap:12px;min-width:0}
+.case{padding:18px 20px 8px;display:flex;flex-direction:column;gap:8px}
+.case-h{display:flex;gap:12px;align-items:flex-start;justify-content:space-between}
+.case-t{font-size:18px;font-weight:600;line-height:1.3}
+.case-r{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:16px}
+.case-r-t{color:var(--muted)}
+.case .dz{margin-left:-12px}
+.kp-block{background:var(--ink);color:var(--white);border-radius:14px;padding:20px 22px;display:flex;flex-direction:column;gap:6px}
+.kp-t{font-size:20px;font-weight:650;letter-spacing:-.01em}
+.kp-d{font-size:16px;color:var(--dark-t);line-height:1.5}
+.team{padding:6px 4px 4px}
+.approach .dz{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:0 16px}
+.approach .dz.is-open{border-left:2px solid var(--ink)}
+.pr{display:flex;flex-direction:column;gap:2px}
+.pr-t{font-weight:600}
+.pr-d{color:var(--muted)}
+
+/* 4. методология */
+.benefit{font-size:17px;max-width:70ch;margin:-12px 0 22px}
+.benefit-l{color:var(--muted)}
+.flow{padding:14px 16px}
+.flow svg{display:block;width:100%;min-width:900px;height:auto}
+.nd rect{fill:var(--white);stroke:var(--ink);stroke-width:1.5}
+.nd.ext rect{fill:var(--paper);stroke:var(--muted);stroke-dasharray:6 5}
+.nd text{font-family:var(--font);font-size:15px;font-weight:500;fill:var(--ink)}
+.nd .sub{font-size:13px;font-weight:400;fill:var(--muted)}
+.nd .rdot{fill:var(--o)}
+.ar{fill:none;stroke:var(--ink);stroke-width:1.5;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .3s var(--ease) .45s,opacity .16s var(--ease)}
+.in .ar{stroke-dashoffset:0}
+.nd{transition:opacity .16s var(--ease)}
+.flow.hl .nd:not(.on),.flow.hl .ar:not(.on){opacity:.3}
+.nd.on rect{stroke-width:2.5}
+.legend{display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:10px;font-size:13px;color:var(--muted)}
+.lg{display:flex;align-items:center;gap:8px}
+.lg-s{width:22px;height:14px;border-radius:4px;border:1.5px solid var(--ink);background:var(--white)}
+.lg-d{width:22px;height:14px;border-radius:4px;border:1.5px dashed var(--muted);background:var(--paper)}
+.lg-o{width:10px;height:10px;border-radius:50%;background:var(--o)}
+.an-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px;margin-top:22px}
+.an-col{border-top:1px solid var(--line)}
+.an-col>.dz{border-bottom:1px solid var(--line)}
+.an-sum{display:flex;align-items:center;gap:10px}
+.an-lbl{font-size:13px;color:var(--muted);margin-bottom:-6px}
+.an-tech{font-size:14px;color:var(--muted);line-height:1.55}
+
+/* 5. модель системы */
+.model{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:18px;align-items:start}
+.tiers{padding:18px;display:flex;flex-direction:column;gap:0}
+.tier{display:grid;grid-template-columns:150px minmax(0,1fr);gap:14px;align-items:center}
+.tier-l{font-size:13px;color:var(--muted);line-height:1.35}
+.tier-b{display:flex;flex-wrap:wrap;gap:10px}
+.tarr{height:22px;margin-left:164px;display:flex;justify-content:center;align-items:center}
+.tarr-i{width:1.5px;height:14px;background:var(--muted)}
+.blk{appearance:none;flex:1 1 150px;min-height:52px;display:flex;align-items:center;justify-content:space-between;gap:8px;text-align:left;padding:10px 14px;
+  background:var(--white);border:1.5px solid var(--ink);border-radius:10px;font-size:15px;font-weight:500;line-height:1.3;cursor:pointer;
+  transition:background .16s var(--ease),box-shadow .16s var(--ease)}
+.blk:hover,.blk.on{background:var(--hover);box-shadow:inset 0 0 0 1px var(--ink)}
+.blk-dot{flex:none;width:10px;height:10px;border-radius:50%;background:var(--o)}
+.side{display:flex;flex-direction:column;gap:12px}
+.info{padding:16px 18px;display:flex;flex-direction:column;gap:8px;min-height:170px}
+.info-t{font-size:17px;font-weight:600}
+.info-d{font-size:15px;color:var(--muted)}
+.info-m{display:flex;gap:6px;flex-wrap:wrap}
+.exts{padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.exts-h{font-size:13px;color:var(--muted)}
+.ext{border:1.5px dashed var(--muted);border-radius:9px;background:var(--paper);padding:8px 12px;font-size:14px;line-height:1.35}
+
+/* 6–7. риски и этапы */
+.pp-host{margin-bottom:6px}
+.stack{display:flex;flex-direction:column;gap:0;margin-top:18px;border-top:1px solid var(--line)}
+.stack>.dz{border-bottom:1px solid var(--line)}
+.gantt{min-width:780px;padding:6px 0 4px}
+.g-row{display:flex;align-items:center;gap:14px;min-height:42px;padding:3px 0}
+.g-l{flex:none;width:290px;font-size:14px;line-height:1.3}
+.g-t{position:relative;flex:1;height:22px;background:repeating-linear-gradient(90deg,transparent 0,transparent calc(100%/18 - 1px),var(--line) calc(100%/18 - 1px),var(--line) calc(100%/18))}
+.g-b{position:absolute;top:4px;height:14px;border-radius:4px;transform-origin:left center;transform:scaleX(0);transition:transform .4s var(--ease)}
+.in .g-b{transform:scaleX(1)}
+.g-s1{background:var(--ink)}.g-s2{background:var(--muted)}.g-s3{background:#999D95}
+.g-head .g-t{background:none;height:auto;display:flex}
+.g-wk{flex:1;text-align:center;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.g-m{position:absolute;top:1px;width:14px;height:14px;margin-left:-7px;background:var(--o);transform:rotate(45deg);border-radius:2px}
+.g-ml{position:absolute;top:18px;transform:translateX(-50%);font-size:13px;font-weight:600;white-space:nowrap}
+.g-pay .g-t{height:40px;background:none}
+.g-leg{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:10px;font-size:13px;color:var(--muted)}
+.g-leg-i{display:flex;align-items:center;gap:6px}
+.g-sw{width:18px;height:10px;border-radius:3px}
+.rights td:first-child{font-weight:600;white-space:nowrap}
+.team td:first-child{white-space:nowrap}
+.nw{white-space:nowrap}
+.blk-tbl{table-layout:fixed}
+.blk-tbl .ref{white-space:normal}
+.tg-note{display:block;margin-top:2px;font-size:13px;color:var(--muted)}
+.tg-note.acc{color:var(--o800)}
+.hint{display:none;font-size:13px;color:var(--muted);margin-top:8px}
+#payTbl td:first-child{white-space:nowrap}
+
+/* 8. предложения */
+.prop-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.prop{display:flex;flex-direction:column;gap:14px;padding:18px 18px 20px;border:1px solid var(--border);border-radius:14px;background:var(--white);cursor:pointer;
+  transition:border-color .16s var(--ease),background .16s var(--ease)}
+.prop:hover{border-color:var(--ink)}
+.prop.is-on{background:var(--o50);border-color:var(--o300)}
+.prop-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.prop-cost{font-size:24px;font-weight:650;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.prop-name{font-size:18px;font-weight:600;line-height:1.3}
+.prop-why{font-size:16px;color:var(--muted)}
+.prop-ref{font-size:13px;color:var(--muted);margin-top:auto}
+.sumline{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px;margin-top:22px}
+.sumline-n{font-size:40px;font-weight:650;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1}
+.sumline-t{font-size:14px;color:var(--muted)}
+
+/* 9. смета */
+.smeta{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:22px;align-items:start}
+.st-card{padding:8px 18px 14px}
+.st-head{display:grid;grid-template-columns:minmax(0,1fr) 34% 130px 20px;gap:14px;padding:10px 0 8px 14px;font-size:13px;font-weight:550;color:var(--muted);border-bottom:1px solid var(--ink)}
+.st-head-r{text-align:right}
+.st .dz{padding-left:12px}
+.st>.dz{border-bottom:1px solid var(--line)}
+.st-sum{display:grid!important;grid-template-columns:minmax(0,1fr) 34% 130px 20px;gap:14px;align-items:center}
+.st-name{display:flex;flex-direction:column;gap:1px}
+.st-name-t{font-size:16px;font-weight:600;line-height:1.3}
+.st-name-w{font-size:13px;color:var(--muted);font-weight:400}
+.st-bar{position:relative;height:12px;border-radius:4px;background:var(--seg);overflow:hidden;display:flex}
+.st-fill{height:100%;background:var(--ink);transform-origin:left;transition:width .4s var(--ease)}
+.st-res{height:100%;background:var(--o300);transition:width .4s var(--ease)}
+.st-val{text-align:right;font-variant-numeric:tabular-nums;font-size:16px;font-weight:500}
+.st-total{display:grid;grid-template-columns:minmax(0,1fr) 130px 20px;gap:14px;padding:12px 0 2px 14px;border-top:3px double var(--ink);font-weight:600;font-size:16px}
+.st-total-v{text-align:right;font-variant-numeric:tabular-nums}
+.st-leg{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:10px;font-size:13px;color:var(--muted)}
+.tot-card{padding:20px 20px 18px;display:flex;flex-direction:column;gap:14px}
+.bigv{display:flex;flex-direction:column;gap:4px}
+.bigv-n{font-size:48px;font-weight:650;letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums}
+.bigv-t{font-size:14px;color:var(--muted)}
+.sub-h{font-size:14px;font-weight:600;margin-bottom:-6px}
+.plink{font-size:15px}
+.pay-bar{display:flex;height:12px;border-radius:4px;overflow:hidden;gap:2px}
+.pay-seg{height:100%;transition:width .4s var(--ease)}
+.pay-seg:nth-child(1){background:var(--o900)}.pay-seg:nth-child(2){background:var(--o)}.pay-seg:nth-child(3){background:var(--o200)}
+.tot-card .tbl td,.tot-card .tbl th{padding-left:6px;padding-right:6px}
+.check{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)}
+.check-i{color:var(--ink);font-weight:700}
+.dl-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+
+/* 10. резерв */
+.ceil{padding:20px 22px 18px}
+.ceil-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:10px}
+.ceil-top-l{font-size:14px;color:var(--muted)}
+.ceil-top-r{font-size:15px;font-weight:600;font-variant-numeric:tabular-nums}
+.ceil-bar{display:flex;height:34px;border-radius:7px;overflow:hidden;gap:2px;background:var(--seg)}
+.cb{height:100%;display:flex;align-items:center;padding:0 8px;font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;transition:width .4s var(--ease),padding .4s var(--ease)}
+.cb-fix{background:var(--ink);color:var(--white)}
+.cb-1{background:var(--o);color:var(--ink)}.cb-2{background:var(--o300);color:var(--ink)}.cb-3{background:var(--o200);color:var(--o900)}
+.cb.gone{width:0!important;padding:0}
+.ceil-leg{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:10px;font-size:13px;color:var(--muted)}
+.res-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:20px;align-items:start;margin-top:18px}
+.res-tbl td{vertical-align:middle}
+.res-tg{display:flex;align-items:center;gap:10px;cursor:pointer;white-space:nowrap;font-size:14px}
+.res-sw{flex:none}
+.res-cur{padding:18px 20px;display:flex;flex-direction:column;gap:10px}
+.cut{font-size:16px;margin-top:16px;max-width:70ch}
+
+/* 11–12 */
+.steps{list-style:none;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.step{padding:18px 18px 20px;display:flex;flex-direction:column;gap:8px}
+.step-n{width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:650}
+.step-t{font-size:18px;font-weight:600;line-height:1.3}
+.step-d{font-size:15px;color:var(--muted)}
+.sup{margin-top:26px}
+.sign{margin-top:22px;display:flex;flex-wrap:wrap;gap:6px 24px;font-size:14px;color:var(--muted)}
+
+/* адаптивность */
+@media (max-width:1100px){.hero-h1{font-size:52px}.bn-n{font-size:44px}}
+@media (max-width:980px){
+  .slide{padding:56px 16px 72px}
+  .h2{font-size:30px}
+  .hero,.two,.model,.smeta,.res-grid{grid-template-columns:minmax(0,1fr)}
+  .hero{min-height:0}
+  .hero-dark{padding:28px 22px 30px;min-height:320px}
+  .hero-or{padding:26px 22px;gap:18px}
+  .toc-l{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .chal-grid,.prop-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .an-grid{grid-template-columns:minmax(0,1fr)}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tier{grid-template-columns:minmax(0,1fr);gap:6px}
+  .tarr{margin-left:0}
+}
+@media (max-width:600px){
+  .h2{font-size:28px}
+  .lead{font-size:17px}
+  .hero-h1{font-size:42px}
+  .bn-n{font-size:40px}
+  .toc-l,.chal-grid,.prop-grid,.steps{grid-template-columns:minmax(0,1fr)}
+  .chal{min-height:0}
+  .chal-t{font-size:20px}
+  .st-head{display:none}
+  .st-sum{grid-template-columns:minmax(0,1fr) 110px 20px}
+  .st-sum .st-bar{grid-column:1/-1;grid-row:2}
+  .st-total{grid-template-columns:minmax(0,1fr) 110px 20px}
+  .bigv-n{font-size:40px}
+  .counter{right:10px;bottom:10px}
+  .tbl.wide{min-width:620px}
+  .hint{display:block}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;transition-delay:0s!important}
+  .js .rv{opacity:1;transform:none}
+  .ar{stroke-dashoffset:0}
+  .g-b{transform:none}
+}
+@media print{
+  @page{size:A4 landscape;margin:10mm}
+  body{background:var(--white);font-size:14px}
+  .progress,.counter,.no-print{display:none!important}
+  .slide{min-height:0;padding:0 0 6mm;border:0;break-after:page;page-break-after:always}
+  .js .rv{opacity:1!important;transform:none!important}
+  .dz>.dz-body{grid-template-rows:1fr!important;opacity:1!important}
+  .ar{stroke-dashoffset:0!important}
+  .g-b{transform:none!important}
+  .tw{overflow:visible}
+  .chal,.prop,.step,.case,.kp-block,.info,.exts,.pp,.rb-top,.ceil,.res-cur,.tot-card,tr,.dz>summary{break-inside:avoid}
+  .h2,.lead,.dz>summary{break-after:avoid}
+  .hero{min-height:330px}
+  .hero-h1{font-size:52px}
+  .slide:first-of-type{padding-top:0}
+  .dz-body,.dz-in{display:block!important;overflow:visible!important}
+}
+</style>
+<style>
+/* Process Player: процесс работы с командой. Префикс pp- исключает конфликты со стилями страницы. */
+.pp{--pp-ink:#1B1B1B;--pp-paper:#EFF0EE;--pp-white:#FFFFFF;--pp-border:#DCE0D8;--pp-muted:#555C52;
+  --pp-orange:#FF4F12;--pp-orange-50:#FFF3EC;--pp-orange-100:#FFE3D3;--pp-link:#A52E0A;--pp-ease:cubic-bezier(.22,1,.36,1);
+  background:var(--pp-white);border:1px solid var(--pp-border);border-radius:14px;padding:18px 20px;color:var(--pp-ink);
+  font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;display:flex;flex-direction:column;gap:14px}
+.pp *{box-sizing:border-box}
+.pp-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pp-btn{appearance:none;border:1px solid var(--pp-border);background:var(--pp-white);color:var(--pp-ink);border-radius:7px;
+  height:36px;min-width:36px;padding:0 12px;font:inherit;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  transition:border-color .16s var(--pp-ease),background .16s var(--pp-ease),transform .16s var(--pp-ease)}
+.pp-btn:hover{border-color:var(--pp-ink);background:#FAFAF7}
+.pp-btn:active{transform:translateY(1px)}
+.pp-btn:focus-visible,.pp-dot:focus-visible,.pp-chip:focus-visible{outline:2px solid var(--pp-link);outline-offset:2px}
+.pp-btn.pp-play{background:var(--pp-orange);border-color:var(--pp-orange);font-weight:600}
+.pp-btn.pp-play:hover{background:#ED450B;border-color:#ED450B}
+.pp-count{font-size:14px;color:var(--pp-muted);font-variant-numeric:tabular-nums;margin-left:auto}
+.pp-progress{display:flex;gap:4px}
+.pp-seg{flex:1;height:4px;border-radius:999px;background:var(--pp-border);overflow:hidden}
+.pp-seg>span{display:block;height:100%;width:0;background:var(--pp-orange)}
+.pp-seg.pp-done>span{width:100%}
+.pp-phases{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;position:relative;scrollbar-width:none}
+.pp-phases::-webkit-scrollbar{display:none}
+.pp-phase{flex:1 0 auto;border:1px solid var(--pp-border);border-radius:999px;padding:5px 12px;font-size:13px;color:var(--pp-muted);
+  white-space:nowrap;transition:background .22s var(--pp-ease),color .22s var(--pp-ease),border-color .22s var(--pp-ease)}
+.pp-phase.pp-past{color:var(--pp-ink)}
+.pp-phase.pp-now{background:var(--pp-ink);border-color:var(--pp-ink);color:var(--pp-white)}
+.pp-stage{position:relative;display:grid}
+.pp-step{grid-area:1/1;display:flex;flex-direction:column;gap:12px;opacity:0;visibility:hidden;transform:translateY(6px);
+  transition:opacity .26s var(--pp-ease),transform .26s var(--pp-ease),visibility 0s linear .26s}
+.pp-step.pp-active{opacity:1;visibility:visible;transform:none;transition:opacity .26s var(--pp-ease),transform .26s var(--pp-ease),visibility 0s}
+.pp-top{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.pp-when{font-size:13px;color:var(--pp-muted);font-variant-numeric:tabular-nums}
+.pp-title{font-size:20px;font-weight:650;letter-spacing:-.01em;margin:0}
+.pp-check{font-size:13px;font-weight:600;color:var(--pp-link);background:var(--pp-orange-50);border-radius:999px;padding:2px 10px}
+.pp-lanes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.pp-lane{border:1px solid var(--pp-border);border-radius:12px;padding:10px 12px;background:var(--pp-paper);
+  opacity:0;transform:translateY(6px);transition:opacity .26s var(--pp-ease),transform .26s var(--pp-ease)}
+.pp-active .pp-lane{opacity:1;transform:none}
+.pp-active .pp-lane:nth-child(2){transition-delay:.08s}
+.pp-active .pp-lane:nth-child(3){transition-delay:.16s}
+.pp-lane-h{font-size:13px;color:var(--pp-muted);margin:0 0 4px}
+.pp-lane-t{font-size:15px;margin:0}
+.pp-lane.pp-control{background:var(--pp-orange-50);border-color:var(--pp-orange-100)}
+.pp-take{border-left:3px solid var(--pp-orange);background:var(--pp-orange-50);padding:10px 14px;border-radius:0 10px 10px 0;
+  font-size:17px;font-weight:600;margin:0}
+.pp-chips{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.pp-chips-h{font-size:13px;color:var(--pp-muted)}
+.pp-chip{appearance:none;border:1px solid var(--pp-border);background:var(--pp-white);border-radius:999px;padding:3px 10px;font:inherit;font-size:13px;
+  color:var(--pp-ink);cursor:pointer;transition:border-color .16s var(--pp-ease)}
+.pp-chip:hover{border-color:var(--pp-ink)}
+.pp-chip>b{color:var(--pp-orange);font-weight:650;margin-right:4px}
+.pp-dots{display:flex;gap:6px;justify-content:center}
+.pp-dot{appearance:none;width:10px;height:10px;border-radius:999px;border:0;background:var(--pp-border);padding:0;cursor:pointer;
+  transition:background .16s var(--pp-ease),transform .16s var(--pp-ease)}
+.pp-dot[aria-current="step"]{background:var(--pp-orange);transform:scale(1.25)}
+.pp-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:760px){.pp{padding:14px}.pp-lanes{grid-template-columns:1fr}.pp-title{font-size:18px}.pp-count{margin-left:0;width:100%}}
+@media (prefers-reduced-motion:reduce){.pp *{transition:none!important}}
+@media print{.pp-head,.pp-progress,.pp-dots,.pp-phases{display:none}.pp-stage{display:flex;flex-direction:column;gap:16px}
+  .pp-step{opacity:1!important;visibility:visible!important;transform:none!important;break-inside:avoid;border-top:1px solid var(--pp-border);padding-top:10px}
+  .pp-lane{opacity:1!important;transform:none!important}}
+</style>
+<style>
+/* Risk Board: карта рисков, порядок снятия и остаточный риск по неделям. Префикс rb- исключает конфликты. */
+.rb{--rb-ink:#1B1B1B;--rb-paper:#EFF0EE;--rb-white:#FFFFFF;--rb-border:#DCE0D8;--rb-muted:#555C52;--rb-link:#A52E0A;
+  --rb-hi:#FF4F12;--rb-mid:#FFC5A7;--rb-low:#E5E7E2;--rb-hi-bg:#FFE3D3;--rb-mid-bg:#FFF3EC;--rb-low-bg:#F4F5F2;
+  --rb-ease:cubic-bezier(.22,1,.36,1);
+  background:var(--rb-white);border:1px solid var(--rb-border);border-radius:14px;padding:18px 20px;color:var(--rb-ink);
+  font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;display:flex;flex-direction:column;gap:16px}
+.rb *{box-sizing:border-box}
+.rb-h{margin:0 0 8px;font-size:13px;color:var(--rb-muted)}
+.rb-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:20px;align-items:start}
+.rb-matrix{display:grid;grid-template-columns:72px repeat(3,minmax(0,1fr));grid-template-rows:repeat(3,minmax(58px,auto)) auto auto;gap:4px}
+.rb-ax{font-size:12px;color:var(--rb-muted);display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.25}
+.rb-ax-y{justify-content:flex-end;padding-right:6px;text-align:right}
+.rb-cell{border-radius:9px;padding:6px;display:flex;flex-wrap:wrap;gap:4px;align-content:flex-start}
+.rb-cell.rb-l3{background:var(--rb-hi-bg)}.rb-cell.rb-l2{background:var(--rb-mid-bg)}.rb-cell.rb-l1{background:var(--rb-low-bg)}
+.rb-chip{appearance:none;border:0;border-radius:999px;padding:2px 9px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;color:var(--rb-ink);
+  font-variant-numeric:tabular-nums;transition:transform .16s var(--rb-ease),box-shadow .16s var(--rb-ease)}
+.rb-chip.rb-l3{background:var(--rb-hi)}.rb-chip.rb-l2{background:var(--rb-mid)}.rb-chip.rb-l1{background:var(--rb-low)}
+.rb-chip:hover,.rb-chip.rb-hl{transform:translateY(-1px);box-shadow:0 0 0 2px var(--rb-ink)}
+.rb-chip:focus-visible,.rb-sum:focus-visible,.rb-link:focus-visible{outline:2px solid var(--rb-link);outline-offset:2px}
+.rb-axis-x{grid-column:2/5;text-align:center;font-size:12px;color:var(--rb-muted)}
+.rb-burn{display:flex;flex-direction:column;gap:8px}
+.rb-key{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.rb-key-n{font-size:40px;font-weight:650;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.rb-key-t{font-size:14px;color:var(--rb-muted);max-width:36ch}
+.rb-bars{display:flex;align-items:flex-end;gap:4px;height:150px;border-bottom:1px solid var(--rb-border);padding-top:6px}
+.rb-bar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:100%;min-width:0}
+.rb-bar>i{display:block;width:100%;height:0;border-radius:4px 4px 0 0;background:var(--rb-ink);transition:height .4s var(--rb-ease)}
+.rb-bar.rb-first>i{background:var(--rb-hi)}
+.rb-weeks{display:flex;gap:4px}
+.rb-weeks>span{flex:1;min-width:0;text-align:center;font-size:11px;color:var(--rb-muted);font-variant-numeric:tabular-nums}
+.rb-legend{font-size:13px;color:var(--rb-muted);margin:0}
+.rb-legend>b{display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--rb-hi);margin:0 5px 0 0;vertical-align:-1px}
+.rb-list{display:flex;flex-direction:column;border:1px solid var(--rb-border);border-radius:12px;overflow:hidden}
+.rb-item{border-top:1px solid var(--rb-border);transition:background .9s var(--rb-ease)}
+.rb-item:first-child{border-top:0}
+.rb-item.rb-flash{background:var(--rb-mid-bg);transition:background 0s}
+.rb-item.rb-hl{background:#FAFAF7}
+.rb-sum{list-style:none;cursor:pointer;display:grid;grid-template-columns:44px minmax(0,1fr) 84px 168px;gap:10px;align-items:center;padding:10px 14px}
+.rb-sum::-webkit-details-marker{display:none}
+.rb-id{font-weight:650;font-variant-numeric:tabular-nums}
+.rb-title{font-size:15px}
+.rb-lvl{font-size:12px;font-weight:600;border-radius:999px;padding:2px 9px;white-space:nowrap;justify-self:start}
+.rb-lvl.rb-l3{background:var(--rb-hi)}.rb-lvl.rb-l2{background:var(--rb-mid)}.rb-lvl.rb-l1{background:var(--rb-low)}
+.rb-week{font-size:13px;color:var(--rb-muted);white-space:nowrap;font-variant-numeric:tabular-nums;text-align:right}
+.rb-body{display:grid;grid-template-columns:170px minmax(0,1fr);gap:6px 14px;padding:0 14px 12px 68px;font-size:14px}
+.rb-k{color:var(--rb-muted)}
+.rb-v{margin:0}
+.rb-task{font-weight:600}
+.rb-link{appearance:none;border:1px solid var(--rb-border);background:var(--rb-white);border-radius:999px;padding:1px 9px;font:inherit;font-size:13px;cursor:pointer;color:var(--rb-ink)}
+.rb-link:hover{border-color:var(--rb-ink)}
+@media (max-width:860px){.rb-top{grid-template-columns:1fr}}
+@media (max-width:560px){.rb{padding:14px}.rb-sum{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;padding:10px 12px}
+  .rb-id{flex:0 0 26px}.rb-title{flex:1 1 calc(100% - 36px)}.rb-lvl{margin-left:36px}.rb-week{text-align:left}.rb-body{grid-template-columns:1fr;padding:0 12px 12px 12px}.rb-k{margin-top:4px}
+  .rb-matrix{grid-template-columns:56px repeat(3,minmax(0,1fr))}.rb-key-n{font-size:32px}}
+@media (prefers-reduced-motion:reduce){.rb *{transition:none!important}}
+@media print{.rb-item{break-inside:avoid}.rb-bar>i{transition:none}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="counter" aria-label="Номер слайда"><span class="counter-n" id="cn">1</span><span>/ 12</span></div>
+<main>
+<section class="slide" id="s1" aria-label="Титул и содержание">
+  <div class="wrap">
+    <div class="hero rv">
+      <div class="hero-dark">
+        <p class="brand"><span class="brand-sq" aria-hidden="true"></span><span>Bang Digital</span></p>
+        <h1 class="hero-h1">Сайт жилого проекта</h1>
+        <p class="hero-sub">Коммерческое предложение на дизайн, разработку и запуск сайта бизнес- и премиум-очередей</p>
+        <p class="hero-meta">Версия 1.0 от 25 сентября 2026</p>
+      </div>
+      <div class="hero-or">
+        <p class="bn"><span class="bn-n">6,2 млн ₽</span><span class="bn-t">верхняя граница базового объёма, оценка исполнителя</span></p>
+        <p class="bn"><span class="bn-n">45 дней</span><span class="bn-t">до выпуска главной страницы, по ТЗ</span></p>
+        <p class="bn"><span class="bn-n">125 дней</span><span class="bn-t">до итогового продукта, по ТЗ</span></p>
+      </div>
+    </div>
+    <nav class="toc card rv" aria-label="Содержание">
+      <h2 class="toc-h">Содержание</h2>
+      <ol class="toc-l">
+        <li><a class="toc-a" href="#s2"><span class="toc-n">2</span><span>Ключевые вызовы проекта</span></a></li>
+        <li><a class="toc-a" href="#s3"><span class="toc-n">3</span><span>Релевантный опыт и подход к работе</span></a></li>
+        <li><a class="toc-a" href="#s4"><span class="toc-n">4</span><span>Техническая методология</span></a></li>
+        <li><a class="toc-a" href="#s5"><span class="toc-n">5</span><span>Модель системы</span></a></li>
+        <li><a class="toc-a" href="#s6"><span class="toc-n">6</span><span>Управление рисками</span></a></li>
+        <li><a class="toc-a" href="#s7"><span class="toc-n">7</span><span>Этапы, приёмка, разграничение прав</span></a></li>
+        <li><a class="toc-a" href="#s8"><span class="toc-n">8</span><span>Предложения к первой версии</span></a></li>
+        <li><a class="toc-a" href="#s9"><span class="toc-n">9</span><span>Смета и график оплат</span></a></li>
+        <li><a class="toc-a" href="#s10"><span class="toc-n">10</span><span>Уточнение требований и стоимость</span></a></li>
+        <li><a class="toc-a" href="#s11"><span class="toc-n">11</span><span>Данные и решения от заказчика</span></a></li>
+        <li><a class="toc-a" href="#s12"><span class="toc-n">12</span><span>Дальнейшие шаги</span></a></li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<section class="slide" id="s2" aria-label="Ключевые вызовы проекта">
+  <div class="wrap">
+    <h2 class="h2 rv">Ключевые вызовы проекта</h2>
+    <p class="lead rv"><span class="lead-1">Каждый вызов открывает разбор с решением.</span></p>
+    <div class="chal-grid">
+      <button type="button" class="chal rv" data-open="d-v1" aria-label="В1. Скорость при премиальной графике: открыть разбор"><span class="mk">В1</span><span class="chal-t">Скорость при премиальной графике</span><span class="chal-d">PageSpeed выше 80 с видео</span><svg class="chal-go" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="#1B1B1B" stroke-width="2"/></svg></button>
+      <button type="button" class="chal rv" data-open="d-v2" aria-label="В2. Каталог на API без спецификации: открыть разбор"><span class="mk">В2</span><span class="chal-t">Каталог на API без спецификации</span><span class="chal-d">Цены и статусы из Dynamics</span><svg class="chal-go" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="#1B1B1B" stroke-width="2"/></svg></button>
+      <button type="button" class="chal rv" data-open="d-v3" aria-label="В3. Сквозная навигация между системами: открыть разбор"><span class="mk">В3</span><span class="chal-t">Сквозная навигация между системами</span><span class="chal-d">Генплан, подбор и лот связаны</span><svg class="chal-go" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="#1B1B1B" stroke-width="2"/></svg></button>
+      <button type="button" class="chal rv" data-open="d-v4" aria-label="В4. Редактируемость без хардкода: открыть разбор"><span class="mk">В4</span><span class="chal-t">Редактируемость без хардкода</span><span class="chal-d">Контент меняется без разработчика</span><svg class="chal-go" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="#1B1B1B" stroke-width="2"/></svg></button>
+      <button type="button" class="chal rv" data-open="d-v5" aria-label="В5. Первый релиз за 45 дней: открыть разбор"><span class="mk">В5</span><span class="chal-t">Первый релиз за 45&nbsp;дней</span><span class="chal-d">Главная в продакшене на 45-й день</span><svg class="chal-go" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="#1B1B1B" stroke-width="2"/></svg></button>
+      <button type="button" class="chal rv" data-open="d-v6" aria-label="В6. Шахматка и солнце без поставщика: открыть разбор"><span class="mk">В6</span><span class="chal-t">Шахматка и солнце без поставщика</span><span class="chal-d">Цена закрыта резервом</span><svg class="chal-go" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="#1B1B1B" stroke-width="2"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="s3" aria-label="Релевантный опыт и подход к работе">
+  <div class="wrap">
+    <h2 class="h2 rv">Релевантный опыт и подход к работе</h2>
+    <div class="two">
+      <div class="col">
+        <article class="case card rv">
+          <div class="case-h"><h3 class="case-t">Система управления жилищным фондом застройщика</h3><span class="badge">Открытый кейс</span></div>
+          <p class="case-r"><span class="case-r-t">Интеграции с 1С и Битрикс</span><span class="mk">В2</span></p>
+          <details class="dz"><summary><span>Подробнее</span><span class="pl" aria-hidden="true"></span></summary>
+            <div class="dz-body"><div class="dz-in"><div class="dz-pad">
+              <p>В кейсе реализованы интеграции с 1С, Битрикс и другими системами, работа с оплатами, финансами и документами. В задаче заказчика этот опыт применяется к синхронизации каталога с CRM (В2).</p>
+              <p class="cap">Состав работ: кроссплатформенная система; бизнес-анализ и разработка под ключ без готового ТЗ; интеграции с 1С, Битрикс и другими системами; оплаты и финансы; документы; дашборды и аналитический контур; маркетплейс услуг; техническая поддержка с SLA.</p>
+            </div></div></div>
+          </details>
+        </article>
+        <article class="case card rv">
+          <div class="case-h"><h3 class="case-t">Сервис автоматизации и оптимизации закупки рекламы</h3><span class="badge">NDA</span></div>
+          <p class="case-r"><span class="case-r-t">Сложные интеграции по API</span><span class="mk">В2</span><span class="mk">В3</span></p>
+          <details class="dz"><summary><span>Подробнее</span><span class="pl" aria-hidden="true"></span></summary>
+            <div class="dz-body"><div class="dz-in"><div class="dz-pad">
+              <p>В кейсе реализованы сложные интеграции по API и простройка UX-сценариев. В задаче заказчика этот опыт применяется к обмену с CRM и переходам между системами (В2, В3).</p>
+              <p class="cap">Состав работ: сложные интеграции по API; простройка UX-сценариев; математический алгоритм оптимизации; продуктовое ведение; работа с финансами и документами; техническая поддержка с SLA.</p>
+            </div></div></div>
+          </details>
+        </article>
+        <article class="case card rv">
+          <div class="case-h"><h3 class="case-t">Сервис ИИ-автоматизации написания специализированных текстов</h3><span class="badge">NDA</span></div>
+          <p class="case-r"><span class="case-r-t">Контур администратора</span><span class="mk">В4</span></p>
+          <details class="dz"><summary><span>Подробнее</span><span class="pl" aria-hidden="true"></span></summary>
+            <div class="dz-body"><div class="dz-in"><div class="dz-pad">
+              <p>В кейсе реализованы контур пользователя, контур администратора и сложные UX-сценарии. В задаче заказчика этот опыт применяется к админ-панели, через которую редактируется весь сайт (В4).</p>
+              <p class="cap">Состав работ: сложные UX-сценарии; система анализа и генерации текстов; контур пользователя и контур администратора; хранилище текстов для заказчика; онбординг операторов; развёрнутая форма регистрации; SSO.</p>
+            </div></div></div>
+          </details>
+        </article>
+      </div>
+      <div class="col approach">
+        <div class="kp-block rv">
+          <p class="kp-t">Прозрачность и качество</p>
+          <p class="kp-d">Статус и риски передаются заказчику до того, как превращаются в срыв срока.</p>
+        </div>
+        <div class="card team rv">
+          <div class="tw"><table class="tbl team wide">
+            <thead><tr><th>Роль</th><th class="c">Чел.</th><th>Занятость</th><th>Ответственность</th></tr></thead>
+            <tbody>
+              <tr><td>Менеджер проекта</td><td class="c">1</td><td>весь срок</td><td>коммуникация с заказчиком, риски, документы</td></tr>
+              <tr><td>Техлид</td><td class="c">1</td><td>весь срок, частично</td><td>архитектура и защита решений</td></tr>
+              <tr><td>Дизайнер</td><td class="c">2</td><td>недели 1–12</td><td>концепция, макеты, моушн-дизайн</td></tr>
+              <tr><td>Аналитик</td><td class="c">1</td><td>недели 1–12</td><td>прототипы, модель контента, семантика</td></tr>
+              <tr><td>Фронтенд-разработчик</td><td class="c">2</td><td>недели 3–18</td><td>страницы, анимация, скорость</td></tr>
+              <tr><td>Бэкенд-разработчик</td><td class="c">1</td><td>недели 2–18</td><td>каталог, заявки, PDF, интеграции</td></tr>
+              <tr><td>Тестировщик</td><td class="c">1</td><td>недели 6–18</td><td>тестирование и приёмка</td></tr>
+              <tr><td>DevOps-инженер</td><td class="c">1</td><td>частично</td><td>Stage, Prod, CDN, бэкапы</td></tr>
+            </tbody>
+          </table></div>
+          <p class="hint" style="padding:0 10px 8px">Таблица прокручивается по горизонтали.</p>
+        </div>
+        <details class="dz rv"><summary><span>Принципы и процесс работы</span><span class="pl" aria-hidden="true"></span></summary>
+          <div class="dz-body"><div class="dz-in"><div class="dz-pad">
+            <div class="pr"><p class="pr-t">Мы зарабатываем, когда зарабатывает клиент</p><p class="pr-d">Со стороны видны возможности повысить эффективность проекта, поэтому команда регулярно выходит к заказчику с тактическими и стратегическими предложениями. Когда проект приносит деньги, финансирование его развития находится естественным образом.</p></div>
+            <div class="pr"><p class="pr-t">Долгосрочное сотрудничество и партнёрство</p><p class="pr-d">Бо́льшая часть портфеля составлена повторными проектами с ключевыми клиентами, заметная часть относится к долгосрочным партнёрствам. Показатель растёт за счёт вовлечённости, эффективности и подхода к коммуникации.</p></div>
+            <div class="pr"><p class="pr-t">Команда как основа результата</p><p class="pr-d">Бо́льшая часть разработчиков и часть менеджеров имеют дипломы математиков. За четыре года работы по собственному желанию из команды не ушёл никто. Разработчики и менеджеры совместно проводят сессии риск-менеджмента для управления ожиданиями.</p></div>
+            <div class="pr"><p class="pr-t">Осмысленная агентная разработка</p><p class="pr-d">ИИ внедрён в проектирование и разработку по внутренней методологии работы с агентами, которую развивает отдельный отдел. Разработка ведётся по спецификации, результат проходит одни и те же приёмочные тесты независимо от способа получения.</p></div>
+            <div class="pr"><p class="pr-t">Процесс</p><p class="pr-d">На проект выделяются менеджер и техлид. Менеджер отвечает за коммуникацию, управление ожиданиями и рисками, перевод бизнес-задач в задачи разработки и документооборот. Техлид проектирует и защищает решения и распределяет их по команде. Рисковые задачи берутся первыми, реестр рисков обновляется в каждой итерации и показывается заказчику в отчёте.</p></div>
+            <div class="pr"><p class="pr-t">Три практических следствия</p><p class="pr-d">Реестр рисков входит в отчёт каждой итерации. Архитектурные решения оформляются записями и передаются вместе с кодом. Макеты, код и доступы остаются у заказчика бессрочно.</p></div>
+          </div></div></div>
+        </details>
+        <details class="dz rv"><summary><span>Вывод по опыту</span><span class="pl" aria-hidden="true"></span></summary>
+          <div class="dz-body"><div class="dz-in"><div class="dz-pad">
+            <p>Интеграции с внешними системами (В2, В3) и контур администратора (В4) команда реализовывала в приведённых кейсах. Новыми для задачи являются премиальный визуальный слой при жёстком требовании к скорости (В1) и срок первого релиза (В5). Они закрываются бюджетом производительности, который проверяется на каждой сборке, и отдельным потоком работ по главной странице.</p>
+          </div></div></div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="s4" aria-label="Техническая методология">
+  <div class="wrap">
+    <h2 class="h2 rv">Техническая методология: скорость, данные, контент</h2>
+    <p class="lead rv"><span class="lead-1">Страницы собираются заранее, лоты приходят из CRM, контент ведётся в админ-панели.</span></p>
+    <p class="benefit rv"><span class="benefit-l">Что это даёт заказчику:</span> <span>актуальные цены, быстрые страницы и обновление сайта без разработчика.</span></p>
+    <figure class="card flow rv" id="flow" aria-label="Путь данных от CRM до посетителя">
+      <div class="tw">
+        <svg viewBox="0 0 1100 300" role="img" aria-label="Схема: CRM заказчика, синхронизация каталога, каталог и цены, страницы сайта, сеть доставки содержимого, посетитель; админ-панель и Virtual Land питают страницы; заявки посетителя уходят в CRM и UIS">
+          <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1B1B1B"/></marker></defs>
+          <g class="nd ext" data-n="crm"><rect x="20" y="40" width="140" height="70" rx="10"/><text x="90" y="80" text-anchor="middle">CRM заказчика</text></g>
+          <g class="nd" data-n="sync"><rect x="206" y="40" width="140" height="70" rx="10"/><text x="276" y="72" text-anchor="middle">Синхронизация</text><text x="276" y="92" text-anchor="middle">каталога</text></g>
+          <g class="nd" data-n="cat"><rect x="392" y="40" width="140" height="70" rx="10"/><text x="462" y="80" text-anchor="middle">Каталог и цены</text><circle class="rdot" cx="518" cy="54" r="6"/></g>
+          <g class="nd" data-n="pages"><rect x="578" y="40" width="140" height="70" rx="10"/><text x="648" y="72" text-anchor="middle">Страницы</text><text x="648" y="92" text-anchor="middle">сайта</text></g>
+          <g class="nd" data-n="cdn"><rect x="764" y="40" width="140" height="70" rx="10"/><text x="834" y="72" text-anchor="middle">Сеть доставки</text><text x="834" y="92" text-anchor="middle">содержимого</text></g>
+          <g class="nd" data-n="vis"><rect x="950" y="40" width="130" height="70" rx="10"/><text x="1015" y="80" text-anchor="middle">Посетитель</text></g>
+          <g class="nd ext" data-n="vl"><rect x="392" y="200" width="140" height="70" rx="10"/><text x="462" y="240" text-anchor="middle">Virtual Land</text></g>
+          <g class="nd" data-n="adm"><rect x="578" y="200" width="140" height="70" rx="10"/><text x="648" y="240" text-anchor="middle">Админ-панель</text></g>
+          <g class="nd ext" data-n="crm2"><rect x="764" y="200" width="140" height="70" rx="10"/><text x="834" y="240" text-anchor="middle">CRM и UIS</text></g>
+          <g class="nd" data-n="leads"><rect x="950" y="200" width="130" height="70" rx="10"/><text x="1015" y="240" text-anchor="middle">Заявки</text></g>
+          <path class="ar" data-a="crm" data-b="sync" pathLength="1" d="M162 75H202" marker-end="url(#ah)"/>
+          <path class="ar" data-a="sync" data-b="cat" pathLength="1" d="M348 75H388" marker-end="url(#ah)"/>
+          <path class="ar" data-a="cat" data-b="pages" pathLength="1" d="M534 75H574" marker-end="url(#ah)"/>
+          <path class="ar" data-a="pages" data-b="cdn" pathLength="1" d="M720 75H760" marker-end="url(#ah)"/>
+          <path class="ar" data-a="cdn" data-b="vis" pathLength="1" d="M906 75H946" marker-end="url(#ah)"/>
+          <path class="ar" data-a="adm" data-b="pages" pathLength="1" d="M648 198V114" marker-end="url(#ah)"/>
+          <path class="ar" data-a="vl" data-b="pages" pathLength="1" d="M462 198V156H610V114" marker-end="url(#ah)"/>
+          <path class="ar" data-a="vis" data-b="leads" pathLength="1" d="M1015 112V196" marker-end="url(#ah)"/>
+          <path class="ar" data-a="leads" data-b="crm2" pathLength="1" d="M948 235H908" marker-end="url(#ah)"/>
+        </svg>
+      </div>
+      <p class="hint">Схема прокручивается по горизонтали.</p>
+      <figcaption class="legend"><span class="lg"><span class="lg-s"></span><span>реализуется исполнителем</span></span><span class="lg"><span class="lg-d"></span><span>внешняя система</span></span><span class="lg"><span class="lg-o"></span><span>ключевой риск: цены и статусы лотов</span></span></figcaption>
+    </figure>
+    <div class="an-grid">
+      <div class="an-col">
+        <details class="dz" id="d-v1" data-ch="v1"><summary><span class="an-sum"><span class="mk">В1</span><span>Скорость при премиальной графике</span></span><span class="pl" aria-hidden="true"></span></summary>
+          <div class="dz-body"><div class="dz-in"><div class="dz-pad">
+            <p class="an-lbl">Решение</p>
+            <p>Страницы собираются заранее и обновляются при изменении данных, медиа раздаются через сеть доставки содержимого. Видео hero подгружается после первого кадра, iframe Virtual Land загружается при приближении посетителя к блоку. Бюджет производительности проверяется на каждой сборке.</p>
+            <p class="an-lbl">Что это даёт заказчику</p>
+            <p>Порог Google PageSpeed подтверждается до приёмки, снижение скорости блокирует выпуск версии.</p>
+            <p class="an-tech">Технически: Next.js со статической сборкой и обновлением по событию (SSG, ISR), изображения AVIF и WebP под размеры экранов, видео с постером, отложенная загрузка iframe и внешних скриптов, Lighthouse CI в конвейере, brotli на CDN. Связанный риск: R4.</p>
+          </div></div></div>
+        </details>
+        <details class="dz" id="d-v2" data-ch="v2"><summary><span class="an-sum"><span class="mk">В2</span><span>Каталог на API без спецификации</span></span><span class="pl" aria-hidden="true"></span></summary>
+          <div class="dz-body"><div class="dz-in"><div class="dz-pad">
+            <p class="an-lbl">Решение</p>
+            <p>Каталог хранится на стороне сайта и синхронизируется с CRM по расписанию и по событию изменения. Каждая синхронизация сверяет число лотов, цены и статусы, расхождение отправляется команде оповещением.</p>
+            <p class="an-lbl">Что это даёт заказчику</p>
+            <p>Цена и статус на сайте совпадают с CRM, сбой обмена обнаруживается до обращения покупателя.</p>
+            <p class="an-tech">Технически: сервис на FastAPI, реплика каталога в PostgreSQL, идемпотентная загрузка, журнал синхронизаций, обновление страниц лота по изменению. Проектирование обмена поверх Dynamics Web API покрыто резервом U-003 (слайд 10). Связанный риск: R1.</p>
+          </div></div></div>
+        </details>
+        <details class="dz" id="d-v3" data-ch="v3"><summary><span class="an-sum"><span class="mk">В3</span><span>Сквозная навигация между системами</span></span><span class="pl" aria-hidden="true"></span></summary>
+          <div class="dz-body"><div class="dz-in"><div class="dz-pad">
+            <p class="an-lbl">Решение</p>
+            <p>Вводится единый ключ помещения, общий для CRM, Virtual Land и сайта. Переходы с генплана в подбор, шахматку и на страницу лота описываются адресами с этим ключом и параметрами корпуса и этажа.</p>
+            <p class="an-lbl">Что это даёт заказчику</p>
+            <p>Посетитель переходит от генплана к лоту без повторного поиска, новые корпуса подключаются без доработки сайта.</p>
+            <p class="an-tech">Технически: справочник соответствий ключей, адреса подбора с параметрами корпуса и этажа, обработка сообщений от iframe через postMessage, автотест ссылок генплана. Связанный риск: R3.</p>
+          </div></div></div>
+        </details>
+      </div>
+      <div class="an-col">
+        <details class="dz" id="d-v4" data-ch="v4"><summary><span class="an-sum"><span class="mk">В4</span><span>Редактируемость без хардкода</span></span><span class="pl" aria-hidden="true"></span></summary>
+          <div class="dz-body"><div class="dz-in"><div class="dz-pad">
+            <p class="an-lbl">Решение</p>
+            <p>Модель контента проектируется вместе с прототипами: каждый блок страницы описывается типом контента в админ-панели. Пины и категории карты, программы покупки, альбомы хода строительства и robots.txt редактируются там же.</p>
+            <p class="an-lbl">Что это даёт заказчику</p>
+            <p>Сайт обновляется силами заказчика на весь период продаж.</p>
+            <p class="an-tech">Технически: headless CMS для контента, продукт выбирается на этапе проектирования и фиксируется записью архитектурного решения; сервис FastAPI для лотов, заявок и PDF; роли администратора и контент-менеджера, второй фактор входа, предпросмотр черновика.</p>
+          </div></div></div>
+        </details>
+        <details class="dz" id="d-v5" data-ch="v5"><summary><span class="an-sum"><span class="mk">В5</span><span>Первый релиз за 45 дней</span></span><span class="pl" aria-hidden="true"></span></summary>
+          <div class="dz-body"><div class="dz-in"><div class="dz-pad">
+            <p class="an-lbl">Решение</p>
+            <p>Главная страница идёт первым потоком: концепция к неделе 3, вёрстка с недели 3, выпуск на 45-й день. Дизайн-система закладывается в концепции главной и расширяется на внутренние страницы.</p>
+            <p class="an-lbl">Что это даёт заказчику</p>
+            <p>Главная работает в продакшене через 45 дней и задаёт эталон качества для остальных страниц.</p>
+            <p class="an-tech">Технически: библиотека компонентов с состояниями, общая для макетов и вёрстки; окружение Stage разворачивается на неделе 2. Связанный риск: R2, календарный план на слайде 7.</p>
+          </div></div></div>
+        </details>
+        <details class="dz" id="d-v6" data-ch="v6"><summary><span class="an-sum"><span class="mk">В6</span><span>Шахматка и солнце без поставщика</span></span><span class="pl" aria-hidden="true"></span></summary>
+          <div class="dz-body"><div class="dz-in"><div class="dz-pad">
+            <p class="an-lbl">Решение</p>
+            <p>Шахматка и «движение солнца» заложены собственной разработкой с резервом. Резерв снимается, если до недели 4 заказчик подтвердит их поставку силами Virtual Land.</p>
+            <p class="an-lbl">Что это даёт заказчику</p>
+            <p>Цена имеет верхнюю границу при любом ответе поставщика.</p>
+            <p class="an-tech">Технически: шахматка строится по данным каталога из CRM; «движение солнца» рассчитывается по координатам проекта и ориентации окон лота, данные ориентации предоставляет заказчик. Резервы U-004 и U-005 на слайде 10.</p>
+          </div></div></div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="s5" aria-label="Модель системы">
+  <div class="wrap">
+    <h2 class="h2 rv">Модель системы</h2>
+    <p class="lead rv"><span class="lead-1">Сайт состоит из пяти ярусов, внешние системы подключаются к ним отдельными адаптерами.</span> Блоки схемы раскрывают назначение по наведению и нажатию.</p>
+    <div class="model">
+      <div class="card tiers" id="tiers">
+        <div class="tier rv" style="--d:0"><p class="tier-l">Посетители и редакторы</p><div class="tier-b">
+          <button type="button" class="blk" data-t="Сайт на компьютере, планшете и телефоне" data-i="Адаптивная вёрстка от 320px, включая складные устройства, во всех браузерах из ТЗ." data-ch="В1"><span>Сайт на компьютере, планшете и телефоне</span></button>
+          <button type="button" class="blk" data-t="Админ-панель" data-i="Контент-менеджер меняет тексты, медиа, пины карты и программы покупки; заявки видит администратор." data-ch="В4"><span>Админ-панель</span></button>
+        </div></div>
+        <div class="tarr rv" style="--d:2" aria-hidden="true"><span class="tarr-i"></span></div>
+        <div class="tier rv" style="--d:3"><p class="tier-l">Страницы</p><div class="tier-b">
+          <button type="button" class="blk" data-t="Сборка страниц" data-i="Страницы собираются заранее и обновляются при изменении данных, поэтому открываются быстро и индексируются поисковиками." data-ch="В1 В5"><span>Сборка страниц и данных для них</span></button>
+        </div></div>
+        <div class="tarr rv" style="--d:5" aria-hidden="true"><span class="tarr-i"></span></div>
+        <div class="tier rv" style="--d:6"><p class="tier-l">Функции сайта</p><div class="tier-b">
+          <button type="button" class="blk" data-t="Каталог квартир и коммерции" data-i="Лоты, цены и статусы из CRM; фильтры подбора, шахматка, страницы лотов. Ключевой риск проекта: расхождение с CRM." data-ch="В2 В3 В6"><span>Каталог квартир и коммерции</span><span class="blk-dot" aria-label="ключевой риск"></span></button>
+          <button type="button" class="blk" data-t="Контент сайта" data-i="Каждый блок страниц описан типом контента и редактируется без разработчика." data-ch="В4"><span>Контент сайта</span></button>
+          <button type="button" class="blk" data-t="Заявки" data-i="Трёхшаговая ФОС с капчей и проверкой телефона; заявка сохраняется в админ-панели и доставляется в CRM и UIS." data-ch=""><span>Заявки</span></button>
+          <button type="button" class="blk" data-t="PDF лота" data-i="Шесть страниц из данных лота и админ-панели, формируются по запросу посетителя." data-ch=""><span>PDF лота</span></button>
+        </div></div>
+        <div class="tarr rv" style="--d:8" aria-hidden="true"><span class="tarr-i"></span></div>
+        <div class="tier rv" style="--d:9"><p class="tier-l">Фоновые процессы</p><div class="tier-b">
+          <button type="button" class="blk" data-t="Синхронизация с CRM" data-i="По расписанию и по событию изменения, со сверкой числа лотов, цен и статусов." data-ch="В2"><span>Синхронизация с CRM</span></button>
+          <button type="button" class="blk" data-t="Доставка заявок" data-i="При недоступности CRM или UIS отправка повторяется до подтверждения, заявка сохраняется до этого момента." data-ch=""><span>Доставка заявок с повтором</span></button>
+          <button type="button" class="blk" data-t="Обработка медиа" data-i="Изображения и видео сжимаются и нарезаются под размеры экранов при загрузке в админ-панель." data-ch="В1"><span>Обработка медиа</span></button>
+        </div></div>
+        <div class="tarr rv" style="--d:11" aria-hidden="true"><span class="tarr-i"></span></div>
+        <div class="tier rv" style="--d:12"><p class="tier-l">Хранение и доставка</p><div class="tier-b">
+          <button type="button" class="blk" data-t="База данных" data-i="Каталог, заявки и контент; резервные копии по графику из ТЗ." data-ch=""><span>База данных</span></button>
+          <button type="button" class="blk" data-t="Хранилище медиа" data-i="Рендеры, видео, фото хода строительства и PDF в объектном хранилище." data-ch=""><span>Хранилище медиа</span></button>
+          <button type="button" class="blk" data-t="Сеть доставки содержимого" data-i="Страницы и медиа раздаются с узла, ближайшего к посетителю." data-ch="В1"><span>Сеть доставки содержимого</span></button>
+        </div></div>
+      </div>
+      <div class="side">
+        <div class="card info" id="info" aria-live="polite">
+          <p class="info-t">Каталог квартир и коммерции</p>
+          <p class="info-d">Лоты, цены и статусы из CRM; фильтры подбора, шахматка, страницы лотов. Ключевой риск проекта: расхождение с CRM.</p>
+          <div class="info-m"><span class="mk">В2</span><span class="mk">В3</span><span class="mk">В6</span></div>
+        </div>
+        <div class="card exts rv">
+          <p class="exts-h">Внешние системы</p>
+          <p class="ext">Microsoft Dynamics и Nikfort Realty</p>
+          <p class="ext">UIS</p>
+          <p class="ext">Virtual Land: генпланы, туры, макет</p>
+          <p class="ext">Яндекс Метрика, Вебмастер, Смарт Капча, Карты</p>
+          <p class="ext">Яндекс Тег Менеджер: Ботфактор и Смартис подключает заказчик</p>
+        </div>
+      </div>
+    </div>
+    <p class="legend"><span class="lg"><span class="lg-s"></span><span>реализуется исполнителем</span></span><span class="lg"><span class="lg-d"></span><span>внешняя система</span></span><span class="lg"><span class="lg-o"></span><span>ключевой риск</span></span></p>
+    <p class="key rv">Сайт и приём заявок работают при сбое внешней системы</p>
+    <div class="stack">
+      <details class="dz"><summary><span>Технические решения</span><span class="pl" aria-hidden="true"></span></summary>
+        <div class="dz-body"><div class="dz-in"><div class="dz-pad">
+          <div class="tw"><table class="tbl wide">
+            <thead><tr><th>Ярус</th><th>Технология</th><th>Решение</th></tr></thead>
+            <tbody>
+              <tr><td>Страницы</td><td>Next.js (React)</td><td>Статическая сборка и обновление по событию (SSG, ISR), серверный рендеринг для подбора</td></tr>
+              <tr><td>Контент</td><td>Headless CMS</td><td>Продукт выбирается на этапе проектирования по требованиям: медиатека, роли, второй фактор; решение фиксируется записью архитектурного решения</td></tr>
+              <tr><td>Каталог, заявки, PDF</td><td>Python 3.12, FastAPI, PostgreSQL</td><td>Разделение по доменам: каталог, заявки, документы; адаптеры к CRM, UIS и Virtual Land</td></tr>
+              <tr><td>Фоновые процессы</td><td>Очередь задач, outbox</td><td>Доставка заявок с повтором, идемпотентная синхронизация, обработка медиа</td></tr>
+              <tr><td>Хранение и доставка</td><td>PostgreSQL, S3-совместимое хранилище, CDN</td><td>Бэкапы не реже одного раза в две недели по ТЗ, сжатие gzip и brotli</td></tr>
+              <tr><td>Инфраструктура</td><td>Kubernetes, GitOps</td><td>Облако в РФ на аккаунте заказчика, окружения Stage и Prod, выпуск на Prod с ручным подтверждением</td></tr>
+              <tr><td>Безопасность</td><td>HTTPS, Яндекс Смарт Капча, второй фактор</td><td>Защита от XSS, SQL и NoSQL Injection, CSRF, IDOR и DDoS; админ-панель закрыта от индексации</td></tr>
+            </tbody>
+          </table></div>
+        </div></div></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="s6" aria-label="Управление рисками">
+  <div class="wrap">
+    <h2 class="h2 rv">Управление рисками</h2>
+    <p class="lead rv"><span class="lead-1">Рисковые задачи берутся в работу первыми: план строится от реестра рисков.</span></p>
+    <div id="risk-board" class="rv"></div>
+    <p class="key rv">Высокие риски сняты к пятой неделе, до выпуска главной</p>
+  </div>
+</section>
+<section class="slide" id="s7" aria-label="Этапы, приёмка, разграничение прав">
+  <div class="wrap">
+    <h2 class="h2 rv">Этапы, приёмка, разграничение прав</h2>
+    <p class="lead rv"><span class="lead-1">Работы идут двумя потоками: главная страница выходит на 45-й день, остальные страницы и функции на 125-й.</span></p>
+    <div class="pp-host rv"><div id="process-player"></div></div>
+    <div class="stack">
+      <details class="dz"><summary><span>Календарный план по неделям</span><span class="pl" aria-hidden="true"></span></summary>
+        <div class="dz-body"><div class="dz-in"><div class="dz-pad">
+          <div class="tw"><div class="gantt" id="gantt"></div></div>
+          <p class="g-leg"><span class="g-leg-i"><span class="g-sw g-s1"></span><span>Этап 1. Проектирование и дизайн</span></span><span class="g-leg-i"><span class="g-sw g-s2"></span><span>Этап 2. Разработка</span></span><span class="g-leg-i"><span class="g-sw g-s3"></span><span>Этап 3. Инфраструктура, тестирование, ввод</span></span><span class="g-leg-i"><span class="g-sw" style="background:#FF4F12"></span><span>платёж</span></span></p>
+        </div></div></div>
+      </details>
+      <details class="dz"><summary><span>Приёмка и разграничение прав</span><span class="pl" aria-hidden="true"></span></summary>
+        <div class="dz-body"><div class="dz-in"><div class="dz-pad">
+          <div class="tw"><table class="tbl rights wide">
+            <thead><tr><th>Роль</th><th>Может</th><th>Не может</th></tr></thead>
+            <tbody>
+              <tr><td>Посетитель</td><td>подбирать лоты, сохранять избранное, оставлять заявки, скачивать PDF лота</td><td>входить в админ-панель</td></tr>
+              <tr><td>Контент-менеджер заказчика</td><td>менять тексты, медиа, пины карты, новости, альбомы и программы покупки</td><td>видеть заявки, менять пользователей и настройки интеграций</td></tr>
+              <tr><td>Администратор заказчика</td><td>всё перечисленное, а также заявки, пользователи, robots.txt и настройки интеграций</td><td>менять код и инфраструктуру</td></tr>
+              <tr><td>Исполнитель</td><td>выпускать версии и сопровождать инфраструктуру по задачам заказчика</td><td>просматривать заявки без задачи заказчика</td></tr>
+            </tbody>
+          </table></div>
+          <p>Результат этапа передаётся на Stage вместе с чек-листом приёмки. Приёмка считается состоявшейся, если в течение десяти рабочих дней с передачи результата замечания не предъявлены.</p>
+          <p class="cap">Вход в админ-панель и окружения разработки выполняется со вторым фактором (ТЗ, «Безопасность»). Выпуск на Prod выполняется из конвейера с ручным подтверждением.</p>
+        </div></div></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="s8" aria-label="Предложения к первой версии">
+  <div class="wrap">
+    <h2 class="h2 rv">Предложения к первой версии</h2>
+    <p class="lead rv"><span class="lead-1">Три дополнения усиливают продажи с сайта и оцениваются отдельно от базового объёма.</span></p>
+    <div class="prop-grid" id="props"></div>
+    <div class="sumline rv"><span class="sumline-n" id="propsSum" data-v="0">0 ₽</span><span class="sumline-t">отмечено предложений, добавляется к платежу 3</span></div>
+  </div>
+</section>
+
+<section class="slide" id="s9" aria-label="Смета и график оплат">
+  <div class="wrap">
+    <h2 class="h2 rv">Смета и график оплат</h2>
+    <p class="lead rv"><span class="lead-1">Итог сметы является верхней границей стоимости базового объёма.</span> Отмеченные позиции добавляются к платежу 3.</p>
+    <div class="smeta">
+      <div class="card st-card rv">
+        <div class="st-head" aria-hidden="true"><span>Этап</span><span>Доля в итоге</span><span class="st-head-r">Стоимость, ₽</span><span></span></div>
+        <div class="st" id="stages"></div>
+        <div class="st-total"><span>Итого базовый объём</span><span class="st-total-v" id="baseTotal"></span><span></span></div>
+        <p class="st-leg"><span class="lg"><span class="g-sw" style="background:#1B1B1B"></span><span>фиксированная часть</span></span><span class="lg"><span class="g-sw" style="background:#FF9F75"></span><span>резерв на неопределённость</span></span></p>
+      </div>
+      <div class="card tot-card rv">
+        <div class="bigv"><span class="bigv-n" id="grand" data-v="0"></span><span class="bigv-t">итого первая версия с отмеченными позициями, ₽</span></div>
+        <p class="plink" id="propLine"></p>
+        <p class="sub-h">Опции вне базового объёма</p>
+        <div id="opts"></div>
+        <p class="sub-h">График оплат</p>
+        <div class="tw"><table class="tbl" id="payTbl"><thead><tr><th>Платёж</th><th>Основание и срок</th><th class="n">Сумма, ₽</th></tr></thead><tbody></tbody></table></div>
+        <div class="pay-bar" id="payBar" aria-hidden="true"><span class="pay-seg"></span><span class="pay-seg"></span><span class="pay-seg"></span></div>
+        <p class="check" id="payCheck"></p>
+        <div class="dl-row no-print"><button type="button" class="btn" id="dlBtn">Скачать смету, xlsx</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="s10" aria-label="Уточнение требований и стоимость">
+  <div class="wrap">
+    <h2 class="h2 rv">Уточнение требований и стоимость</h2>
+    <p class="lead rv"><span class="lead-1">Итог сметы 6 200 000 ₽ является верхней границей стоимости базового объёма.</span> Резерв по трём пунктам снимается решениями заказчика до недели 4.</p>
+    <div class="card ceil rv">
+      <div class="ceil-top"><span class="ceil-top-l">Состав итога сметы</span><span class="ceil-top-r" id="ceilCur"></span></div>
+      <div class="ceil-bar" id="ceilBar"></div>
+      <p class="ceil-leg" id="ceilLeg"></p>
+    </div>
+    <div class="res-grid">
+      <div class="rv"><div class="card"><div class="tw"><table class="tbl res-tbl wide" id="resTbl">
+        <thead><tr><th>Пункт</th><th>Решение заказчика, которое снимает резерв</th><th>Срок</th><th class="n">Резерв, ₽</th><th>Решение принято</th></tr></thead>
+        <tbody></tbody>
+      </table></div></div><p class="hint">Таблица прокручивается по горизонтали: переключатель решения в последнем столбце.</p></div>
+      <div class="card res-cur rv">
+        <div class="bigv"><span class="bigv-n" id="resNow" data-v="0"></span><span class="bigv-t">стоимость базового объёма с учётом отмеченных решений, ₽</span></div>
+        <details class="dz"><summary><span>Правила пересчёта</span><span class="pl" aria-hidden="true"></span></summary>
+          <div class="dz-body"><div class="dz-in"><div class="dz-pad">
+            <p>Пересчёт выполняется один раз, по итогам первого этапа, и фиксируется обновлённой сметой.</p>
+            <p>Стоимость первого этапа фиксирована: в нём снимается неопределённость.</p>
+            <p>Пункты без решения к сроку и решения, выбравшие более сложный вариант, остаются в цене.</p>
+            <p>Новые требования, выявленные в ходе проектирования, оцениваются отдельно.</p>
+          </div></div></div>
+        </details>
+      </div>
+    </div>
+    <p class="cut rv">Отказ от строки сметы по предложениям исполнителя снижает цену на стоимость этой строки независимо от резерва.</p>
+  </div>
+</section>
+
+<section class="slide" id="s11" aria-label="Данные и решения от заказчика">
+  <div class="wrap">
+    <h2 class="h2 rv">Данные и решения, требуемые от заказчика</h2>
+    <p class="lead rv"><span class="lead-1">План опирается на девять входных данных, первое из них: вовлечённый product owner.</span></p>
+    <div class="card rv"><div class="tw"><table class="tbl wide">
+      <thead><tr><th>Что требуется</th><th class="c">Этап</th><th class="c">Неделя</th><th>Последствия задержки</th></tr></thead>
+      <tbody>
+        <tr class="keyrow"><td>Product owner с правом принимать решения</td><td class="c">1</td><td class="c">1</td><td>Вопросы без решения дольше пяти рабочих дней сдвигают срок и связанный платёж</td></tr>
+        <tr><td>Платформа бренда, брендбук и фирменный стиль</td><td class="c">1</td><td class="c">1</td><td>Сдвигаются дизайн-концепция и выпуск главной</td></tr>
+        <tr><td>Рендеры, 3D-модели корпусов, фото и видео для hero</td><td class="c">1</td><td class="c">2</td><td>Hero главной выходит со статичным кадром (R2)</td></tr>
+        <tr><td>Доступы: облако, домен, Яндекс Метрика, Вебмастер, UIS</td><td class="c">1</td><td class="c">2</td><td>Сдвигается развёртывание Stage</td></tr>
+        <tr><td>Спецификация API и тестовый контур CRM (U-003)</td><td class="c">1</td><td class="c">3</td><td>Резерв U-003 остаётся в цене, синхронизация идёт на образце (R1)</td></tr>
+        <tr><td>Состав поставки Virtual Land и формат ссылок на лоты (U-004, U-005)</td><td class="c">1</td><td class="c">3–4</td><td>Резервы остаются в цене, переход с генплана идёт через подбор (R3)</td></tr>
+        <tr><td>Материалы Virtual Land для главной: генплан и карта</td><td class="c">2</td><td class="c">5</td><td>Сдвигается выпуск главной</td></tr>
+        <tr><td>Ориентация окон лотов, если «движение солнца» реализует исполнитель</td><td class="c">2</td><td class="c">6</td><td>Функция выходит после итогового релиза</td></tr>
+        <tr><td>Фактические данные внутренних страниц: команда, застройщик, награды, программы покупки</td><td class="c">2</td><td class="c">8</td><td>Применяется решение по умолчанию, наполнение сдвигается (R5)</td></tr>
+      </tbody>
+    </table></div></div>
+    <p class="hint">Таблица прокручивается по горизонтали.</p>
+    <p class="cap rv" style="margin-top:12px">Задержка предоставления данных со стороны заказчика сдвигает срок и связанный с ним платёж на тот же период.</p>
+    <p class="key rv">Product owner с правом решения нужен с первой недели</p>
+  </div>
+</section>
+
+<section class="slide" id="s12" aria-label="Дальнейшие шаги">
+  <div class="wrap">
+    <h2 class="h2 rv">Дальнейшие шаги</h2>
+    <ol class="steps">
+      <li class="card step rv"><span class="step-n">1</span><p class="step-t">Обсуждение предложения</p><p class="step-d">Вопросы по смете и составу работ</p></li>
+      <li class="card step rv"><span class="step-n">2</span><p class="step-t">Решения по резерву</p><p class="step-d">API CRM и поставка Virtual Land</p></li>
+      <li class="card step rv"><span class="step-n">3</span><p class="step-t">Договор и старт</p><p class="step-d">Неделя 1: формат работы и реестр данных</p></li>
+      <li class="card step rv"><span class="step-n">4</span><p class="step-t">Защита концепции</p><p class="step-d">Неделя 4: главная и архитектура</p></li>
+    </ol>
+    <div class="sup rv">
+      <h3 class="h3">Гарантия и сопровождение</h3>
+      <div class="card"><div class="tw"><table class="tbl wide">
+        <thead><tr><th class="c">Уровень</th><th class="n">Стоимость, ₽ в месяц</th><th>Состав</th></tr></thead>
+        <tbody>
+          <tr><td class="c">0</td><td class="n">в стоимости работ</td><td>Гарантия 100 календарных дней с даты приёмки; первый месяц критические инциденты 24/7, далее в рабочее время</td></tr>
+          <tr><td class="c">1</td><td class="n">15 000 – 30 000</td><td>Серверы и устранение полного падения сервиса</td></tr>
+          <tr><td class="c">2</td><td class="n">60 000 – 100 000</td><td>Базовый SLA в рабочее время, алертинг, автомониторинг дефектов, отчётность</td></tr>
+          <tr><td class="c">3</td><td class="n">200 000 – 300 000</td><td>Уровень 2 в режиме 24/7</td></tr>
+          <tr><td class="c">4</td><td class="n">300 000 – 500 000</td><td>Полный аутсорс поддержки с работой с конечными пользователями</td></tr>
+        </tbody>
+      </table></div></div>
+      <p class="hint">Таблица прокручивается по горизонтали.</p>
+      <p class="cap" style="margin-top:10px">Уровень выбирается заказчиком на период продаж и оплачивается помесячно вне сметы. Развитие сайта оценивается отдельно.</p>
+    </div>
+    <p class="sign rv"><span>Bang Digital</span><span>Версия 1.0 от 25 сентября 2026</span></p>
+  </div>
+</section>
+</main>
+<script>
+/*
+ * Выгрузка сметы в .xlsx без внешних библиотек.
+ * OOXML-пакет собирается в ZIP без сжатия (store) с CRC32.
+ * Использование в браузере: downloadSmetaXlsx(data)
+ * Использование в Node:     buildSmetaXlsx(data) -> Uint8Array
+ */
+(function (root) {
+  'use strict';
+
+  // ---------- ZIP (store) ----------
+  const CRC_TABLE = (() => {
+    const t = new Uint32Array(256);
+    for (let n = 0; n < 256; n++) {
+      let c = n;
+      for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1;
+      t[n] = c >>> 0;
+    }
+    return t;
+  })();
+  function crc32(buf) {
+    let c = 0xFFFFFFFF;
+    for (let i = 0; i < buf.length; i++) c = CRC_TABLE[(c ^ buf[i]) & 0xFF] ^ (c >>> 8);
+    return (c ^ 0xFFFFFFFF) >>> 0;
+  }
+  function zipStore(files) {
+    const enc = new TextEncoder();
+    const parts = [], central = [];
+    let offset = 0;
+    // фиксированная дата 2026-01-01 00:00: содержимое файла воспроизводимо
+    const dosTime = 0, dosDate = ((2026 - 1980) << 9) | (1 << 5) | 1;
+    for (const f of files) {
+      const name = enc.encode(f.name);
+      const data = typeof f.data === 'string' ? enc.encode(f.data) : f.data;
+      const crc = crc32(data);
+      const lh = new DataView(new ArrayBuffer(30));
+      lh.setUint32(0, 0x04034b50, true); lh.setUint16(4, 20, true); lh.setUint16(6, 0x0800, true);
+      lh.setUint16(8, 0, true); lh.setUint16(10, dosTime, true); lh.setUint16(12, dosDate, true);
+      lh.setUint32(14, crc, true); lh.setUint32(18, data.length, true); lh.setUint32(22, data.length, true);
+      lh.setUint16(26, name.length, true); lh.setUint16(28, 0, true);
+      parts.push(new Uint8Array(lh.buffer), name, data);
+      const ch = new DataView(new ArrayBuffer(46));
+      ch.setUint32(0, 0x02014b50, true); ch.setUint16(4, 20, true); ch.setUint16(6, 20, true);
+      ch.setUint16(8, 0x0800, true); ch.setUint16(10, 0, true); ch.setUint16(12, dosTime, true);
+      ch.setUint16(14, dosDate, true); ch.setUint32(16, crc, true); ch.setUint32(20, data.length, true);
+      ch.setUint32(24, data.length, true); ch.setUint16(28, name.length, true);
+      ch.setUint32(42, offset, true);
+      central.push(new Uint8Array(ch.buffer), name);
+      offset += 30 + name.length + data.length;
+    }
+    const cdSize = central.reduce((s, p) => s + p.length, 0);
+    const eocd = new DataView(new ArrayBuffer(22));
+    eocd.setUint32(0, 0x06054b50, true); eocd.setUint16(8, files.length, true);
+    eocd.setUint16(10, files.length, true); eocd.setUint32(12, cdSize, true); eocd.setUint32(16, offset, true);
+    const all = [...parts, ...central, new Uint8Array(eocd.buffer)];
+    const out = new Uint8Array(all.reduce((s, p) => s + p.length, 0));
+    let pos = 0;
+    for (const p of all) { out.set(p, pos); pos += p.length; }
+    return out;
+  }
+
+  // ---------- стили ----------
+  // индексы cellXfs; порядок совпадает с массивом XF ниже
+  const S = {
+    base: 0, title: 1, grey: 2, instr: 3, section: 4, sectionFill: 5,
+    hdrL: 6, hdrC: 7, hdrR: 8, bodyL: 9, bodyC: 10, num: 11, input: 12,
+    noteAcc: 13, noteGrey: 14, totL: 15, totN: 16, grandL: 17, grandN: 18,
+    numInput: 19, pctInput: 20, smallL: 21, smallN: 22, smallR: 23, footer: 24, plainN: 25
+  };
+  const STYLES_XML = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">
+<fonts count="10">
+<font><sz val="10"/><color rgb="FF16202B"/><name val="Arial"/></font>
+<font><b/><sz val="14"/><color rgb="FF16202B"/><name val="Arial"/></font>
+<font><sz val="10"/><color rgb="FF5C6B63"/><name val="Arial"/></font>
+<font><i/><sz val="10"/><color rgb="FF5C6B63"/><name val="Arial"/></font>
+<font><b/><sz val="11"/><color rgb="FF16202B"/><name val="Arial"/></font>
+<font><sz val="9"/><color rgb="FF5C6B63"/><name val="Arial"/></font>
+<font><b/><sz val="10"/><color rgb="FF0000FF"/><name val="Arial"/></font>
+<font><sz val="9"/><color rgb="FFA52E0A"/><name val="Arial"/></font>
+<font><b/><sz val="10"/><color rgb="FF16202B"/><name val="Arial"/></font>
+<font><sz val="10"/><color rgb="FF0000FF"/><name val="Arial"/></font>
+</fonts>
+<fills count="4">
+<fill><patternFill patternType="none"/></fill>
+<fill><patternFill patternType="gray125"/></fill>
+<fill><patternFill patternType="solid"><fgColor rgb="FFEFF0EE"/><bgColor indexed="64"/></patternFill></fill>
+<fill><patternFill patternType="solid"><fgColor rgb="FFFFF2CC"/><bgColor indexed="64"/></patternFill></fill>
+</fills>
+<borders count="4">
+<border><left/><right/><top/><bottom/><diagonal/></border>
+<border><left/><right/><top/><bottom style="thin"><color rgb="FF1B1B1B"/></bottom><diagonal/></border>
+<border><left/><right/><top/><bottom style="hair"><color rgb="FFC2CCC3"/></bottom><diagonal/></border>
+<border><left/><right/><top style="double"><color rgb="FF1B1B1B"/></top><bottom/><diagonal/></border>
+</borders>
+<cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>
+<cellXfs count="26">
+<xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/>
+<xf numFmtId="0" fontId="1" fillId="0" borderId="0" xfId="0" applyFont="1"/>
+<xf numFmtId="0" fontId="2" fillId="0" borderId="0" xfId="0" applyFont="1"/>
+<xf numFmtId="0" fontId="3" fillId="0" borderId="0" xfId="0" applyFont="1" applyAlignment="1"><alignment wrapText="1" vertical="top"/></xf>
+<xf numFmtId="0" fontId="4" fillId="2" borderId="0" xfId="0" applyFont="1" applyFill="1"/>
+<xf numFmtId="0" fontId="0" fillId="2" borderId="0" xfId="0" applyFill="1"/>
+<xf numFmtId="0" fontId="5" fillId="0" borderId="1" xfId="0" applyFont="1" applyBorder="1"/>
+<xf numFmtId="0" fontId="5" fillId="0" borderId="1" xfId="0" applyFont="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center"/></xf>
+<xf numFmtId="0" fontId="5" fillId="0" borderId="1" xfId="0" applyFont="1" applyBorder="1" applyAlignment="1"><alignment horizontal="right"/></xf>
+<xf numFmtId="0" fontId="0" fillId="0" borderId="2" xfId="0" applyBorder="1" applyAlignment="1"><alignment wrapText="1" vertical="top"/></xf>
+<xf numFmtId="0" fontId="0" fillId="0" borderId="2" xfId="0" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="top"/></xf>
+<xf numFmtId="3" fontId="0" fillId="0" borderId="2" xfId="0" applyNumberFormat="1" applyBorder="1" applyAlignment="1"><alignment horizontal="right" vertical="top"/></xf>
+<xf numFmtId="0" fontId="6" fillId="3" borderId="2" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="top"/></xf>
+<xf numFmtId="0" fontId="7" fillId="0" borderId="2" xfId="0" applyFont="1" applyBorder="1" applyAlignment="1"><alignment wrapText="1" vertical="top"/></xf>
+<xf numFmtId="0" fontId="5" fillId="0" borderId="2" xfId="0" applyFont="1" applyBorder="1" applyAlignment="1"><alignment wrapText="1" vertical="top"/></xf>
+<xf numFmtId="0" fontId="8" fillId="0" borderId="3" xfId="0" applyFont="1" applyBorder="1"/>
+<xf numFmtId="3" fontId="8" fillId="0" borderId="3" xfId="0" applyNumberFormat="1" applyFont="1" applyBorder="1" applyAlignment="1"><alignment horizontal="right"/></xf>
+<xf numFmtId="0" fontId="4" fillId="0" borderId="3" xfId="0" applyFont="1" applyBorder="1"/>
+<xf numFmtId="3" fontId="4" fillId="0" borderId="3" xfId="0" applyNumberFormat="1" applyFont="1" applyBorder="1" applyAlignment="1"><alignment horizontal="right"/></xf>
+<xf numFmtId="3" fontId="9" fillId="0" borderId="2" xfId="0" applyNumberFormat="1" applyFont="1" applyBorder="1" applyAlignment="1"><alignment horizontal="right" vertical="top"/></xf>
+<xf numFmtId="9" fontId="9" fillId="0" borderId="0" xfId="0" applyNumberFormat="1" applyFont="1" applyAlignment="1"><alignment horizontal="right"/></xf>
+<xf numFmtId="0" fontId="5" fillId="0" borderId="0" xfId="0" applyFont="1"/>
+<xf numFmtId="3" fontId="5" fillId="0" borderId="0" xfId="0" applyNumberFormat="1" applyFont="1" applyAlignment="1"><alignment horizontal="right"/></xf>
+<xf numFmtId="0" fontId="5" fillId="0" borderId="0" xfId="0" applyFont="1" applyAlignment="1"><alignment horizontal="right"/></xf>
+<xf numFmtId="0" fontId="5" fillId="0" borderId="0" xfId="0" applyFont="1" applyAlignment="1"><alignment wrapText="1" vertical="top"/></xf>
+<xf numFmtId="3" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1" applyAlignment="1"><alignment horizontal="right"/></xf>
+</cellXfs>
+<cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles>
+<dxfs count="1"><dxf><fill><patternFill patternType="solid"><fgColor rgb="FFD8E8D0"/><bgColor rgb="FFD8E8D0"/></patternFill></fill></dxf></dxfs>
+</styleSheet>`;
+
+  // ---------- лист ----------
+  const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  const COLS = 'ABCDE';
+
+  function buildSheet(d) {
+    const rows = new Map();                 // номер строки -> массив xml ячеек
+    const heights = new Map();
+    const merges = [];
+    const put = (r, c, xml) => { if (!rows.has(r)) rows.set(r, []); rows.get(r).push([c, xml]); };
+    const str = (r, c, v, s) => put(r, c, `<c r="${COLS[c]}${r}" s="${s}" t="inlineStr"><is><t xml:space="preserve">${esc(v)}</t></is></c>`);
+    const num = (r, c, v, s) => put(r, c, `<c r="${COLS[c]}${r}" s="${s}"><v>${v}</v></c>`);
+    const fn = (r, c, f, v, s) => put(r, c, `<c r="${COLS[c]}${r}" s="${s}"><f>${esc(f)}</f><v>${v}</v></c>`);
+    const fs = (r, c, f, v, s) => put(r, c, `<c r="${COLS[c]}${r}" s="${s}" t="str"><f>${esc(f)}</f><v>${esc(v)}</v></c>`);
+    const blank = (r, c, s) => put(r, c, `<c r="${COLS[c]}${r}" s="${s}"/>`);
+
+    const section = (r, title) => { str(r, 0, title, S.section); for (let c = 1; c < 5; c++) blank(r, c, S.sectionFill); };
+
+    str(1, 0, d.title, S.title);
+    str(2, 0, d.subtitle, S.grey);
+    str(4, 0, 'Жёлтые ячейки — для заполнения. В столбце «Включить» выберите ДА или НЕТ — итог и платежи пересчитаются автоматически.', S.instr);
+    merges.push('A4:E4'); heights.set(4, 28);
+
+    // базовый объём
+    let r = 6;
+    section(r, 'Базовый объём');
+    str(r + 1, 0, 'Этап', S.hdrC); str(r + 1, 1, 'Блок', S.hdrL); blank(r + 1, 2, S.hdrL);
+    str(r + 1, 3, 'Стоимость, руб.', S.hdrR); blank(r + 1, 4, S.hdrL);
+    r += 2;
+    const b0 = r;
+    let baseSum = 0;
+    for (const it of d.base) {
+      num(r, 0, it.stage, S.bodyC); str(r, 1, it.name, S.bodyL); num(r, 3, it.cost, S.num);
+      baseSum += it.cost; r++;
+    }
+    const b1 = r - 1;
+    str(r, 1, 'Итого базовый объём', S.totL); fn(r, 3, `SUM(D${b0}:D${b1})`, baseSum, S.totN);
+    const baseRow = r; r += 2;
+
+    // блоки с выбором
+    const optBlock = (title, items) => {
+      section(r, title);
+      str(r + 1, 0, '№', S.hdrC); str(r + 1, 1, 'Позиция', S.hdrL); str(r + 1, 2, 'Включить', S.hdrC);
+      str(r + 1, 3, 'Стоимость, руб.', S.hdrR); str(r + 1, 4, 'Примечание', S.hdrL);
+      r += 2;
+      const first = r; let sel = 0;
+      items.forEach((it, i) => {
+        num(r, 0, i + 1, S.bodyC); str(r, 1, it.name, S.bodyL);
+        str(r, 2, it.selected ? 'ДА' : 'НЕТ', S.input);
+        num(r, 3, it.cost, S.num);
+        it.note ? str(r, 4, it.note, it.accent ? S.noteAcc : S.noteGrey) : blank(r, 4, S.noteGrey);
+        if (it.selected) sel += it.cost;
+        r++;
+      });
+      const last = r - 1; r++;
+      return { first, last, sel };
+    };
+    const P = optBlock('Предложения к первой версии', d.proposals || []);
+    const O = optBlock('Опции вне базового объёма', d.options || []);
+
+    // итог
+    section(r, 'Итог'); r++;
+    str(r, 1, 'Базовый объём', S.base); fn(r, 3, `D${baseRow}`, baseSum, S.plainN); const rBase = r++;
+    str(r, 1, 'Отмеченные предложения', S.base);
+    fn(r, 3, P.first <= P.last ? `SUMIF(C${P.first}:C${P.last},"ДА",D${P.first}:D${P.last})` : '0', P.sel, S.plainN); const rP = r++;
+    str(r, 1, 'Отмеченные опции', S.base);
+    fn(r, 3, O.first <= O.last ? `SUMIF(C${O.first}:C${O.last},"ДА",D${O.first}:D${O.last})` : '0', O.sel, S.plainN); const rO = r++;
+    const grand = baseSum + P.sel + O.sel;
+    str(r, 1, 'Итого первая версия с отмеченными позициями', S.grandL);
+    fn(r, 3, `D${rBase}+D${rP}+D${rO}`, grand, S.grandN);
+    const gRow = r; r += 2;
+
+    // график оплат
+    section(r, 'График оплат'); r++;
+    const pay = d.payments; const payRows = []; let fixedSum = 0; let n = 1;
+    for (const f of pay.fixed) {
+      num(r, 0, n++, S.bodyC); str(r, 1, f.basis, S.bodyL); num(r, 3, f.amount, S.numInput);
+      payRows.push(r); fixedSum += f.amount; r++;
+    }
+    const fixedRefs = payRows.map(x => `D${x}`).join('-');
+    let depRow = null, dep = 0;
+    if (pay.deposit) {
+      str(r, 1, 'Ставка гарантийного депозита', S.grey); num(r, 3, pay.deposit.rate, S.pctInput); depRow = r++;
+      dep = Math.round(grand * pay.deposit.rate);
+    }
+    const depF = depRow ? `ROUND(D${gRow}*D${depRow},0)` : null;
+    num(r, 0, n++, S.bodyC); str(r, 1, pay.final.basis, S.bodyL);
+    fn(r, 3, `D${gRow}-${fixedRefs}${depF ? '-' + depF : ''}`, grand - fixedSum - dep, S.num);
+    payRows.push(r); r++;
+    if (depRow) {
+      num(r, 0, n++, S.bodyC); str(r, 1, pay.deposit.returnBasis, S.bodyL);
+      fn(r, 3, depF, dep, S.num); const rDep = r; payRows.push(r); r++;
+      str(r, 1, 'Размер одной части возврата депозита', S.smallL);
+      fn(r, 3, `D${rDep}/${pay.deposit.parts}`, dep / pay.deposit.parts, S.smallN); r++;
+    }
+    str(r, 1, 'Контроль: сумма платежей равна итогу', S.smallL);
+    fs(r, 3, `IF(${payRows.map(x => `D${x}`).join('+')}=D${gRow},"сходится","ошибка")`, 'сходится', S.smallR);
+    r += 2;
+    str(r, 0, d.footer, S.footer); merges.push(`A${r}:E${r}`); heights.set(r, 52);
+
+    const sheetData = [...rows.keys()].sort((a, b) => a - b).map(k => {
+      const cells = rows.get(k).sort((a, b) => a[0] - b[0]).map(x => x[1]).join('');
+      const h = heights.has(k) ? ` ht="${heights.get(k)}" customHeight="1"` : '';
+      return `<row r="${k}"${h}>${cells}</row>`;
+    }).join('');
+
+    const ranges = [P, O].filter(x => x.first <= x.last).map(x => `C${x.first}:C${x.last}`);
+    const cf = ranges.map((rg, i) => `<conditionalFormatting sqref="${rg}"><cfRule type="cellIs" dxfId="0" priority="${i + 1}" operator="equal"><formula>"ДА"</formula></cfRule></conditionalFormatting>`).join('');
+    const dv = ranges.length ? `<dataValidations count="1"><dataValidation type="list" allowBlank="0" showErrorMessage="1" sqref="${ranges.join(' ')}"><formula1>"ДА,НЕТ"</formula1></dataValidation></dataValidations>` : '';
+
+    return {
+      grand,
+      xml: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
+<sheetViews><sheetView workbookViewId="0" showGridLines="0"><pane ySplit="5" topLeftCell="A6" activePane="bottomLeft" state="frozen"/></sheetView></sheetViews>
+<sheetFormatPr defaultRowHeight="13"/>
+<cols><col min="1" max="1" width="6" customWidth="1"/><col min="2" max="2" width="80" customWidth="1"/><col min="3" max="3" width="11" customWidth="1"/><col min="4" max="4" width="15" customWidth="1"/><col min="5" max="5" width="36" customWidth="1"/></cols>
+<sheetData>${sheetData}</sheetData>
+<mergeCells count="${merges.length}">${merges.map(m => `<mergeCell ref="${m}"/>`).join('')}</mergeCells>
+${cf}${dv}
+<pageMargins left="0.5" right="0.5" top="0.6" bottom="0.6" header="0.3" footer="0.3"/>
+</worksheet>`
+    };
+  }
+
+  function buildSmetaXlsx(d) {
+    const sheet = buildSheet(d);
+    return zipStore([
+      { name: '[Content_Types].xml', data: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
+<Default Extension="xml" ContentType="application/xml"/>
+<Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/>
+<Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>
+<Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>
+</Types>` },
+      { name: '_rels/.rels', data: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>` },
+      { name: 'xl/workbook.xml', data: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="Смета" sheetId="1" r:id="rId1"/></sheets><calcPr calcId="191029" fullCalcOnLoad="1"/></workbook>` },
+      { name: 'xl/_rels/workbook.xml.rels', data: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>` },
+      { name: 'xl/styles.xml', data: STYLES_XML },
+      { name: 'xl/worksheets/sheet1.xml', data: sheet.xml }
+    ]);
+  }
+
+  function downloadSmetaXlsx(d, fileName) {
+    const bytes = buildSmetaXlsx(d);
+    const blob = new Blob([bytes], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = fileName || 'smeta.xlsx';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  }
+
+  const api = { buildSmetaXlsx, downloadSmetaXlsx, crc32 };
+  if (typeof module !== 'undefined' && module.exports) module.exports = api; else Object.assign(root, api);
+})(typeof window !== 'undefined' ? window : globalThis);
+</script>
+<script>
+/*
+ * Process Player: пошаговое проигрывание процесса работы с командой.
+ * Использование: ProcessPlayer.mount(element, data)
+ * Разметка строится через DOM API и textContent: HTML из данных не интерпретируется.
+ */
+(function (root) {
+  'use strict';
+  const RM = () => root.matchMedia && root.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function el(tag, cls, text) {
+    const n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
+  function mount(host, data) {
+    if (!host || !data || !Array.isArray(data.steps) || !data.steps.length) return null;
+    const stepMs = Math.max(2500, data.stepMs || 4200);
+    const lanes = data.lanes || [
+      { id: 'team', title: 'Команда' }, { id: 'client', title: 'Заказчик' }, { id: 'control', title: 'Контроль и прозрачность' }
+    ];
+    const phases = data.phases || [];
+    const steps = data.steps;
+    host.textContent = '';
+    const wrap = el('div', 'pp');
+    wrap.setAttribute('role', 'region');
+    wrap.setAttribute('aria-label', data.title || 'Процесс работы');
+
+    // управление
+    const head = el('div', 'pp-head');
+    const bPlay = el('button', 'pp-btn pp-play', '▶ Смотреть процесс'); bPlay.type = 'button'; bPlay.setAttribute('aria-pressed', 'false');
+    const bPrev = el('button', 'pp-btn', '←'); bPrev.type = 'button'; bPrev.setAttribute('aria-label', 'Предыдущий шаг');
+    const bNext = el('button', 'pp-btn', '→'); bNext.type = 'button'; bNext.setAttribute('aria-label', 'Следующий шаг');
+    const count = el('span', 'pp-count');
+    head.append(bPlay, bPrev, bNext, count);
+
+    // прогресс по шагам
+    const progress = el('div', 'pp-progress');
+    const segs = steps.map(() => { const s = el('div', 'pp-seg'); s.append(el('span')); progress.append(s); return s; });
+
+    // фазы
+    const phaseBar = el('div', 'pp-phases');
+    const phaseEls = phases.map(ph => { const p = el('div', 'pp-phase', ph.title); p.dataset.id = ph.id; phaseBar.append(p); return p; });
+
+    // шаги
+    const stage = el('div', 'pp-stage');
+    stage.setAttribute('aria-live', 'polite');
+    const stepEls = steps.map((st, i) => {
+      const s = el('div', 'pp-step');
+      s.setAttribute('aria-hidden', 'true');
+      const top = el('div', 'pp-top');
+      top.append(el('span', 'pp-when', st.when || ('Шаг ' + (i + 1))));
+      top.append(el('h3', 'pp-title', st.title));
+      if (st.checkpoint) top.append(el('span', 'pp-check', st.checkpoint));
+      s.append(top);
+      const ln = el('div', 'pp-lanes');
+      lanes.forEach(l => {
+        const card = el('div', 'pp-lane' + (l.id === 'control' ? ' pp-control' : ''));
+        card.append(el('p', 'pp-lane-h', l.title), el('p', 'pp-lane-t', (st.lanes && st.lanes[l.id]) || '—'));
+        ln.append(card);
+      });
+      s.append(ln);
+      if (st.takeaway) s.append(el('p', 'pp-take', st.takeaway));
+      if (st.challenges && st.challenges.length) {
+        const ch = el('div', 'pp-chips');
+        ch.append(el('span', 'pp-chips-h', 'Закрывает вызовы:'));
+        st.challenges.forEach(c => {
+          const b = el('button', 'pp-chip'); b.type = 'button';
+          const mark = el('b', null, '!'); b.append(mark, document.createTextNode(c.label));
+          if (c.open) b.setAttribute('data-open', c.open); else b.disabled = true;
+          ch.append(b);
+        });
+        s.append(ch);
+      }
+      stage.append(s);
+      return s;
+    });
+
+    // точки
+    const dots = el('div', 'pp-dots');
+    const dotEls = steps.map((st, i) => {
+      const d = el('button', 'pp-dot'); d.type = 'button';
+      d.setAttribute('aria-label', 'Шаг ' + (i + 1) + ': ' + st.title);
+      d.addEventListener('click', () => { stop(); show(i); });
+      dots.append(d); return d;
+    });
+
+    wrap.append(head, progress, phaseBar, stage, dots);
+    host.append(wrap);
+
+    let cur = -1, timer = null, playing = false, autoplayed = false;
+
+    function show(i) {
+      cur = Math.max(0, Math.min(steps.length - 1, i));
+      stepEls.forEach((s, k) => { const on = k === cur; s.classList.toggle('pp-active', on); s.setAttribute('aria-hidden', on ? 'false' : 'true'); });
+      dotEls.forEach((d, k) => { if (k === cur) d.setAttribute('aria-current', 'step'); else d.removeAttribute('aria-current'); });
+      segs.forEach((g, k) => {
+        const fill = g.firstChild;
+        g.classList.toggle('pp-done', k < cur || (!playing && k === cur));
+        fill.style.transition = 'none'; fill.style.width = '';
+      });
+      const phaseIdx = phases.findIndex(p => p.id === steps[cur].phase);
+      phaseEls.forEach((p, k) => { p.classList.toggle('pp-now', k === phaseIdx); p.classList.toggle('pp-past', phaseIdx > -1 && k < phaseIdx); });
+      if (phaseIdx > -1 && phaseBar.scrollWidth > phaseBar.clientWidth) {
+        const a = phaseEls[phaseIdx];                          // активная фаза видна в полосе на узком экране
+        phaseBar.scrollTo({ left: a.offsetLeft - (phaseBar.clientWidth - a.offsetWidth) / 2, behavior: RM() ? 'auto' : 'smooth' });
+      }
+      count.textContent = 'Шаг ' + (cur + 1) + ' из ' + steps.length;
+      bPrev.disabled = cur === 0; bNext.disabled = cur === steps.length - 1;
+      if (playing) runSegment();
+    }
+    function runSegment() {
+      const fill = segs[cur].firstChild;
+      fill.style.transition = 'none'; fill.style.width = '0';
+      void fill.offsetWidth;                                   // фиксирует начальную ширину перед переходом
+      fill.style.transition = 'width ' + stepMs + 'ms linear'; fill.style.width = '100%';
+      clearTimeout(timer);
+      timer = setTimeout(() => { if (cur < steps.length - 1) show(cur + 1); else stop(); }, stepMs);
+    }
+    function play() {
+      if (RM()) { show(cur < 0 ? 0 : cur); return; }
+      playing = true; bPlay.textContent = '❚❚ Пауза'; bPlay.setAttribute('aria-pressed', 'true');
+      show(cur < 0 || cur >= steps.length - 1 ? 0 : cur);
+    }
+    function stop() {
+      playing = false; clearTimeout(timer);
+      bPlay.textContent = cur >= steps.length - 1 ? '↻ Повторить' : '▶ Продолжить'; bPlay.setAttribute('aria-pressed', 'false');
+      if (cur >= 0) show(cur);
+    }
+    bPlay.addEventListener('click', () => (playing ? stop() : play()));
+    bPrev.addEventListener('click', () => { stop(); show(cur - 1); });
+    bNext.addEventListener('click', () => { stop(); show(cur + 1); });
+    wrap.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); e.stopPropagation(); stop(); show(cur + 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); e.stopPropagation(); stop(); show(cur - 1); }
+    });
+    show(0);
+    bPlay.textContent = '▶ Смотреть процесс';
+
+    // однократный автозапуск при появлении в видимой области
+    if ('IntersectionObserver' in root && !RM()) {
+      const io = new IntersectionObserver(es => {
+        es.forEach(en => { if (en.isIntersecting && !autoplayed) { autoplayed = true; play(); io.disconnect(); } });
+      }, { threshold: 0.45 });
+      io.observe(wrap);
+    }
+    root.addEventListener('beforeprint', () => { if (playing) stop(); });
+    return { play, stop, show };
+  }
+  root.ProcessPlayer = { mount };
+})(window);
+</script>
+<script>
+/*
+ * Risk Board: карта рисков, порядок снятия и остаточный риск по неделям.
+ * Использование: RiskBoard.mount(element, data)
+ * Уровень риска = вероятность × влияние (1–3 каждый): 6–9 высокий, 3–4 средний, 1–2 низкий.
+ * Разметка строится через DOM API и textContent: HTML из данных не интерпретируется.
+ */
+(function (root) {
+  'use strict';
+  const RM = () => root.matchMedia && root.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const LVL = s => (s >= 6 ? 3 : s >= 3 ? 2 : 1);
+  const LVL_NAME = { 3: 'Высокий', 2: 'Средний', 1: 'Низкий' };
+  function el(tag, cls, text) {
+    const n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
+  function mount(host, data) {
+    if (!host || !data || !Array.isArray(data.risks) || !data.risks.length) return null;
+    const weeks = Math.max(1, data.weeks || 13);
+    const firstShare = data.riskFirstShare || 0.3;          // доля срока, в которую снимаются высокие риски
+    const risks = data.risks.map(r => {
+      const p = Math.min(3, Math.max(1, r.probability | 0)), i = Math.min(3, Math.max(1, r.impact | 0));
+      return Object.assign({}, r, { p, i, score: p * i, lvl: LVL(p * i) });
+    }).sort((a, b) => b.score - a.score || a.week - b.week);
+    host.textContent = '';
+    const wrap = el('div', 'rb');
+    wrap.setAttribute('role', 'region');
+    wrap.setAttribute('aria-label', data.title || 'Управление рисками');
+    const top = el('div', 'rb-top');
+
+    // карта рисков
+    const mBox = el('div');
+    mBox.append(el('p', 'rb-h', 'Карта рисков: вероятность и влияние'));
+    const matrix = el('div', 'rb-matrix');
+    const chips = new Map();
+    const pNames = { 3: 'Высокая', 2: 'Средняя', 1: 'Низкая' };
+    for (let p = 3; p >= 1; p--) {
+      matrix.append(el('div', 'rb-ax rb-ax-y', pNames[p]));
+      for (let i = 1; i <= 3; i++) {
+        const cell = el('div', 'rb-cell rb-l' + LVL(p * i));
+        risks.filter(r => r.p === p && r.i === i).forEach(r => {
+          const c = el('button', 'rb-chip rb-l' + r.lvl, r.id); c.type = 'button';
+          c.setAttribute('aria-label', r.id + ': ' + r.title);
+          c.addEventListener('click', () => focusRisk(r.id));
+          c.addEventListener('mouseenter', () => hl(r.id, true));
+          c.addEventListener('mouseleave', () => hl(r.id, false));
+          chips.set(r.id, c); cell.append(c);
+        });
+        matrix.append(cell);
+      }
+    }
+    matrix.append(el('div'));
+    ['Низкое', 'Среднее', 'Высокое'].forEach(t => matrix.append(el('div', 'rb-ax', t)));
+    const axX = el('div', 'rb-axis-x', 'Влияние на срок и стоимость');
+    matrix.append(el('div'), axX);
+    mBox.append(matrix);
+
+    // остаточный риск по неделям
+    const burn = el('div', 'rb-burn');
+    const total = risks.reduce((s, r) => s + r.score, 0);
+    const cut = Math.max(1, Math.round(weeks * firstShare));
+    const hi = risks.filter(r => r.lvl === 3);
+    const hiEarly = hi.filter(r => r.week <= cut).length;
+    const remainingAt = w => risks.filter(r => r.week > w).reduce((s, r) => s + r.score, 0);
+    const shareGone = Math.round((1 - remainingAt(cut) / total) * 100);
+    const key = el('div', 'rb-key');
+    key.append(el('span', 'rb-key-n', shareGone + '%'),
+      el('span', 'rb-key-t', 'совокупного риска снимается к неделе ' + cut + ' из ' + weeks + (hi.length ? '; высоких рисков в этот срок: ' + hiEarly + ' из ' + hi.length : '')));
+    burn.append(el('p', 'rb-h', 'Остаточный риск по неделям'), key);
+    const bars = el('div', 'rb-bars'), labels = el('div', 'rb-weeks');
+    const barEls = [];
+    for (let w = 0; w <= weeks; w++) {
+      const b = el('div', 'rb-bar' + (w >= 1 && w <= cut ? ' rb-first' : ''));
+      const fill = el('i');
+      const val = w === 0 ? total : remainingAt(w);
+      fill.dataset.h = String(Math.round((val / total) * 100));
+      b.title = (w === 0 ? 'Старт' : 'Неделя ' + w) + ': остаточный риск ' + val + ' из ' + total;
+      b.append(fill); bars.append(b); barEls.push(fill);
+      labels.append(el('span', null, w === 0 ? '0' : String(w)));
+    }
+    const legend = el('p', 'rb-legend');
+    legend.append(el('b'), document.createTextNode('недели, в которые снимаются рисковые задачи в первую очередь'));
+    burn.append(bars, labels, legend);
+    top.append(mBox, burn);
+
+    // перечень рисков
+    const list = el('div', 'rb-list');
+    const items = new Map();
+    risks.forEach(r => {
+      const d = el('details', 'rb-item'); d.id = 'risk-' + r.id;
+      const s = el('summary', 'rb-sum');
+      s.append(el('span', 'rb-id', r.id), el('span', 'rb-title', r.title),
+        el('span', 'rb-lvl rb-l' + r.lvl, LVL_NAME[r.lvl]), el('span', 'rb-week', 'снимается к неделе ' + r.week));
+      d.append(s);
+      const body = el('div', 'rb-body');
+      const row = (k, v, cls) => { if (!v) return; body.append(el('span', 'rb-k', k), el('p', 'rb-v' + (cls ? ' ' + cls : ''), v)); };
+      row('Задача снятия', r.task, 'rb-task');
+      row('Источник', r.source);
+      row('Ответственный', r.owner);
+      row('Признак срабатывания', r.trigger);
+      row('Резервный вариант', r.fallback);
+      if (r.challenge && r.challenge.label) {
+        body.append(el('span', 'rb-k', 'Связанный вызов'));
+        const wrapLink = el('p', 'rb-v');
+        const b = el('button', 'rb-link', r.challenge.label); b.type = 'button';
+        if (r.challenge.open) b.setAttribute('data-open', r.challenge.open); else b.disabled = true;
+        wrapLink.append(b); body.append(wrapLink);
+      }
+      d.append(body);
+      s.addEventListener('mouseenter', () => hl(r.id, true));
+      s.addEventListener('mouseleave', () => hl(r.id, false));
+      list.append(d); items.set(r.id, d);
+    });
+
+    wrap.append(top, list);
+    host.append(wrap);
+
+    function hl(id, on) {
+      const c = chips.get(id), it = items.get(id);
+      if (c) c.classList.toggle('rb-hl', on);
+      if (it) it.classList.toggle('rb-hl', on);
+    }
+    function focusRisk(id) {
+      const it = items.get(id); if (!it) return;
+      it.open = true;
+      it.classList.add('rb-flash'); void it.offsetWidth; it.classList.remove('rb-flash');   // затухающая подсветка цели
+      it.scrollIntoView({ block: 'nearest', behavior: RM() ? 'auto' : 'smooth' });
+      it.querySelector('summary').focus({ preventScroll: true });
+    }
+    function grow() { barEls.forEach((f, k) => { f.style.transitionDelay = RM() ? '0s' : (k * 30) + 'ms'; f.style.height = f.dataset.h + '%'; }); }
+    if ('IntersectionObserver' in root && !RM()) {
+      const io = new IntersectionObserver(es => { es.forEach(en => { if (en.isIntersecting) { grow(); io.disconnect(); } }); }, { threshold: 0.3 });
+      io.observe(bars);
+    } else grow();
+    root.addEventListener('beforeprint', () => { grow(); items.forEach(d => { d.open = true; }); });
+    return { focusRisk };
+  }
+  root.RiskBoard = { mount };
+})(window);
+</script>
+<script>
+/* Данные коммерческого предложения. Один источник для слайдов, кнопки выгрузки и отдельного .xlsx. */
+(function (root) {
+  'use strict';
+  const KP = {
+    client: 'Заказчик',
+    project: 'Жилой проект',
+    fileSmeta: 'zhiloy-proekt-smeta.xlsx',
+    weeks: 18,
+    stages: [
+      { n: 1, name: 'Проектирование и дизайн', when: 'Недели 1–12' },
+      { n: 2, name: 'Разработка', when: 'Недели 3–16' },
+      { n: 3, name: 'Инфраструктура, тестирование, ввод в эксплуатацию', when: 'Недели 2–18' }
+    ],
+    // Базовый объём. Строки с reserve — резерв на неопределённость по пункту реестра.
+    base: [
+      { stage: 1, name: 'Прототипы всех страниц и модель контента админ-панели', cost: 340000, ref: '«Разработка дизайна», «Hardcode»' },
+      { stage: 1, name: 'Дизайн-концепция по платформе бренда и фирменному стилю', cost: 400000, ref: '«Разработка дизайна»' },
+      { stage: 1, name: 'Макеты страниц: Desktop 1920, 1440, 1280; Tablet 768; Mobile 375 и от 320px', cost: 700000, ref: '«Требования к адаптивам и к верстке»' },
+      { stage: 1, name: 'Hero-блоки главной и «Коммерции»: видео, графика, анимация', cost: 360000, ref: 'п. 1 и 4' },
+      { stage: 1, name: 'Тексты страниц, семантическое ядро и SEO-теги', cost: 240000, ref: '«SEO»' },
+      { stage: 1, name: 'Архитектура и спецификация обмена с CRM Microsoft Dynamics', cost: 160000, ref: 'п. 2, «Интеграции»' },
+      { stage: 2, name: 'Главная страница проекта', cost: 520000, ref: 'п. 1' },
+      { stage: 2, name: 'Страница подбора квартиры и коммерции', cost: 360000, ref: 'п. 2' },
+      { stage: 2, name: 'Страница лота жилой недвижимости и страница лота коммерции', cost: 300000, ref: 'п. 3 и 5' },
+      { stage: 2, name: 'PDF лота', cost: 120000, ref: 'п. 16' },
+      { stage: 2, name: 'Страница «Коммерция»', cost: 120000, ref: 'п. 4' },
+      { stage: 2, name: 'Страницы «Локация», «Благоустройство и МОПы», «Паркинг»', cost: 300000, ref: 'п. 7–9' },
+      { stage: 2, name: 'Страницы «Способы покупки», «Ход строительства», «Новости проекта», «Команда проекта», «О застройщике», «Контакты»', cost: 260000, ref: 'п. 10–15' },
+      { stage: 2, name: 'ФОС и хранение заявок', cost: 100000, ref: 'п. 17' },
+      { stage: 2, name: 'Админ-панель', cost: 340000, ref: '«Админ-панель», «Hardcode»' },
+      { stage: 2, name: 'Интеграция с CRM Microsoft Dynamics и Никфорт', cost: 240000, ref: '«Интеграции»' },
+      { stage: 2, name: 'Интеграции UIS, Вебмастер, Яндекс Метрика, Яндекс Смарт Капча', cost: 100000, ref: '«Интеграции»' },
+      { stage: 2, name: 'Резерв на неопределённость U-003: обмен с CRM без спецификации API', cost: 280000, ref: 'п. 2', reserve: 'U-003' },
+      { stage: 2, name: 'Резерв на неопределённость U-004: шахматка', cost: 230000, ref: 'п. 1, «Генплан проекта»', reserve: 'U-004' },
+      { stage: 2, name: 'Резерв на неопределённость U-005: «движение солнца» на странице лота', cost: 150000, ref: 'п. 3', reserve: 'U-005' },
+      { stage: 3, name: 'Инфраструктура Stage и Prod, CDN, бэкапы и безопасность', cost: 180000, ref: '«Список сред», «Безопасность»' },
+      { stage: 3, name: 'Требования к скорости и SEO: оптимизация и замеры', cost: 120000, ref: '«Требования к скорости», «SEO»' },
+      { stage: 3, name: 'Тестирование, кроссбраузерность и приёмка', cost: 220000, ref: '«Кроссбраузерность»' },
+      { stage: 3, name: 'Документирование и инструкция по админ-панели', cost: 60000, ref: '«Документирование»' }
+    ],
+    reserve: [
+      { u: 'U-003', topic: 'Обмен с Microsoft Dynamics и Nikfort Realty', ref: 'ТЗ, п. 2', resolvedBy: 'Интегратор CRM передаёт документированный API лотов и заявок и тестовый контур', decideBy: 'неделя 3', cost: 280000 },
+      { u: 'U-004', topic: 'Шахматка', ref: 'ТЗ, п. 1, «Генплан проекта»', resolvedBy: 'Virtual Land подтверждает поставку шахматки с переходами по ключу помещения', decideBy: 'неделя 4', cost: 230000 },
+      { u: 'U-005', topic: '«Движение солнца»', ref: 'ТЗ, п. 3', resolvedBy: 'Virtual Land подтверждает поставку «движения солнца» для страницы лота', decideBy: 'неделя 4', cost: 150000 }
+    ],
+    proposals: [
+      { key: 'p1', name: 'Ипотечный калькулятор на странице лота и в «Способах покупки»', cost: 180000, note: 'Ставки и условия программ редактируются в админ-панели', why: 'Переводит условия программ в платёж по конкретному лоту.', ref: 'п. 3 и 10' },
+      { key: 'p2', name: 'Квиз подбора квартиры с передачей ответов в заявку', cost: 150000, note: 'Ответы передаются в CRM вместе с контактами', why: 'Менеджер видит критерии посетителя до звонка.', ref: 'п. 2 и 17' },
+      { key: 'p3', name: 'Сравнение лотов и отправка подборки избранного ссылкой', cost: 120000, note: 'Избранное остаётся без регистрации', why: 'Подборку можно передать семье или менеджеру.', ref: 'п. 3 и 5' }
+    ],
+    options: [
+      { key: 'o1', name: 'Интеграция с сервисом email-рассылок и шаблоны писем', cost: 90000, note: 'Сервис выбирает заказчик; закрывает допущение 4' },
+      { key: 'o2', name: 'Онлайн-бронирование лота с передачей брони в CRM', cost: 340000, note: 'Цена действительна, если API CRM поддерживает бронь (U-003)', accent: true }
+    ],
+    payments: {
+      fixed: [
+        { name: 'Платёж 1', basis: 'Платёж 1: по итогам защиты дизайн-концепции и архитектуры, неделя 4', when: 'защита концепции и архитектуры, неделя 4', amount: 1860000 },
+        { name: 'Платёж 2', basis: 'Платёж 2: по выпуску предварительного продукта, день 45', when: 'выпуск главной страницы, день 45', amount: 1860000 }
+      ],
+      final: { name: 'Платёж 3', basis: 'Платёж 3: по итогам приёмки итогового продукта, день 125', when: 'приёмка итогового продукта, день 125' },
+      deposit: null
+    },
+    footer: 'Приёмка считается состоявшейся, если в течение десяти рабочих дней с передачи результата замечания не предъявлены. Задержка предоставления данных со стороны заказчика сдвигает срок и связанный с ним платёж на тот же период. Отмеченные предложения и опции увеличивают платёж 3. Итог базового объёма является верхней границей стоимости; резерв по пунктам U-003, U-004 и U-005 пересчитывается один раз по итогам первого этапа. Гарантия 100 календарных дней с даты приёмки входит в стоимость.',
+    risks: {
+      title: 'Управление рисками',
+      weeks: 18,
+      riskFirstShare: 0.3,
+      risks: [
+        { id: 'R1', title: 'Расхождение каталога на сайте с данными CRM', probability: 2, impact: 3, week: 4,
+          task: 'Прототип синхронизации на тестовом контуре CRM: полная выгрузка лотов, сверка цен и статусов, отработка недоступности API',
+          source: 'ТЗ, п. 2 и «Список внешних скриптов и интеграций»', owner: 'Техлид',
+          trigger: 'Доступ к тестовому контуру CRM не получен к концу недели 2',
+          fallback: 'Синхронизация на выгрузке-образце; при недоступности API сайт показывает последние сверенные данные',
+          challenge: { label: 'В2. Каталог на API', open: 'd-v2' } },
+        { id: 'R2', title: 'Срыв выпуска главной страницы к 45-му дню', probability: 3, impact: 2, week: 5,
+          task: 'Концепция главной утверждена к неделе 3; вёрстка главной идёт параллельно с дизайном внутренних страниц; материалы получены к неделе 3',
+          source: 'ТЗ, «Ожидаемые сроки выпуска в продакшен»', owner: 'Менеджер проекта',
+          trigger: 'Концепция главной не утверждена к концу недели 3',
+          fallback: 'Выпуск главной со статичным кадром в hero и заменой на видео после релиза',
+          challenge: { label: 'В5. Первый релиз', open: 'd-v5' } },
+        { id: 'R3', title: 'Разные идентификаторы помещений в CRM и Virtual Land', probability: 2, impact: 3, week: 5,
+          task: 'Единый ключ помещения согласован с интегратором CRM и Virtual Land; переход с генплана на лот проверен на тестовой сборке',
+          source: 'ТЗ, п. 1, «Генплан проекта»', owner: 'Техлид',
+          trigger: 'Virtual Land не подтвердил формат ссылок на лоты к концу недели 3',
+          fallback: 'Переход с генплана на страницу подбора с фильтром по корпусу и этажу',
+          challenge: { label: 'В3. Сквозная навигация', open: 'd-v3' } },
+        { id: 'R4', title: 'Оценка PageSpeed ниже 80 с внешними скриптами', probability: 2, impact: 2, week: 7,
+          task: 'Бюджет производительности главной: замер на Stage с видео, iframe Virtual Land и всеми внешними скриптами к выпуску главной',
+          source: 'ТЗ, «Требования к скорости»', owner: 'Фронтенд-разработчик',
+          trigger: 'Оценка мобильной версии на Stage ниже 80',
+          fallback: 'Загрузка iframe по действию посетителя, постер вместо видео на медленном соединении',
+          challenge: { label: 'В1. Скорость', open: 'd-v1' } },
+        { id: 'R5', title: 'Зависимость плана от материалов и решений заказчика', probability: 2, impact: 2, week: 8,
+          task: 'Реестр входных данных с датами и решениями по умолчанию; материалы для внутренних страниц получены к неделе 8',
+          source: 'ТЗ, «Этапы выпуска в продакшен»; слайд 11', owner: 'Менеджер проекта',
+          trigger: 'Вопрос без решения дольше пяти рабочих дней',
+          fallback: 'Решение по умолчанию с фиксацией в реестре и правом пересмотра' }
+      ]
+    },
+    process: {
+      title: 'Процесс работы с командой',
+      stepMs: 4200,
+      phases: [
+        { id: 'start', title: 'Старт' },
+        { id: 'design', title: 'Проектирование и дизайн' },
+        { id: 'dev', title: 'Разработка' },
+        { id: 'accept', title: 'Тестирование и ввод' },
+        { id: 'warranty', title: 'Гарантия' }
+      ],
+      steps: [
+        { phase: 'start', when: 'Неделя 1', title: 'Согласование формата работы',
+          lanes: { team: 'Менеджер и техлид разбирают ТЗ, реестр вопросов и входных данных',
+                   client: 'Назначает product owner, передаёт брендбук, рендеры и доступы',
+                   control: 'Фиксируются канал связи, еженедельный статус и ответственные' },
+          takeaway: 'С первой недели понятно, кто принимает решения и когда приходит статус',
+          challenges: [{ label: 'В5. Первый релиз за 45 дней', open: 'd-v5' }] },
+        { phase: 'design', when: 'Недели 1–4', title: 'Концепция и архитектура',
+          lanes: { team: 'Концепция главной, модель контента, прототипы синхронизации и ключа помещения',
+                   client: 'Защищает концепцию и архитектуру, принимает решения по резерву',
+                   control: 'Архитектурные решения оформлены записями и передаются заказчику' },
+          takeaway: 'Самые дорогие решения принимаются первыми и вместе с заказчиком',
+          checkpoint: 'Платёж 1',
+          challenges: [{ label: 'В2. Каталог на API', open: 'd-v2' }, { label: 'В3. Сквозная навигация', open: 'd-v3' }, { label: 'В6. Шахматка и солнце', open: 'd-v6' }] },
+        { phase: 'dev', when: 'Недели 3–7', title: 'Выпуск главной страницы',
+          lanes: { team: 'Главная с hero, генпланом, картой и ФОС на рабочем окружении',
+                   client: 'Проверяет главную на Stage и утверждает выпуск',
+                   control: 'Замер PageSpeed с внешними скриптами, обновлённый реестр рисков' },
+          takeaway: 'Главная страница работает в продакшене на 45-й день',
+          checkpoint: 'Платёж 2',
+          challenges: [{ label: 'В1. Скорость', open: 'd-v1' }, { label: 'В5. Первый релиз за 45 дней', open: 'd-v5' }] },
+        { phase: 'dev', when: 'Недели 8–16', title: 'Итерации по две недели',
+          lanes: { team: 'Каталог, лоты, внутренние страницы и админ-панель по утверждённым макетам',
+                   client: 'Смотрит демонстрацию на Stage, согласует макеты и тексты следующих страниц',
+                   control: 'Отчёт итерации: сделано, дефекты, обновлённый реестр рисков' },
+          takeaway: 'Работающий сайт демонстрируется каждые две недели',
+          challenges: [{ label: 'В4. Редактируемость', open: 'd-v4' }] },
+        { phase: 'accept', when: 'Недели 15–18', title: 'Тестирование и приёмка',
+          lanes: { team: 'Регрессия, кроссбраузерность, проверка скорости и SEO-требований',
+                   client: 'Принимает по чек-листам, наполняет сайт через админ-панель',
+                   control: 'Приёмка считается состоявшейся через 10 рабочих дней без замечаний' },
+          takeaway: 'Критерии приёмки известны заранее и проверяются одинаково обеими сторонами',
+          checkpoint: 'Платёж 3',
+          challenges: [{ label: 'В1. Скорость', open: 'd-v1' }] },
+        { phase: 'warranty', when: '100 дней', title: 'Гарантия и передача',
+          lanes: { team: 'Первый месяц критические инциденты 24/7, далее в рабочее время',
+                   client: 'Получает документацию, инструкцию по админ-панели и выбирает уровень поддержки',
+                   control: 'Отчёт по инцидентам, реестр доступов передан заказчику' },
+          takeaway: 'Сайт можно передать своей команде в любой момент' }
+      ]
+    }
+  };
+
+  // Данные для генератора xlsx по data_shape; selected берётся из состояния переключателей.
+  KP.smetaData = function (selected) {
+    const sel = selected || {};
+    return {
+      title: 'Сайт жилого проекта — смета первой версии',
+      subtitle: 'Исполнитель: Bang Digital. Срок: 125 календарных дней. Гарантия: 100 календарных дней. Версия 1.0 от 25.09.2026.',
+      base: KP.base.map(b => ({ stage: b.stage, name: b.name, cost: b.cost })),
+      proposals: KP.proposals.map(p => ({ name: p.name, cost: p.cost, note: p.note, accent: !!p.accent, selected: !!sel[p.key] })),
+      options: KP.options.map(o => ({ name: o.name, cost: o.cost, note: o.note, accent: !!o.accent, selected: !!sel[o.key] })),
+      payments: {
+        fixed: KP.payments.fixed.map(f => ({ basis: f.basis, amount: f.amount })),
+        final: { basis: KP.payments.final.basis },
+        deposit: KP.payments.deposit
+      },
+      footer: KP.footer
+    };
+  };
+
+  root.KP = KP;
+  if (typeof module !== 'undefined' && module.exports) module.exports = KP;
+})(typeof window !== 'undefined' ? window : globalThis);
+</script>
+<script>
+(function () {
+  'use strict';
+  const KP = window.KP;
+  const RM = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const beh = () => (RM() ? 'auto' : 'smooth');
+  const nf = new Intl.NumberFormat('ru-RU');
+  const f = n => nf.format(Math.round(n));
+  const $ = (s, r) => (r || document).querySelector(s);
+  const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+  const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+
+  // ---------- раскрывающиеся блоки ----------
+  function setDz(d, open) {
+    if (open) {
+      d.open = true;
+      requestAnimationFrame(() => requestAnimationFrame(() => d.classList.add('is-open')));
+    } else {
+      d.classList.remove('is-open');
+      setTimeout(() => { if (!d.classList.contains('is-open')) d.open = false; }, RM() ? 0 : 220);
+    }
+    d.dispatchEvent(new CustomEvent('dz', { detail: open }));
+  }
+  function bindDz(root) {
+    $$('details.dz', root).forEach(d => {
+      if (d.dataset.bound) return;
+      d.dataset.bound = '1';
+      if (d.open) d.classList.add('is-open');
+      d.querySelector('summary').addEventListener('click', e => { e.preventDefault(); setDz(d, !d.classList.contains('is-open')); });
+    });
+  }
+
+  // ---------- переход к разбору по data-open ----------
+  document.addEventListener('click', e => {
+    const t = e.target.closest('[data-open]');
+    if (!t) return;
+    const target = document.getElementById(t.getAttribute('data-open'));
+    if (!target) return;
+    e.preventDefault();
+    if (target.matches('details.dz') && !target.classList.contains('is-open')) setDz(target, true);
+    setTimeout(() => {
+      target.scrollIntoView({ block: 'center', behavior: beh() });
+      target.classList.remove('flash'); void target.offsetWidth; target.classList.add('flash');
+      const s = target.querySelector('summary'); if (s) s.focus({ preventScroll: true });
+    }, 60);
+  });
+
+  // ---------- навигация по слайдам ----------
+  const slides = $$('.slide');
+  const cn = $('#cn'), progress = $('#progress');
+  let cur = 0;
+  function currentIndex() {
+    const line = window.innerHeight * 0.35;
+    let idx = 0;
+    slides.forEach((s, i) => { if (s.getBoundingClientRect().top <= line) idx = i; });
+    return idx;
+  }
+  function go(i) {
+    const k = Math.max(0, Math.min(slides.length - 1, i));
+    window.scrollTo({ top: slides[k].getBoundingClientRect().top + window.scrollY, behavior: beh() });
+  }
+  function onScroll() {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+    const i = currentIndex();
+    if (i !== cur) {
+      cur = i; cn.textContent = String(i + 1);
+      if (!RM() && cn.animate) cn.animate([{ transform: 'translateY(60%)', opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: 220, easing: 'cubic-bezier(.22,1,.36,1)' });
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  document.addEventListener('keydown', e => {
+    if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey) return;
+    const t = e.target;
+    if (t && (t.tagName === 'TEXTAREA' || t.isContentEditable || (t.tagName === 'INPUT' && t.type !== 'checkbox'))) return;
+    const fwd = ['ArrowRight', 'ArrowDown', 'PageDown'].includes(e.key);
+    const back = ['ArrowLeft', 'ArrowUp', 'PageUp'].includes(e.key);
+    if (!fwd && !back) return;
+    e.preventDefault();
+    const i = currentIndex(), r = slides[i].getBoundingClientRect(), vh = window.innerHeight;
+    if (fwd) {
+      if (r.bottom > vh + 4) window.scrollBy({ top: Math.min(vh * 0.85, r.bottom - vh), behavior: beh() });
+      else go(i + 1);
+    } else {
+      if (r.top < -4) window.scrollBy({ top: -Math.min(vh * 0.85, -r.top), behavior: beh() });
+      else go(i - 1);
+    }
+  });
+  $$('.toc-a').forEach(a => a.addEventListener('click', e => {
+    const s = document.querySelector(a.getAttribute('href'));
+    if (!s) return;
+    e.preventDefault(); go(slides.indexOf(s));
+  }));
+
+  // ---------- появление слайдов ----------
+  slides.forEach(s => $$('.rv', s).forEach((n, k) => { if (!n.style.getPropertyValue('--d')) n.style.setProperty('--d', String(Math.min(k, 8))); }));
+  if ('IntersectionObserver' in window && !RM()) {
+    const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }), { threshold: 0.08 });
+    slides.forEach(s => io.observe(s));
+  } else slides.forEach(s => s.classList.add('in'));
+  // модель системы: ярусы появляются с шагом 120ms
+  $$('#tiers > .rv').forEach(n => { const d = parseFloat(n.style.getPropertyValue('--d')) || 0; n.style.transitionDelay = (d * 40) + 'ms'; });
+
+  // ---------- слайд 4: подсветка схемы по разбору ----------
+  const HL = {
+    v1: ['pages', 'cdn', 'vis', 'vl'], v2: ['crm', 'sync', 'cat'], v3: ['vl', 'cat', 'pages'],
+    v4: ['adm', 'pages'], v5: ['pages', 'vl', 'vis', 'leads'], v6: ['cat', 'pages', 'vl']
+  };
+  const flow = $('#flow');
+  function hlFlow(ch) {
+    const set = ch ? HL[ch] || [] : [];
+    flow.classList.toggle('hl', !!ch);
+    $$('.nd', flow).forEach(n => n.classList.toggle('on', set.includes(n.dataset.n)));
+    $$('.ar', flow).forEach(a => a.classList.toggle('on', set.includes(a.dataset.a) && set.includes(a.dataset.b)));
+  }
+  let activeCh = null;
+  $$('#s4 details[data-ch]').forEach(d => {
+    d.addEventListener('dz', ev => {
+      if (ev.detail) {
+        activeCh = d.dataset.ch;
+        $$('#s4 details[data-ch]').forEach(o => { if (o !== d && o.open) setDz(o, false); });
+        hlFlow(activeCh);
+      } else if (activeCh === d.dataset.ch) { activeCh = null; hlFlow(null); }
+    });
+  });
+
+  // ---------- слайд 5: второй слой блоков ----------
+  const info = $('#info');
+  function showInfo(b) {
+    $$('#tiers .blk').forEach(x => x.classList.toggle('on', x === b));
+    info.textContent = '';
+    info.append(el('p', 'info-t', b.dataset.t), el('p', 'info-d', b.dataset.i));
+    const m = el('div', 'info-m');
+    (b.dataset.ch || '').split(' ').filter(Boolean).forEach(c => m.append(el('span', 'mk', c)));
+    if (m.childNodes.length) info.append(m);
+  }
+  $$('#tiers .blk').forEach(b => ['mouseenter', 'focus', 'click'].forEach(ev => b.addEventListener(ev, () => showInfo(b))));
+
+  // ---------- слайд 7: диаграмма Ганта ----------
+  const G = [
+    { n: 'Концепция главной и дизайн-система', s: 1, a: 1, b: 4 },
+    { n: 'Архитектура, модель контента, прототип синхронизации', s: 1, a: 1, b: 4 },
+    { n: 'Разработка главной страницы', s: 2, a: 3, b: 7 },
+    { n: 'Макеты внутренних страниц, тексты и SEO', s: 1, a: 5, b: 12 },
+    { n: 'Каталог, лоты, внутренние страницы, админ-панель', s: 2, a: 7, b: 16 },
+    { n: 'Интеграции с CRM и сервисами', s: 2, a: 3, b: 14 },
+    { n: 'Инфраструктура Stage и Prod', s: 3, a: 2, b: 18 },
+    { n: 'Тестирование и приёмка', s: 3, a: 15, b: 18 }
+  ];
+  (function gantt() {
+    const host = $('#gantt'), W = KP.weeks;
+    const head = el('div', 'g-row g-head'); head.append(el('span', 'g-l', 'Неделя'));
+    const ht = el('div', 'g-t'); for (let w = 1; w <= W; w++) ht.append(el('span', 'g-wk', String(w)));
+    head.append(ht); host.append(head);
+    G.forEach((r, k) => {
+      const row = el('div', 'g-row'); row.append(el('span', 'g-l', r.n));
+      const t = el('div', 'g-t'), b = el('span', 'g-b g-s' + r.s);
+      b.style.left = ((r.a - 1) / W * 100) + '%'; b.style.width = ((r.b - r.a + 1) / W * 100) + '%';
+      b.style.transitionDelay = (k * 40) + 'ms'; b.title = r.n + ': недели ' + r.a + '–' + r.b;
+      t.append(b); row.append(t); host.append(row);
+    });
+    const pay = el('div', 'g-row g-pay'); pay.append(el('span', 'g-l', 'Платежи'));
+    const pt = el('div', 'g-t');
+    [['Платёж 1', 4], ['Платёж 2', 7], ['Платёж 3', 18]].forEach(([n, w]) => {
+      const x = (w - 0.5) / W * 100;
+      const m = el('span', 'g-m'); m.style.left = x + '%'; m.title = n + ', неделя ' + w;
+      const l = el('span', 'g-ml', n); l.style.left = Math.min(x, 95) + '%';
+      pt.append(m, l);
+    });
+    pay.append(pt); host.append(pay);
+  })();
+
+  // ---------- состояние выбора ----------
+  const sel = {};                 // предложения и опции
+  const solved = {};              // решённые пункты резерва
+  const baseSum = KP.base.reduce((s, b) => s + b.cost, 0);
+  const fixedPay = KP.payments.fixed.reduce((s, p) => s + p.amount, 0);
+
+  function animateNum(node, to, suffix) {
+    const from = parseFloat(node.dataset.v || '0');
+    node.dataset.v = String(to);
+    const sfx = suffix || '';
+    if (RM() || from === to) { node.textContent = f(to) + sfx; return; }
+    const t0 = performance.now(), dur = 400;
+    const step = t => {
+      const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+      node.textContent = f(from + (to - from) * e) + sfx;
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  function toggleRow(key, cost, name, note, accent) {
+    const lab = el('label', 'tg');
+    const swc = el('span', 'swc');
+    const inp = el('input'); inp.type = 'checkbox'; inp.dataset.key = key; inp.setAttribute('aria-label', name);
+    swc.append(inp, el('span', 'sw'));
+    const nm = el('span', 'tg-name');
+    nm.append(el('span', null, name));
+    if (note) { const nt = el('span', 'tg-note' + (accent ? ' acc' : '')); nt.append(el('span', accent ? 'cond' : null, note)); nm.append(nt); }
+    lab.append(swc, nm, el('span', 'tg-cost', f(cost)));
+    return lab;
+  }
+
+  // слайд 8: карточки предложений
+  (function props() {
+    const host = $('#props');
+    KP.proposals.forEach(p => {
+      const card = el('label', 'prop rv');
+      const top = el('span', 'prop-top');
+      const swc = el('span', 'swc');
+      const inp = el('input'); inp.type = 'checkbox'; inp.dataset.key = p.key; inp.setAttribute('aria-label', 'Включить: ' + p.name);
+      swc.append(inp, el('span', 'sw'));
+      top.append(swc, el('span', 'prop-cost', f(p.cost) + ' ₽'));
+      card.append(top, el('span', 'prop-name', p.name), el('span', 'prop-why', p.why), el('span', 'prop-ref', 'ТЗ, ' + p.ref + '. ' + p.note + '.'));
+      host.append(card);
+    });
+  })();
+  // слайд 9: опции
+  (function opts() {
+    const host = $('#opts');
+    KP.options.forEach(o => host.append(toggleRow(o.key, o.cost, o.name, o.note, o.accent)));
+  })();
+  // слайд 9: этапы и блоки
+  (function stages() {
+    const host = $('#stages');
+    KP.stages.forEach(st => {
+      const rows = KP.base.filter(b => b.stage === st.n);
+      const sum = rows.reduce((s, b) => s + b.cost, 0);
+      const res = rows.filter(b => b.reserve).reduce((s, b) => s + b.cost, 0);
+      const d = el('details', 'dz');
+      const s = el('summary', 'st-sum');
+      const nm = el('span', 'st-name'); nm.append(el('span', 'st-name-t', st.n + '. ' + st.name), el('span', 'st-name-w', st.when));
+      const bar = el('span', 'st-bar');
+      const fx = el('span', 'st-fill'); fx.style.width = ((sum - res) / baseSum * 100) + '%';
+      bar.append(fx);
+      if (res) { const rs = el('span', 'st-res'); rs.style.width = (res / baseSum * 100) + '%'; bar.append(rs); }
+      bar.setAttribute('role', 'img'); bar.setAttribute('aria-label', 'Доля этапа ' + Math.round(sum / baseSum * 100) + '%');
+      const pl = el('span', 'pl'); pl.setAttribute('aria-hidden', 'true');
+      s.append(nm, bar, el('span', 'st-val', f(sum)), pl);
+      d.append(s);
+      const body = el('div', 'dz-body'), inn = el('div', 'dz-in'), pad = el('div', 'dz-pad');
+      const tw = el('div', 'tw'), t = el('table', 'tbl blk-tbl wide');
+      t.innerHTML = '<colgroup><col style="width:56%"><col style="width:26%"><col style="width:18%"></colgroup><thead><tr><th>Блок</th><th>Пункт ТЗ</th><th class="n">Стоимость, ₽</th></tr></thead>';
+      const tb = el('tbody');
+      rows.forEach(b => {
+        const tr = el('tr');
+        const td = el('td'); const sp = el('span', b.reserve ? 'cond' : null, b.name); td.append(sp);
+        tr.append(td, el('td', 'ref', b.ref), el('td', 'n', f(b.cost)));
+        tb.append(tr);
+      });
+      t.append(tb); tw.append(t); pad.append(tw); inn.append(pad); body.append(inn); d.append(body);
+      host.append(d);
+    });
+    $('#baseTotal').textContent = f(baseSum);
+  })();
+  // слайд 10: резерв
+  (function reserve() {
+    const bar = $('#ceilBar'), leg = $('#ceilLeg'), tb = $('#resTbl tbody');
+    const fixed = baseSum - KP.reserve.reduce((s, r) => s + r.cost, 0);
+    const fx = el('span', 'cb cb-fix', 'Фиксированная часть ' + f(fixed)); fx.style.width = (fixed / baseSum * 100) + '%'; fx.dataset.u = 'fix';
+    bar.append(fx);
+    KP.reserve.forEach((r, i) => {
+      const seg = el('span', 'cb cb-' + (i + 1)); seg.style.width = (r.cost / baseSum * 100) + '%'; seg.dataset.u = r.u; seg.title = r.u + ': ' + f(r.cost) + ' ₽';
+      bar.append(seg);
+      const li = el('span', 'lg'); const sw = el('span', 'g-sw cb-' + (i + 1)); li.append(sw, el('span', null, r.u + ' ' + r.topic + ': ' + f(r.cost) + ' ₽')); leg.append(li);
+      const tr = el('tr');
+      const c1 = el('td'); c1.append(el('span', 'mk', r.u)); c1.append(el('div', null, r.topic)); const rf = el('div', 'ref', r.ref); c1.append(rf);
+      const lab = el('label', 'res-tg'); const swc = el('span', 'swc res-sw');
+      const inp = el('input'); inp.type = 'checkbox'; inp.dataset.res = r.u; inp.setAttribute('aria-label', 'Решение по ' + r.u + ' принято');
+      swc.append(inp, el('span', 'sw')); lab.append(swc, el('span', null, 'да'));
+      const c5 = el('td'); c5.append(lab);
+      tr.append(c1, el('td', null, r.resolvedBy), el('td', 'nw', r.decideBy), el('td', 'n', f(r.cost)), c5);
+      tb.append(tr);
+    });
+    const li0 = el('span', 'lg'); const sw0 = el('span', 'g-sw'); sw0.style.background = '#1B1B1B'; li0.append(sw0, el('span', null, 'фиксированная часть: первый этап и определённые пункты'));
+    leg.prepend(li0);
+    $('#ceilCur').textContent = 'Верхняя граница: ' + f(baseSum) + ' ₽';
+  })();
+
+  // ---------- пересчёт ----------
+  function recalc() {
+    const pSum = KP.proposals.filter(p => sel[p.key]).reduce((s, p) => s + p.cost, 0);
+    const oSum = KP.options.filter(o => sel[o.key]).reduce((s, o) => s + o.cost, 0);
+    const grand = baseSum + pSum + oSum;
+    animateNum($('#grand'), grand);
+    animateNum($('#propsSum'), pSum, ' ₽');
+    const pn = KP.proposals.filter(p => sel[p.key]).length;
+    const pl = $('#propLine'); pl.textContent = '';
+    pl.append(el('span', null, 'Предложения со слайда 8: отмечено ' + pn + ' из ' + KP.proposals.length + ' на ' + f(pSum) + ' ₽. '));
+    const a = el('a', null, 'Изменить выбор'); a.href = '#s8'; a.addEventListener('click', e => { e.preventDefault(); go(slides.indexOf($('#s8'))); });
+    pl.append(a);
+    // график оплат
+    const tb = $('#payTbl tbody'); tb.textContent = '';
+    const rows = KP.payments.fixed.map(p => ({ n: p.name, w: p.when, v: p.amount, b: p.basis }));
+    rows.push({ n: KP.payments.final.name, w: KP.payments.final.when, v: grand - fixedPay, b: KP.payments.final.basis });
+    rows.forEach(r => { const tr = el('tr'); const td = el('td'); td.append(el('span', null, r.n)); tr.title = r.b; tr.append(td, el('td', null, r.w), el('td', 'n', f(r.v))); tb.append(tr); });
+    const tot = el('tr', 'tot'); tot.append(el('td', null, 'Итого'), el('td'), el('td', 'n', f(grand))); tb.append(tot);
+    $$('#payBar .pay-seg').forEach((s, i) => { s.style.width = (rows[i].v / grand * 100) + '%'; s.title = rows[i].n + ': ' + Math.round(rows[i].v / grand * 100) + '%'; });
+    const ok = rows.reduce((s, r) => s + r.v, 0) === grand;
+    const ch = $('#payCheck'); ch.textContent = ''; ch.append(el('span', 'check-i', ok ? '✓' : '!'), el('span', null, ok ? 'Сумма платежей равна итогу' : 'Сумма платежей не равна итогу'));
+    // синхронизация переключателей
+    $$('input[data-key]').forEach(i => { i.checked = !!sel[i.dataset.key]; const h = i.closest('.tg,.prop'); if (h) h.classList.toggle('is-on', i.checked); });
+    // резерв
+    let now = baseSum;
+    KP.reserve.forEach(r => { if (solved[r.u]) now -= r.cost; });
+    $$('#ceilBar .cb').forEach(s => { if (s.dataset.u !== 'fix') s.classList.toggle('gone', !!solved[s.dataset.u]); });
+    animateNum($('#resNow'), now);
+    $$('input[data-res]').forEach(i => { i.checked = !!solved[i.dataset.res]; const tr = i.closest('tr'); if (tr) tr.classList.toggle('keyrow', i.checked); });
+  }
+  document.addEventListener('change', e => {
+    const t = e.target;
+    if (t.matches('input[data-key]')) { sel[t.dataset.key] = t.checked; recalc(); }
+    if (t.matches('input[data-res]')) { solved[t.dataset.res] = t.checked; recalc(); }
+  });
+
+  // ---------- выгрузка xlsx ----------
+  $('#dlBtn').addEventListener('click', () => {
+    const btn = $('#dlBtn');
+    try {
+      window.downloadSmetaXlsx(KP.smetaData(sel), KP.fileSmeta);
+      btn.textContent = 'Готово ✓';
+    } catch (err) {
+      btn.textContent = 'Ошибка выгрузки';
+      console.error(err);
+    }
+    setTimeout(() => { btn.textContent = 'Скачать смету, xlsx'; }, 1600);
+  });
+
+  // ---------- компоненты ----------
+  ProcessPlayer.mount(document.getElementById('process-player'), KP.process);
+  RiskBoard.mount(document.getElementById('risk-board'), KP.risks);
+
+  // ---------- печать ----------
+  const printOpened = [];
+  window.addEventListener('beforeprint', () => {
+    $$('details').forEach(d => { if (!d.open) { printOpened.push(d); d.open = true; } if (d.matches('.dz')) d.classList.add('is-open'); });
+    slides.forEach(s => s.classList.add('in'));
+  });
+  window.addEventListener('afterprint', () => { printOpened.splice(0).forEach(d => { d.open = false; d.classList.remove('is-open'); }); });
+
+  bindDz(document);
+  recalc();
+  onScroll();
+})();
+</script>
+</body>
+</html>
