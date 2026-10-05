@@ -1,0 +1,903 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Evolve Editing — Landing</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@800&amp;display=swap">
+<style>
+@font-face{font-family:'Google Sans Flex';src:url('./assets/93c182a33fd855d5b1f218b71131b2b7.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+body{margin:0}
+/* clip, unlike hidden, does not make the root a scroll container, so anchor jumps cannot scroll it internally;
+   hidden stays as the fallback for browsers without clip. */
+#top{overflow:hidden;overflow:clip}
+a{color:#000}a:hover{color:#000}
+.ee-h{margin:0;font-family:'Fira Sans','Arial Narrow',Arial,sans-serif;font-weight:800;line-height:1.02;letter-spacing:-0.02em;text-transform:uppercase}
+.ee-b{margin:0;line-height:1.3}
+.ee-btn{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-height:50px;padding:16px 24px;border:0;background:#000;color:#fff;font-family:inherit;font-size:14px;line-height:1.3;text-align:center;text-decoration:none;white-space:nowrap;cursor:pointer;transition:background-color .15s}
+.ee-btn:hover{background:#2b2b2b;color:#fff}
+:root{--ee-ease:cubic-bezier(.16,1,.3,1)}
+.ee-btn{overflow:hidden}
+.ee-btn>span{display:block;transition:transform .7s var(--ee-ease)}
+.ee-link{position:relative;text-decoration:none}
+.ee-link::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:100% 50%;transition:transform .7s var(--ee-ease);pointer-events:none}
+.ee-link:hover::after,.ee-link:focus-visible::after{transform:scaleX(1);transform-origin:0 50%}
+[aria-pressed]{transition:background-color .5s var(--ee-ease),color .5s var(--ee-ease)}
+.ee-field{transition:border-color .5s var(--ee-ease)}
+a:focus-visible,button:focus-visible{outline:2px solid #000;outline-offset:3px}
+.ee-arrow:focus-visible{outline-color:#fff;outline-offset:-4px}
+[tabindex="-1"]:focus{outline:none}
+/* Motion layer: active only after the page script sets data-motion="on" on the root, so static renders,
+   exports and reduced-motion users see the final state. One easing, one rise distance (28px) and one
+   stagger step (90ms, set by the script as --ee-d) apply to the whole page. */
+[data-motion="on"] .ee-btn:hover{background:#000}
+[data-motion="on"] .ee-btn>span{text-shadow:0 var(--ee-roll,50px) currentColor}
+[data-motion="on"] .ee-btn:hover>span{transform:translateY(calc(-1 * var(--ee-roll,50px)))}
+[data-motion="on"] [data-reveal="rise"],[data-motion="on"] [data-reveal="fade"]{transition:opacity 1s var(--ee-ease) var(--ee-d,0ms),translate 1s var(--ee-ease) var(--ee-d,0ms)}
+[data-motion="on"] [data-reveal="rise"]:not([data-in]){opacity:0;translate:0 28px}
+[data-motion="on"] [data-reveal="fade"]:not([data-in]){opacity:0}
+[data-motion="on"] [data-reveal="img"]{clip-path:inset(0 0 0 0);transition:clip-path 1.2s var(--ee-ease) var(--ee-d,0ms)}
+[data-motion="on"] [data-reveal="img"]:not([data-in]){clip-path:inset(100% 0 0 0)}
+[data-motion="on"] [data-reveal="img"]>img,[data-motion="on"] [data-reveal="img"]>video{transition:scale 1.4s var(--ee-ease) var(--ee-d,0ms),transform .9s var(--ee-ease)}
+[data-motion="on"] [data-reveal="img"]:not([data-in])>img,[data-motion="on"] [data-reveal="img"]:not([data-in])>video{scale:1.12}
+[data-motion="on"] .ee-zoom:hover [data-reveal="img"]>img,[data-motion="on"] .ee-zoom:hover [data-reveal="img"]>video{transform:scale(1.04)}
+[data-motion="on"] [data-reveal="line-y"]{transform-origin:50% 0;transition:scale 1.2s var(--ee-ease) var(--ee-d,0ms)}
+[data-motion="on"] [data-reveal="line-y"]:not([data-in]){scale:1 0}
+/* Footer colour layers: one 5 s opacity cycle; the four layers are phase-shifted by a quarter cycle,
+   so at any moment one colour fades out while the next one returns. */
+@keyframes ee-glow-fade{0%,100%{opacity:1}50%{opacity:.2}}
+[data-motion="on"] .ee-glow-layer{will-change:opacity;animation:ee-glow-fade 5s cubic-bezier(.37,0,.63,1) infinite}
+[data-motion="on"] .ee-glow-layer:nth-child(2){animation-delay:-1.25s}
+[data-motion="on"] .ee-glow-layer:nth-child(3){animation-delay:-2.5s}
+[data-motion="on"] .ee-glow-layer:nth-child(4){animation-delay:-3.75s}
+/* Page loader: the footer colour field as an orb. Same four Figma colours, same top-to-bottom order and the same
+   phase-shifted opacity keyframes as the footer, at a 2 s cycle so it reads as activity; the orb turns once per
+   6 s. On exit the veil fades and the orb opens up while the first screen rises underneath. */
+.ee-page-loader{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:#fff;transition:opacity .8s var(--ee-ease)}
+.ee-page-loader[data-out]{opacity:0;pointer-events:none}
+.ee-page-loader .ee-orb{height:auto;width:min(28vw,112px);max-height:none;transition:scale .8s var(--ee-ease)}
+.ee-page-loader[data-out] .ee-orb{scale:1.25}
+.ee-orb{position:relative;display:block;height:56%;max-height:72px;aspect-ratio:1;border-radius:50%;animation:ee-orb-spin 6s linear infinite}
+.ee-orb>span{position:absolute;inset:0;border-radius:50%;animation:ee-glow-fade 2s cubic-bezier(.37,0,.63,1) infinite}
+.ee-orb>span:nth-child(1){background:radial-gradient(circle at 50% 28%,#FF7B54 0,rgba(255,123,84,0) 62%)}
+.ee-orb>span:nth-child(2){background:radial-gradient(circle at 30% 55%,#FF1B6B 0,rgba(255,27,107,0) 62%);animation-delay:-.5s}
+.ee-orb>span:nth-child(3){background:radial-gradient(circle at 70% 58%,#743FE0 0,rgba(116,63,224,0) 62%);animation-delay:-1s}
+.ee-orb>span:nth-child(4){background:radial-gradient(circle at 50% 78%,#5B83FF 0,rgba(91,131,255,0) 62%);animation-delay:-1.5s}
+@keyframes ee-orb-spin{to{transform:rotate(360deg)}}
+.ee-ph{display:flex;align-items:center;justify-content:center;box-sizing:border-box;font-size:11px;letter-spacing:.04em;text-align:center;overflow:hidden}
+.ee-input{display:block;width:100%;border:0;padding:0;margin:0;background:transparent;font-family:inherit;font-size:16px;line-height:1.3;color:#000;outline:none}
+.ee-input::placeholder{color:rgba(0,0,0,.5);opacity:1}
+.ee-field:focus-within{border-bottom-color:#000 !important}
+.ee-sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.ee-arrow{width:50px;height:50px;padding:0;border:0;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.ee-arrow:hover{background:#222}
+/* Mobile menu: burger morphs into a cross; the panel drops under the nav row. Hidden from 768 px up. */
+.ee-burger{display:none;position:relative;flex:none;align-items:center;justify-content:center;width:44px;height:44px;margin-right:-10px;padding:0;border:0;background:transparent;cursor:pointer}
+.ee-burger>span{position:absolute;left:11px;right:11px;height:2px;background:#000;transition:transform .5s var(--ee-ease)}
+.ee-burger>span:nth-child(1){transform:translateY(-4px)}
+.ee-burger>span:nth-child(2){transform:translateY(4px)}
+.ee-burger[aria-expanded="true"]>span:nth-child(1){transform:rotate(45deg)}
+.ee-burger[aria-expanded="true"]>span:nth-child(2){transform:rotate(-45deg)}
+.ee-mnav{position:absolute;z-index:3;left:0;right:0;top:66px;display:flex;flex-direction:column;align-items:flex-start;gap:20px;padding:28px 20px 32px;background:#fff;border-bottom:1px solid #ececec;visibility:hidden;opacity:0;translate:0 -8px;transition:opacity .4s var(--ee-ease),translate .4s var(--ee-ease),visibility 0s linear .4s}
+.ee-mnav[data-open="true"]{visibility:visible;opacity:1;translate:0 0;transition-delay:0s}
+@media (min-width:1024px){.ee-mnav{display:none !important}}
+/* Responsive tiers.
+   1240 px and up: Figma composition; below 1440 the hero media scale with the viewport through min(px, vw),
+   while the quote and the contact form keep enlarged sizes.
+   1024–1239: small laptop; hero media form a row of three frames under the text; services in 2 columns,
+   steps in a 3-column grid, stats 2×2, footer in one column.
+   768–1023: tablet; burger menu, two hero frames, cards and testimonials in one column, steps in 2 columns.
+   767 and down: phone. 599 and down: services, steps and footer menus in one column. 399 and down: the nav
+   CTA moves into the menu.
+   Below 1240 type, media frames and controls are 1.25 times the previous adaptive scale, so content reads
+   at arm's length on laptops, tablets and phones. */
+@media (max-width:1439px){
+.ee-h1,#services h2,#how-it-works h2,.ee-stats .ee-h,#about h2{font-size:clamp(56px,4.86vw,70px) !important}
+blockquote.ee-h{font-size:30px !important}
+#contact h2{font-size:34px !important;max-width:420px !important}
+#contact .ee-input{font-size:17px !important}
+#contact [aria-pressed],#contact .ee-btn{font-size:15px !important}
+}
+@media (max-width:1239px){
+.ee-top{display:grid !important;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:12px;padding:0 32px 120px}
+.ee-top>.ee-nav,.ee-top>.ee-hero{grid-column:1/-1;margin-left:-32px;margin-right:-32px}
+.ee-top>.ee-nav{grid-row:1}
+.ee-top>.ee-hero{grid-row:2;padding-bottom:56px !important}
+.ee-hero-media{display:none !important}
+.ee-hm-a,.ee-hm-d,.ee-hm-e{display:block !important;position:relative !important;grid-row:3;left:auto !important;top:auto !important;width:auto !important;height:auto !important;aspect-ratio:3/4;transform:none !important}
+.ee-h1{max-width:960px !important}
+.ee-h1,#services h2,#how-it-works h2,.ee-stats .ee-h,#about h2{font-size:70px !important}
+#for-creators h2,#for-businesses h2{font-size:32px !important}
+#services h3{font-size:34px !important}
+#how-it-works h3{font-size:30px !important}
+.ee-hero .ee-b,.ee-card .ee-b{font-size:20px !important;max-width:520px !important}
+#services .ee-b,#how-it-works .ee-b{font-size:20px !important}
+.ee-stats .ee-b{font-size:18px !important}
+.ee-nav-links,.ee-btn,figcaption{font-size:18px !important}
+blockquote.ee-h{font-size:38px !important}
+figcaption{gap:6px !important}
+section[aria-label="Testimonials"] figure>[data-t="cur"][aria-hidden]{width:105px !important;height:105px !important}
+section[aria-label="Testimonials"] figure>[data-t="cur"][aria-hidden] img,section[aria-label="Testimonials"] figure>[data-t="cur"][aria-hidden] .ee-ph{width:100% !important;height:100% !important}
+section[aria-label="Testimonials"] figure>div:last-child{height:62px !important}
+.ee-arrow{width:62px !important;height:62px !important}
+.ee-arrow svg{width:62px;height:62px}
+#contact h2{font-size:42px !important;max-width:560px !important}
+#contact [aria-pressed]{font-size:19px !important;min-height:62px !important}
+#contact .ee-field{padding:28px 0 !important}
+#contact .ee-input{font-size:21px !important}
+#contact .ee-btn{font-size:19px !important;min-height:62px}
+#contact .ee-menus ul{font-size:25px !important}
+#contact .ee-footer-right>div:last-child{font-size:18px !important}
+.ee-card{padding:48px 40px !important}
+.ee-card [data-reveal="img"]{width:min(100%,350px) !important;height:auto !important;aspect-ratio:217/311}
+.ee-section{margin-top:160px !important}
+.ee-stats{display:grid !important;grid-template-columns:repeat(2,minmax(0,1fr));row-gap:56px;column-gap:16px}
+.ee-services{grid-template-columns:repeat(2,minmax(0,1fr)) !important;row-gap:56px !important}
+.ee-steps{display:grid !important;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px 32px !important}
+.ee-step-div{display:none !important}
+.ee-step{gap:40px !important;border-top:1px solid #ececec;padding-top:24px}
+.ee-footer-zone{padding:260px 32px 20px !important}
+.ee-footer{grid-template-columns:minmax(0,1fr) !important}
+.ee-footer-div{width:auto !important;height:1px !important}
+.ee-footer-left,.ee-footer-right{padding:48px 40px !important}
+.ee-footer-right{gap:48px !important}
+}
+@media (max-width:1023px){
+.ee-nav-links{display:none !important}
+.ee-burger{display:flex !important;width:55px !important;height:55px !important}
+.ee-burger>span{left:14px;right:14px}
+.ee-mnav{top:80px}
+.ee-mnav .ee-h{font-size:35px !important}
+.ee-top{grid-template-columns:repeat(2,minmax(0,1fr))}
+.ee-hm-e{display:none !important}
+.ee-h1{max-width:none !important}
+#for-creators h2,#for-businesses h2{font-size:40px !important}
+#services h3{font-size:38px !important}
+#how-it-works h3{font-size:32px !important}
+.ee-hero .ee-b,.ee-card .ee-b{font-size:21px !important;max-width:560px !important}
+.ee-stats .ee-b{font-size:19px !important}
+.ee-btn,figcaption{font-size:19px !important}
+blockquote.ee-h{font-size:45px !important}
+#about [data-reveal="img"]{width:2.1em !important;height:1.25em !important}
+section[aria-label="Testimonials"] figure{width:min(820px,calc(100% - 64px)) !important;gap:52px !important}
+section[aria-label="Testimonials"] figure>[data-t="cur"][aria-hidden]{width:130px !important;height:130px !important}
+section[aria-label="Testimonials"] figure>div:last-child{height:75px !important}
+.ee-arrow{width:75px !important;height:75px !important}
+.ee-arrow svg{width:75px;height:75px}
+#contact h2{font-size:55px !important;max-width:640px !important}
+#contact [aria-pressed]{font-size:21px !important;min-height:75px !important}
+#contact .ee-field{padding:32px 0 !important}
+#contact .ee-input{font-size:24px !important}
+#contact .ee-btn{font-size:21px !important;min-height:75px;--ee-roll:80px}
+#contact .ee-menus ul{font-size:32px !important}
+#contact .ee-footer-right>div:last-child{font-size:20px !important}
+.ee-card [data-reveal="img"]{width:min(100%,450px) !important}
+.ee-cards{grid-template-columns:minmax(0,1fr) !important}
+.ee-card-offset{margin-top:0 !important}
+.ee-t-side,.ee-t-fade{display:none !important}
+.ee-steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:767px){
+.ee-h1,#services h2,#how-it-works h2,.ee-stats .ee-h,#about h2{font-size:clamp(42px,13vw,70px) !important}
+#for-creators h2,#for-businesses h2{font-size:35px !important}
+#services h3{font-size:35px !important}
+#how-it-works h3{font-size:30px !important}
+.ee-hero .ee-b,.ee-card .ee-b,#services .ee-b,#how-it-works .ee-b{font-size:20px !important}
+.ee-stats .ee-b{font-size:18px !important}
+figcaption{font-size:20px !important}
+blockquote.ee-h{font-size:35px !important}
+section[aria-label="Testimonials"] figure{width:calc(100% - 40px) !important;gap:44px !important}
+section[aria-label="Testimonials"] figure>[data-t="cur"][aria-hidden]{width:120px !important;height:120px !important}
+section[aria-label="Testimonials"] figure>div:last-child{height:70px !important}
+.ee-arrow{width:70px !important;height:70px !important}
+.ee-arrow svg{width:70px;height:70px}
+#contact h2{font-size:45px !important}
+#contact [aria-pressed]{font-size:20px !important;min-height:70px !important}
+#contact .ee-field{padding:30px 0 !important}
+#contact .ee-input{font-size:22px !important}
+#contact .ee-btn{font-size:20px !important;min-height:70px}
+#contact .ee-menus ul{font-size:30px !important}
+.ee-mnav{top:76px}
+.ee-logo{width:auto !important}
+.ee-nav{padding:16px 20px 0 !important}
+.ee-top{padding:0 20px 88px}
+.ee-top>.ee-nav,.ee-top>.ee-hero{margin-left:-20px;margin-right:-20px}
+.ee-hero{padding:56px 20px 40px !important}
+.ee-cards{padding:0 20px !important}
+.ee-card{padding:40px 24px !important;gap:40px !important}
+.ee-card [data-reveal="img"]{width:min(100%,500px) !important}
+.ee-section{margin-top:120px !important}
+.ee-pad{padding-left:20px !important;padding-right:20px !important}
+.ee-how{gap:48px !important}
+.ee-footer-zone{padding:200px 20px 20px !important}
+.ee-footer-left,.ee-footer-right{padding:40px 24px !important}
+}
+@media (max-width:599px){
+.ee-services{grid-template-columns:minmax(0,1fr) !important;row-gap:40px !important}
+.ee-steps{grid-template-columns:minmax(0,1fr)}
+.ee-step{gap:24px !important}
+.ee-menus{grid-template-columns:minmax(0,1fr) !important}
+}
+@media (max-width:399px){
+.ee-nav .ee-btn{display:none !important}
+}
+/* Touch screens: a tap must not leave hover states (text roll, image zoom, link underline) stuck on. */
+@media (hover:none){
+[data-motion="on"] .ee-btn:hover>span{transform:none}
+[data-motion="on"] .ee-zoom:hover [data-reveal="img"]>img,[data-motion="on"] .ee-zoom:hover [data-reveal="img"]>video{transform:none}
+.ee-link:hover:not(:focus-visible)::after{transform:scaleX(0)}
+}
+@media (prefers-reduced-motion:reduce){.ee-btn>span,.ee-link::after,[aria-pressed],.ee-field{transition:none}}
+</style>
+</helmet>
+<div id="top" ref="{{ rootRef }}" style="position: relative; background: #ffffff; color: #000000; font-family: 'Google Sans Flex', system-ui, sans-serif; font-optical-sizing: auto; font-size: 16px">
+
+<div class="ee-top" style="position: relative; max-width: 1440px; margin: 0 auto">
+<div class="ee-hero-media ee-hm-a" data-reveal="img" data-reveal-delay="640" data-parallax="0.14" style="position: absolute; z-index: 0; left: 0; top: min(221px, 15.347vw); width: min(149px, 10.347vw); height: min(252px, 17.5vw); overflow: hidden"><video src="https://cd1fe2d5-497a-4f12-b9ff-1fb58afeba97.selstorage.ru/demo/video_085f36fa35b7.mp4" autoplay="autoplay" muted="muted" loop="loop" playsinline="playsinline" poster="./assets/263699e0a9961397e61628cc378c274e.png" aria-hidden="true" style="display: block; width: 100%; height: 100%; object-fit: cover"></video></div>
+<div class="ee-hero-media" data-reveal="img" data-reveal-delay="800" data-parallax="0.2" style="position: absolute; z-index: 0; left: 15.833%; top: min(585px, 40.625vw); width: min(272px, 18.889vw); height: min(165px, 11.458vw); overflow: hidden"><video src="https://cd1fe2d5-497a-4f12-b9ff-1fb58afeba97.selstorage.ru/demo/video_0f9ec99f06d2.mp4" autoplay="autoplay" muted="muted" loop="loop" playsinline="playsinline" poster="./assets/d205c38d72edb95c8e9a241774f5a83b.png" aria-hidden="true" style="display: block; width: 100%; height: 100%; object-fit: cover"></video></div>
+<div class="ee-hero-media" data-reveal="img" data-reveal-delay="560" data-parallax="0.08" style="position: absolute; z-index: 0; left: 71.667%; top: min(20px, 1.389vw); width: min(192px, 13.333vw); height: min(116px, 8.056vw); overflow: hidden"><video src="https://cd1fe2d5-497a-4f12-b9ff-1fb58afeba97.selstorage.ru/demo/video_247c23fb89e2.mp4" autoplay="autoplay" muted="muted" loop="loop" playsinline="playsinline" poster="./assets/7bc72ade776aa9f6c309b1274a5cef3c.png" aria-hidden="true" style="display: block; width: 100%; height: 100%; object-fit: cover"></video></div>
+<div class="ee-hero-media ee-hm-d" data-reveal="img" data-reveal-delay="720" data-parallax="0.12" style="position: absolute; z-index: 0; left: 81.667%; top: min(393px, 27.292vw); width: min(194px, 13.472vw); height: min(269px, 18.681vw); overflow: hidden"><video src="https://cd1fe2d5-497a-4f12-b9ff-1fb58afeba97.selstorage.ru/demo/video_3d90204ea54a.mp4" autoplay="autoplay" muted="muted" loop="loop" playsinline="playsinline" poster="./assets/d04c9322087bbf639212b5ee6b2ad946.png" aria-hidden="true" style="display: block; width: 100%; height: 100%; object-fit: cover"></video></div>
+<div class="ee-hero-media ee-hm-e" data-reveal="img" data-reveal-delay="480" data-parallax="0.18" style="position: absolute; z-index: 0; left: 17.847%; top: 0; width: min(177px, 12.292vw); height: min(170px, 11.806vw); overflow: hidden"><video src="https://cd1fe2d5-497a-4f12-b9ff-1fb58afeba97.selstorage.ru/demo/video_44d1efba156b.mp4" autoplay="autoplay" muted="muted" loop="loop" playsinline="playsinline" poster="./assets/d9b5e76e47f9735ecde7c4f79738d6bb.png" aria-hidden="true" style="display: block; width: 100%; height: 100%; object-fit: cover"></video></div>
+
+<nav class="ee-nav" aria-label="Main" data-reveal="fade" data-reveal-delay="0" style="position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 20px 32px 0">
+<a href="#top" class="ee-logo" aria-label="Evolve Editing, home" style="display: flex; align-items: center; width: 114px; height: 41px; flex: none">
+<svg width="72" height="40" viewBox="0 0 72 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M48.2292 0.205858C49.5994 -0.0237394 50.9001 -0.0108381 52.2795 0.0113535C57.3843 0.0933579 62.1988 2.47326 65.6976 6.13743C68.8143 9.38022 70.7865 13.5527 71.3137 18.0195C71.5186 19.7511 71.5225 22.4483 71.4779 24.2361C70.1674 24.3241 68.765 24.2984 67.446 24.2991L40.9211 24.3076C41.2665 25.4651 42.313 26.8499 43.1127 27.7487C46.8623 31.9657 51.512 31.3906 56.5866 31.384L65.4462 31.3748C67.4204 31.3715 69.4833 31.3367 71.4471 31.405C71.432 35.924 68.3776 39.1655 64.001 39.9218C63.5506 39.9724 62.5553 39.954 62.051 39.9566L58.092 39.9632L52.7529 39.9612C52.1942 39.9593 51.621 39.9449 51.0676 39.9521C46.3975 40.0132 41.7839 38.0914 38.2812 35.0482C37.362 34.2492 36.5728 33.3609 35.7666 32.4325C35.1737 32.9512 34.6116 33.701 34.027 34.2689C25.8644 42.1968 12.8859 41.967 5.17506 33.1593C2.30947 29.8772 0.53044 25.7882 0.0823415 21.4543C-0.00603065 20.564 0.0282618 19.4301 0.0163782 18.5195C0.00482277 17.6299 -0.0217431 16.5881 0.035049 15.7134C1.19249 15.6155 2.38179 15.6789 3.54639 15.6854L9.22826 15.6956L22.4945 15.6556C25.1936 15.6696 27.8927 15.6628 30.5918 15.6351C30.0873 14.3703 29.1249 12.9912 28.179 12.0183C26.7045 10.4802 24.8212 9.39538 22.7509 8.89147C20.7815 8.41036 16.5452 8.60833 14.3347 8.58607C9.58902 8.53834 4.78401 8.64385 0.0340231 8.56145C-0.0450919 4.19398 3.1887 0.685148 7.45054 0.0442838C7.90364 -0.00561067 8.7945 0.0165649 9.27864 0.0168932L12.5837 0.0207915C15.491 0.0241398 18.402 0.00264638 21.3097 0.0251001C22.361 0.0331757 23.7186 0.277268 24.7399 0.520389C27.7872 1.24582 30.6731 2.75488 33.0535 4.78462C34.0331 5.61988 34.8677 6.58221 35.7514 7.50932C39.065 3.6134 43.137 1.05886 48.2292 0.205858ZM30.5718 24.3188C24.485 24.1993 18.3509 24.3812 12.2593 24.3057C11.3528 24.2938 10.396 24.2867 9.49222 24.3149C11.4885 29.958 18.4899 32.814 23.9395 30.6966C25.5342 30.0768 26.3913 29.5063 27.6779 28.4098C29.0158 27.1381 29.8253 26.0278 30.5718 24.3188ZM61.9979 15.6128C60.4156 10.9982 54.8697 7.99407 50.1071 8.64547C46.1093 9.18936 42.3919 11.7991 40.9022 15.6162C42.3328 15.6781 43.9079 15.65 45.3523 15.6509L52.988 15.6459L58.6771 15.648C59.5871 15.6513 61.1391 15.6992 61.9979 15.6128Z" fill="black"></path></svg>
+</a>
+<div class="ee-nav-links" style="display: flex; align-items: center; gap: 32px; font-size: 14px; line-height: 1.3">
+<a class="ee-link" href="#services" style="color: #000000">Services</a>
+<a class="ee-link" href="#how-it-works" style="color: #000000">How It Works</a>
+<a class="ee-link" href="#about" style="color: #000000">About</a>
+<a class="ee-link" href="#contact" style="color: #000000">Contact</a>
+</div>
+<div style="display: flex; align-items: center; gap: 12px; flex: none">
+<a class="ee-btn" href="#contact"><span>Let’s talk</span></a>
+<button type="button" class="ee-burger" aria-label="Menu" aria-controls="ee-mnav" aria-expanded="{{ menuOpen }}" onClick="{{ toggleMenu }}"><span></span><span></span></button>
+</div>
+</nav>
+<div id="ee-mnav" class="ee-mnav" data-open="{{ menuOpen }}">
+<a class="ee-h ee-link" href="#services" onClick="{{ closeMenu }}" style="font-size: 28px; color: #000000">Services</a>
+<a class="ee-h ee-link" href="#how-it-works" onClick="{{ closeMenu }}" style="font-size: 28px; color: #000000">How It Works</a>
+<a class="ee-h ee-link" href="#about" onClick="{{ closeMenu }}" style="font-size: 28px; color: #000000">About</a>
+<a class="ee-h ee-link" href="#contact" onClick="{{ closeMenu }}" style="font-size: 28px; color: #000000">Contact</a>
+</div>
+
+<div class="ee-hero" style="position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 32px; padding: min(171px, 11.875vw) 32px min(318px, 22.083vw); text-align: center">
+<h1 class="ee-h ee-h1" data-reveal="rise" data-reveal-delay="120" style="max-width: min(850px, 59vw); font-size: clamp(40px, 4.86vw, 70px)">Unlimited, High-Impact Video Editing for Creators &amp; Brands</h1>
+<p class="ee-b" data-reveal="rise" data-reveal-delay="240" style="max-width: 372px; font-size: 16px">Delegate your video editing to a team of experts. Turnaround from 24 hours, multi-platform adaptation, and strict quality control.</p>
+<a class="ee-btn" href="#contact" data-reveal="rise" data-reveal-delay="360"><span>Start Your Project</span></a>
+</div>
+</div>
+
+<div class="ee-cards" style="max-width: 1440px; margin: 0 auto; box-sizing: border-box; padding: 0 32px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; align-items: start">
+<article id="for-creators" class="ee-card" data-reveal="rise" style="background: #f6f6f6; padding: 56px 68px; display: flex; flex-direction: column; align-items: center; gap: 56px; text-align: center">
+<p class="ee-h" style="font-size: 16px">For Creators and Influencers</p>
+<div data-reveal="img" style="flex: none; width: 217px; height: 311px; overflow: hidden"><video src="https://cd1fe2d5-497a-4f12-b9ff-1fb58afeba97.selstorage.ru/demo/video_7b92a330399d.mp4" autoplay="autoplay" muted="muted" loop="loop" playsinline="playsinline" poster="./assets/42ce44574b2e05f668278a6ca89ba92c.png" aria-hidden="true" style="display: block; width: 100%; height: 100%; object-fit: cover"></video></div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 33px; width: 100%">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 16px; width: 100%">
+<h2 class="ee-h" style="font-size: clamp(24px, 2.08vw, 30px)">Creating content for TikTok, YouTube, or Instagram?</h2>
+<p class="ee-b" style="max-width: 372px; font-size: 16px">Stop spending hours cutting footage and typing captions. We handle the heavy lifting so you can focus on creative ideas and growing your audience.</p>
+</div>
+<a class="ee-btn" href="#contact" onClick="{{ pickCreator }}"><span>Get Started as a Creator</span></a>
+</div>
+</article>
+<article id="for-businesses" class="ee-card ee-card-offset" data-reveal="rise" style="margin-top: 116px; background: #f6f6f6; padding: 56px 68px; display: flex; flex-direction: column; align-items: center; gap: 56px; text-align: center">
+<p class="ee-h" style="font-size: 16px">FOR BUSINESSES &amp; AGENCIES</p>
+<div data-reveal="img" style="flex: none; width: 217px; height: 311px; overflow: hidden"><video src="https://cd1fe2d5-497a-4f12-b9ff-1fb58afeba97.selstorage.ru/demo/video_85595b88a021.mp4" autoplay="autoplay" muted="muted" loop="loop" playsinline="playsinline" poster="./assets/c68eb8651ac9eb33dffa75fb87107b28.png" aria-hidden="true" style="display: block; width: 100%; height: 100%; object-fit: cover"></video></div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 33px; width: 100%">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 16px; width: 100%">
+<h2 class="ee-h" style="max-width: 474px; font-size: clamp(24px, 2.08vw, 30px)">Need consistent, high-converting brand videos?</h2>
+<p class="ee-b" style="max-width: 372px; font-size: 16px">High-performing ad creatives, sales Reels, educational videos, and podcasts. Seamless editing tailored to your brand guidelines.</p>
+</div>
+<a class="ee-btn" href="#contact" onClick="{{ pickBusiness }}"><span>Get Started as a Brand</span></a>
+</div>
+</article>
+</div>
+
+<div class="ee-stats ee-section ee-pad" style="max-width: 1440px; margin: 200px auto 0; box-sizing: border-box; padding: 0 min(111px, 7.7vw); display: flex; justify-content: space-between; align-items: flex-start; text-align: center">
+<div data-reveal="rise" style="display: flex; flex-direction: column; align-items: center; gap: 12px">
+<p class="ee-h" data-count="" style="font-size: clamp(40px, 4.86vw, 70px); text-transform: none; font-variant-numeric: tabular-nums">500M+</p>
+<p class="ee-b" style="font-size: 14px">Total views generated<br>across client channels</p>
+</div>
+<div data-reveal="rise" style="display: flex; flex-direction: column; align-items: center; gap: 12px">
+<p class="ee-h" data-count="" style="font-size: clamp(40px, 4.86vw, 70px); text-transform: none; font-variant-numeric: tabular-nums">2,000+</p>
+<p class="ee-b" style="font-size: 14px">Videos edited for YouTube,<br>Reels, and TikTok</p>
+</div>
+<div data-reveal="rise" style="display: flex; flex-direction: column; align-items: center; gap: 12px">
+<p class="ee-h" data-count="" style="font-size: clamp(40px, 4.86vw, 70px); text-transform: none; font-variant-numeric: tabular-nums">24–48h</p>
+<p class="ee-b" style="font-size: 14px">Average turnaround time<br>for the first draft</p>
+</div>
+<div data-reveal="rise" style="display: flex; flex-direction: column; align-items: center; gap: 12px">
+<p class="ee-h" data-count="" style="font-size: clamp(40px, 4.86vw, 70px); text-transform: none; font-variant-numeric: tabular-nums">99.4%</p>
+<p class="ee-b" style="font-size: 14px">Projects delivered strictly<br>on deadline</p>
+</div>
+</div>
+
+<section id="services" class="ee-section ee-pad" style="max-width: 1440px; margin: 200px auto 0; box-sizing: border-box; padding: 0 32px; display: flex; flex-direction: column; align-items: center; gap: 58px">
+<div data-reveal="rise" style="display: flex; flex-direction: column; align-items: center; gap: 15px; text-align: center">
+<h2 class="ee-h" style="font-size: clamp(40px, 4.86vw, 70px)">Services</h2>
+<p class="ee-b" style="max-width: 266px; font-size: 14px; color: #6d6d6d">Comprehensive video post-production tailored to your goals</p>
+</div>
+<div class="ee-services" style="width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 12px; row-gap: 58px">
+<article class="ee-zoom" data-reveal="rise" style="display: flex; flex-direction: column; gap: 25px">
+<div data-reveal="img" style="overflow: hidden; aspect-ratio: 451 / 284; background: #797979"><video src="https://cd1fe2d5-497a-4f12-b9ff-1fb58afeba97.selstorage.ru/demo/video_af6831cc906f.mp4" autoplay="autoplay" muted="muted" loop="loop" playsinline="playsinline" poster="./assets/27164930c388bf1ba59d34a0b79f2c23.png" aria-hidden="true" style="display: block; width: 100%; height: 100%; object-fit: cover"></video></div>
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 335px">
+<h3 class="ee-h" style="font-size: clamp(24px, 2.22vw, 32px)">Video Editing</h3>
+<p class="ee-b" style="font-size: 14px; color: #6d6d6d">Professional editing for YouTube videos, podcasts, vlogs, gaming content, interviews, and other long-form content.</p>
+</div>
+</article>
+<article class="ee-zoom" data-reveal="rise" style="display: flex; flex-direction: column; gap: 25px">
+<div data-reveal="img" style="overflow: hidden; aspect-ratio: 451 / 284; background: #797979"><video src="https://cd1fe2d5-497a-4f12-b9ff-1fb58afeba97.selstorage.ru/demo/video_afc94000f190.mp4" autoplay="autoplay" muted="muted" loop="loop" playsinline="playsinline" poster="./assets/48ffd1aa663d8e6beccc02fdb2bb4f84.png" aria-hidden="true" style="display: block; width: 100%; height: 100%; object-fit: cover"></video></div>
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 335px">
+<h3 class="ee-h" style="font-size: clamp(24px, 2.22vw, 32px)">Short-Form Content</h3>
+<p class="ee-b" style="font-size: 14px; color: #6d6d6d">Turn your content into engaging short-form videos for TikTok, Instagram Reels, and YouTube Shorts.</p>
+</div>
+</article>
+<article class="ee-zoom" data-reveal="rise" style="display: flex; flex-direction: column; gap: 25px">
+<div data-reveal="img" style="overflow: hidden; aspect-ratio: 451 / 284; background: #797979"><video src="https://cd1fe2d5-497a-4f12-b9ff-1fb58afeba97.selstorage.ru/demo/video_c73fb697420e.mp4" autoplay="autoplay" muted="muted" loop="loop" playsinline="playsinline" poster="./assets/b6e6d80eaffa72655d6d553dd5e4419f.png" aria-hidden="true" style="display: block; width: 100%; height: 100%; object-fit: cover"></video></div>
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 335px">
+<h3 class="ee-h" style="font-size: clamp(24px, 2.22vw, 32px)">Business Content</h3>
+<p class="ee-b" style="font-size: 14px; color: #6d6d6d">Professional video editing for businesses looking to create content for their website, social media, advertising, or online platforms.</p>
+</div>
+</article>
+<article class="ee-zoom" data-reveal="rise" style="display: flex; flex-direction: column; gap: 25px">
+<div data-reveal="img" style="overflow: hidden; aspect-ratio: 451 / 284; background: #797979"><video src="https://cd1fe2d5-497a-4f12-b9ff-1fb58afeba97.selstorage.ru/demo/video_c7ef590636be.mp4" autoplay="autoplay" muted="muted" loop="loop" playsinline="playsinline" poster="./assets/38bb3bffcc6b87700bb0a675d6021719.png" aria-hidden="true" style="display: block; width: 100%; height: 100%; object-fit: cover"></video></div>
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 335px">
+<h3 class="ee-h" style="font-size: clamp(24px, 2.22vw, 32px)">Stream &amp; VOD Editing</h3>
+<p class="ee-b" style="font-size: 14px; color: #6d6d6d">Turn streams and VODs into polished, entertaining videos ready for YouTube and other platforms.</p>
+</div>
+</article>
+<article class="ee-zoom" data-reveal="rise" style="display: flex; flex-direction: column; gap: 25px">
+<div data-reveal="img" style="overflow: hidden; aspect-ratio: 451 / 284; background: #797979"><video src="https://cd1fe2d5-497a-4f12-b9ff-1fb58afeba97.selstorage.ru/demo/video_cbcdd1902a8f.mp4" autoplay="autoplay" muted="muted" loop="loop" playsinline="playsinline" poster="./assets/3538c23a62e8c26dd8a835470e3d4fb6.png" aria-hidden="true" style="display: block; width: 100%; height: 100%; object-fit: cover"></video></div>
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 335px">
+<h3 class="ee-h" style="font-size: clamp(24px, 2.22vw, 32px)">Logos &amp; Banners</h3>
+<p class="ee-b" style="font-size: 14px; color: #6d6d6d">Custom graphics to help keep your brand looking consistent across your platforms.</p>
+</div>
+</article>
+<article class="ee-zoom" data-reveal="rise" style="display: flex; flex-direction: column; gap: 25px">
+<div data-reveal="img" style="overflow: hidden; aspect-ratio: 451 / 284; background: #797979"><video src="https://cd1fe2d5-497a-4f12-b9ff-1fb58afeba97.selstorage.ru/demo/video_d96c25808c13.mp4" autoplay="autoplay" muted="muted" loop="loop" playsinline="playsinline" poster="./assets/9b2924065314e542b53e38b911daf8e2.png" aria-hidden="true" style="display: block; width: 100%; height: 100%; object-fit: cover"></video></div>
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 335px">
+<h3 class="ee-h" style="font-size: clamp(24px, 2.22vw, 32px)">Thumbnails</h3>
+<p class="ee-b" style="font-size: 14px; color: #6d6d6d">Eye-catching thumbnails designed to make your videos stand out and clearly communicate what the video is about.</p>
+</div>
+</article>
+</div>
+</section>
+
+<section id="how-it-works" class="ee-section ee-pad ee-how" style="max-width: 1440px; margin: 200px auto 0; box-sizing: border-box; padding: 0 32px; display: flex; flex-direction: column; gap: 73px">
+<h2 class="ee-h" data-reveal="rise" style="font-size: clamp(40px, 4.86vw, 70px); text-align: center">How It Works</h2>
+<div class="ee-steps" style="display: flex; gap: 32px; align-items: stretch">
+<div class="ee-step" style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 100px" data-reveal="rise">
+<div style="display: flex">
+<span style="width: 64px; height: 64px; border-radius: 50%; background: #f6f6f6; display: flex; align-items: center; justify-content: center; font-size: 14px; line-height: 1.3">01</span>
+<span aria-hidden="true" style="width: 64px; height: 64px; border-radius: 50%; background: #f6f6f6; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" fill="black"></rect><path d="M5 6H19" stroke="white" stroke-width="1.3"></path><path d="M5 9H19" stroke="white" stroke-width="1.3"></path><path d="M5 12H12" stroke="white" stroke-width="1.3"></path></svg></span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 11px">
+<h3 class="ee-h" style="font-size: 24px">Get in Touch</h3>
+<p class="ee-b" style="font-size: 14px; color: #6d6d6d">Tell us about your project, the type of content you need edited, and what you’re looking for</p>
+</div>
+</div>
+<div class="ee-step-div" aria-hidden="true" data-reveal="line-y" style="flex: none; width: 1px; background: #ececec"></div>
+<div class="ee-step" data-reveal="rise" style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 100px">
+<div style="display: flex">
+<span style="width: 64px; height: 64px; border-radius: 50%; background: #f6f6f6; display: flex; align-items: center; justify-content: center; font-size: 14px; line-height: 1.3">02</span>
+<span aria-hidden="true" style="width: 64px; height: 64px; border-radius: 50%; background: #f6f6f6; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C5.939 2 1 5.991 1 10.8936C1 14.1286 3.09 17.0191 6.5 18.5977L7.105 23L12.374 19.7872C18.27 19.6316 23 15.6961 23 10.8936C23 6.09105 18.061 2 12 2Z" fill="black"></path></svg></span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 11px">
+<h3 class="ee-h" style="font-size: 24px">Discuss Your Project</h3>
+<p class="ee-b" style="font-size: 14px; color: #6d6d6d">We discuss the editing style, requirements, budget, and deadline</p>
+</div>
+</div>
+<div class="ee-step-div" aria-hidden="true" data-reveal="line-y" style="flex: none; width: 1px; background: #ececec"></div>
+<div class="ee-step" data-reveal="rise" style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 100px">
+<div style="display: flex">
+<span style="width: 64px; height: 64px; border-radius: 50%; background: #f6f6f6; display: flex; align-items: center; justify-content: center; font-size: 14px; line-height: 1.3">03</span>
+<span aria-hidden="true" style="width: 64px; height: 64px; border-radius: 50%; background: #f6f6f6; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1.59985" y="2" width="20" height="20" fill="black"></rect><path d="M6.59985 17H16.6" stroke="#F6F6F6" stroke-width="1.3"></path><path d="M14.7249 10.1251L11.5998 7L8.47485 10.1251M11.5998 7V14.5001" stroke="#F6F6F6" stroke-width="1.3"></path></svg></span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 11px">
+<h3 class="ee-h" style="font-size: 24px">Send Your Footage</h3>
+<p class="ee-b" style="font-size: 14px; color: #6d6d6d">Send your raw footage, recordings, VODs, or other files needed for the project</p>
+</div>
+</div>
+<div class="ee-step-div" aria-hidden="true" data-reveal="line-y" style="flex: none; width: 1px; background: #ececec"></div>
+<div class="ee-step" data-reveal="rise" style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 100px">
+<div style="display: flex">
+<span style="width: 64px; height: 64px; border-radius: 50%; background: #f6f6f6; display: flex; align-items: center; justify-content: center; font-size: 14px; line-height: 1.3">04</span>
+<span aria-hidden="true" style="width: 64px; height: 64px; border-radius: 50%; background: #f6f6f6; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="4" width="22" height="16" fill="black"></rect><path d="M16 12L10 9V15L16 12Z" fill="#F6F6F6"></path></svg></span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 11px">
+<h3 class="ee-h" style="font-size: 24px">Editing Begins</h3>
+<p class="ee-b" style="font-size: 14px; color: #6d6d6d">We edit the content based on the agreed requirements</p>
+</div>
+</div>
+<div class="ee-step-div" aria-hidden="true" data-reveal="line-y" style="flex: none; width: 1px; background: #ececec"></div>
+<div class="ee-step" data-reveal="rise" style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 100px">
+<div style="display: flex">
+<span style="width: 64px; height: 64px; border-radius: 50%; background: #f6f6f6; display: flex; align-items: center; justify-content: center; font-size: 14px; line-height: 1.3">05</span>
+<span aria-hidden="true" style="width: 64px; height: 64px; border-radius: 50%; background: #f6f6f6; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="black"></circle><path d="M9 11.7143L11.1818 14L15 10" stroke="#F6F6F6" stroke-width="1.3"></path></svg></span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 11px">
+<h3 class="ee-h" style="font-size: 24px">Review &amp; Receive</h3>
+<p class="ee-b" style="font-size: 14px; color: #6d6d6d">You receive the finished video and can request any agreed revisions</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="about" class="ee-section ee-pad" style="max-width: 1440px; margin: 200px auto 0; box-sizing: border-box; padding: 0 32px; display: flex; flex-direction: column; align-items: center; gap: 40px">
+<h2 class="ee-h" style="width: 100%; max-width: 957px; font-size: clamp(34px, 4.86vw, 70px); display: flex; flex-direction: column; align-items: center; text-align: center">
+<span style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; column-gap: 0.22em" data-reveal="rise">a streamlined<span data-reveal="img" style="flex: none; display: block; width: 1.314em; height: 0.771em; overflow: hidden"><video src="https://cd1fe2d5-497a-4f12-b9ff-1fb58afeba97.selstorage.ru/demo/video_e7c7b17d11b9.mp4" autoplay="autoplay" muted="muted" loop="loop" playsinline="playsinline" poster="./assets/e4ca4a9c7d15f66484b0f5fc7eea62d5.png" aria-hidden="true" style="display: block; width: 100%; height: 100%; object-fit: cover"></video></span>post-</span>
+<span style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; column-gap: 0.22em" data-reveal="rise">production agency<span data-reveal="img" style="flex: none; display: block; width: 1.329em; height: 0.771em; overflow: hidden"><img src="./assets/3a39036f75340a6e940981311da099dc.png" alt="" style="display: block; width: 100%; height: 100%; object-fit: cover"></span></span>
+<span style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; column-gap: 0.22em" data-reveal="rise">uniting top-tier motion</span>
+<span style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; column-gap: 0.22em" data-reveal="rise">designers,<span data-reveal="img" style="flex: none; display: block; width: 1.329em; height: 0.771em; overflow: hidden"><img src="./assets/64ba9b89f8d59d98c10d32302a613d2a.png" alt="" style="display: block; width: 100%; height: 100%; object-fit: cover"></span>video editors,</span>
+<span style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; column-gap: 0.22em" data-reveal="rise"><span data-reveal="img" style="flex: none; display: block; width: 1.329em; height: 0.771em; overflow: hidden"><img src="./assets/368a2511aa8ba8e60d31ec5663086e90.png" alt="" style="display: block; width: 100%; height: 100%; object-fit: cover"></span>and colorists</span>
+</h2>
+<a class="ee-btn" href="#about" data-reveal="rise"><span>About Us</span></a>
+</section>
+
+<section aria-label="Testimonials" class="ee-section" data-reveal="rise" style="position: relative; z-index: 1; margin-top: 200px">
+<div class="ee-t-side" aria-hidden="true" data-t="side" style="position: absolute; top: 0; right: calc(50% + 373px); width: 546px; opacity: 0.3; display: flex; flex-direction: column; align-items: center; gap: 40px; text-align: center">
+<div style="flex: none; width: 84px; height: 84px; border-radius: 110px; overflow: hidden; background: #d5d5d5">
+<sc-if value="{{ prev.hasAvatar }}" hint-placeholder-val="{{ true }}"><img src="{{ prev.avatar }}" alt="" style="display: block; width: 84px; height: 84px; object-fit: cover"></sc-if>
+<sc-if value="{{ prev.noAvatar }}" hint-placeholder-val="{{ false }}"><div class="ee-ph" style="width: 84px; height: 84px; color: #6b6b6b; font-size: 9px">[PHOTO]</div></sc-if>
+</div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%">
+<p class="ee-h" style="font-size: 30px">{{ prev.quote }}</p>
+<div style="display: flex; flex-direction: column; gap: 4px; font-size: 14px; line-height: 1.3"><span>{{ prev.name }}</span><span style="color: rgba(0, 0, 0, 0.5)">{{ prev.role }}</span></div>
+</div>
+</div>
+<div class="ee-t-side" aria-hidden="true" data-t="side" style="position: absolute; top: 0; left: calc(50% + 373px); width: 546px; opacity: 0.3; display: flex; flex-direction: column; align-items: center; gap: 40px; text-align: center">
+<div style="flex: none; width: 84px; height: 84px; border-radius: 110px; overflow: hidden; background: #d5d5d5">
+<sc-if value="{{ next.hasAvatar }}" hint-placeholder-val="{{ true }}"><img src="{{ next.avatar }}" alt="" style="display: block; width: 84px; height: 84px; object-fit: cover"></sc-if>
+<sc-if value="{{ next.noAvatar }}" hint-placeholder-val="{{ false }}"><div class="ee-ph" style="width: 84px; height: 84px; color: #6b6b6b; font-size: 9px">[PHOTO]</div></sc-if>
+</div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%">
+<p class="ee-h" style="font-size: 30px">{{ next.quote }}</p>
+<div style="display: flex; flex-direction: column; gap: 4px; font-size: 14px; line-height: 1.3"><span>{{ next.name }}</span><span style="color: rgba(0, 0, 0, 0.5)">{{ next.role }}</span></div>
+</div>
+</div>
+<figure aria-live="polite" style="position: relative; margin: 0 auto; width: min(546px, calc(100% - 40px)); display: flex; flex-direction: column; align-items: center; gap: 40px; text-align: center">
+<div aria-hidden="true" data-t="cur" style="flex: none; width: 84px; height: 84px; border-radius: 110px; overflow: hidden; background: #d5d5d5">
+<sc-if value="{{ cur.hasAvatar }}" hint-placeholder-val="{{ true }}"><img src="{{ cur.avatar }}" alt="" style="display: block; width: 84px; height: 84px; object-fit: cover"></sc-if>
+<sc-if value="{{ cur.noAvatar }}" hint-placeholder-val="{{ false }}"><div class="ee-ph" style="width: 84px; height: 84px; color: #6b6b6b; font-size: 9px">[PHOTO]</div></sc-if>
+</div>
+<div data-t="cur" style="display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%">
+<blockquote class="ee-h" style="margin: 0; font-size: clamp(22px, 2.08vw, 30px)">{{ cur.quote }}</blockquote>
+<figcaption style="display: flex; flex-direction: column; gap: 4px; font-size: 14px; line-height: 1.3"><span>{{ cur.name }}</span><span style="color: rgba(0, 0, 0, 0.5)">{{ cur.role }}</span></figcaption>
+</div>
+<div style="display: flex; align-items: stretch; height: 50px; background: #000000">
+<button type="button" class="ee-arrow" aria-label="Previous testimonial" onClick="{{ prevT }}"><svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M32 25H17M23.2195 19L17 25L23.2195 31" stroke="white" stroke-width="1.5"></path></svg></button>
+<span aria-hidden="true" style="width: 1px; background: rgba(255, 255, 255, 0.2)"></span>
+<button type="button" class="ee-arrow" aria-label="Next testimonial" onClick="{{ nextT }}"><svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M18 25H33M26.7805 19L33 25L26.7805 31" stroke="white" stroke-width="1.5"></path></svg></button>
+</div>
+</figure>
+<div class="ee-t-fade" aria-hidden="true" style="position: absolute; z-index: 2; top: 0; left: 0; width: 283px; height: 277px; background: linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%); pointer-events: none"></div>
+<div class="ee-t-fade" aria-hidden="true" style="position: absolute; z-index: 2; top: 0; right: 0; width: 283px; height: 277px; background: linear-gradient(270deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%); pointer-events: none"></div>
+</section>
+
+<div class="ee-footer-zone" style="position: relative; padding: 397px 32px 20px">
+<div class="ee-glow" aria-hidden="true" style="position: absolute; z-index: 0; left: 0; bottom: 0; width: 100%; height: 1307px; pointer-events: none">
+<svg class="ee-glow-layer" width="1440" height="1307" viewBox="0 0 1440 1307" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%">
+<g filter="url(#ee-blur-0)"><ellipse cx="720" cy="815.372" rx="813" ry="595.372" fill="#FF7B54"></ellipse></g>
+</svg>
+<svg class="ee-glow-layer" width="1440" height="1307" viewBox="0 0 1440 1307" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%">
+<g filter="url(#ee-blur-1)"><ellipse cx="720" cy="931.708" rx="813" ry="525.036" fill="#FF1B6B"></ellipse></g>
+</svg>
+<svg class="ee-glow-layer" width="1440" height="1307" viewBox="0 0 1440 1307" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%">
+<g filter="url(#ee-blur-2)"><ellipse cx="720" cy="1043.96" rx="813" ry="498.038" fill="#743FE0"></ellipse></g>
+</svg>
+<svg class="ee-glow-layer" width="1440" height="1307" viewBox="0 0 1440 1307" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%">
+<g filter="url(#ee-blur-3)"><path d="M1264 1130.99C1264 1246.75 1020.44 1340.58 720 1340.58C419.557 1340.58 176 1246.75 176 1130.99C176 1015.24 419.557 787.483 720 787.483C1020.44 787.483 1264 1015.24 1264 1130.99Z" fill="#5B83FF"></path></g>
+<defs>
+<filter id="ee-blur-0" x="-313" y="0" width="2066" height="1630.74" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="110"></feGaussianBlur></filter>
+<filter id="ee-blur-1" x="-313" y="186.673" width="2066" height="1490.07" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="110"></feGaussianBlur></filter>
+<filter id="ee-blur-2" x="-423" y="215.924" width="2286" height="1656.08" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="165"></feGaussianBlur></filter>
+<filter id="ee-blur-3" x="-204" y="407.483" width="1848" height="1313.1" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="190"></feGaussianBlur></filter>
+</defs>
+</svg>
+</div>
+
+<footer id="contact" class="ee-footer" data-reveal="rise" style="position: relative; z-index: 1; max-width: 1376px; margin: 0 auto; background: #ffffff; display: grid; grid-template-columns: minmax(0, 802fr) 1px minmax(0, 573fr)">
+<div class="ee-footer-left" style="padding: 60px; display: flex; flex-direction: column; gap: 58px">
+<h2 class="ee-h" style="max-width: 304px; font-size: clamp(24px, 2.08vw, 30px)">Ready to scale your video content?</h2>
+<div style="display: flex; flex-direction: column; gap: 32px">
+<div role="group" aria-label="I am a" style="display: flex; gap: 12px">
+<button type="button" aria-pressed="{{ bizPressed }}" onClick="{{ pickBusiness }}" style="flex: 1 1 0; min-height: 50px; padding: 16px 24px; border: 0; background: {{ bizBg }}; color: {{ bizFg }}; font-family: inherit; font-size: 14px; line-height: 1.3; cursor: pointer">Business</button>
+<button type="button" aria-pressed="{{ crePressed }}" onClick="{{ pickCreator }}" style="flex: 1 1 0; min-height: 50px; padding: 16px 24px; border: 0; background: {{ creBg }}; color: {{ creFg }}; font-family: inherit; font-size: 14px; line-height: 1.3; cursor: pointer">Creator</button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 23px">
+<label class="ee-field" style="display: block; padding: 24px 0; border-bottom: 1px solid rgba(0, 0, 0, 0.13)"><span class="ee-sr">Full Name</span><input class="ee-input" type="text" name="name" autocomplete="name" placeholder="Full Name"></label>
+<label class="ee-field" style="display: block; padding: 24px 0; border-bottom: 1px solid rgba(0, 0, 0, 0.13)"><span class="ee-sr">Email</span><input class="ee-input" type="email" name="email" autocomplete="email" placeholder="Email"></label>
+<label class="ee-field" style="display: block; padding: 24px 0; border-bottom: 1px solid rgba(0, 0, 0, 0.13)"><span class="ee-sr">Link to your channel or brand</span><input class="ee-input" type="url" name="link" placeholder="Link to your channel or brand"></label>
+</div>
+</div>
+<button type="button" class="ee-btn" style="width: 100%"><span>Submit</span></button>
+</div>
+<div class="ee-footer-div" aria-hidden="true" style="width: 1px; background: rgba(204, 204, 204, 0.5)"></div>
+<div class="ee-footer-right" style="padding: 60px 41px 60px 60px; display: flex; flex-direction: column; justify-content: space-between; gap: 59px">
+<div style="display: flex; flex-direction: column; gap: 59px">
+<svg width="109" height="61" viewBox="0 0 109 61" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Evolve Editing"><path fill-rule="evenodd" clip-rule="evenodd" d="M73.5234 0.313822C75.6123 -0.0361898 77.5951 -0.0165222 79.698 0.0173079C87.4799 0.14232 94.8195 3.77039 100.153 9.35625C104.904 14.2998 107.911 20.6605 108.715 27.47C109.027 30.1098 109.033 34.2215 108.965 36.9469C106.967 37.081 104.829 37.0419 102.819 37.0429L62.3825 37.0559C62.909 38.8205 64.5044 40.9315 65.7235 42.3017C71.4396 48.7304 78.5279 47.8537 86.2638 47.8437L99.7699 47.8296C102.78 47.8246 105.924 47.7715 108.918 47.8756C108.895 54.7647 104.239 59.7061 97.5668 60.8592C96.8802 60.9362 95.3629 60.9082 94.5942 60.9122L88.5588 60.9222L80.4195 60.9192C79.5678 60.9162 78.6941 60.8943 77.8504 60.9053C70.7311 60.9984 63.6978 58.0687 58.358 53.4296C56.9568 52.2115 55.7537 50.8572 54.5246 49.442C53.6208 50.2327 52.7639 51.3757 51.8727 52.2415C39.4291 64.3272 19.644 63.9769 7.88916 50.55C3.52069 45.5465 0.808633 39.313 0.125526 32.7061C-0.00919347 31.3489 0.0430839 29.6204 0.0249678 28.2321C0.00735211 26.876 -0.0331464 25.2878 0.0534307 23.9544C1.8179 23.8052 3.63094 23.9018 5.40632 23.9117L14.0681 23.9274L34.2919 23.8664C38.4065 23.8877 42.5213 23.8773 46.6359 23.8351C45.8668 21.9069 44.3996 19.8045 42.9577 18.3214C40.7099 15.9766 37.8388 14.3229 34.6827 13.5547C31.6805 12.8212 25.2225 13.123 21.8527 13.0891C14.618 13.0163 7.29302 13.1772 0.0518668 13.0516C-0.0687407 6.39354 4.86104 1.04448 11.358 0.0675089C12.0488 -0.00855323 13.4068 0.0252525 14.1449 0.0257529L19.1833 0.0316957C23.6153 0.0368001 28.053 0.0040343 32.4858 0.0382641C34.0885 0.050575 36.1581 0.422683 37.7149 0.793312C42.3604 1.89919 46.7599 4.1997 50.3887 7.29395C51.882 8.56727 53.1543 10.0343 54.5015 11.4476C59.5529 5.50847 65.7605 1.61419 73.5234 0.313822ZM46.6054 37.073C37.3264 36.8908 27.9752 37.1681 18.6888 37.053C17.3068 37.0349 15.8483 37.024 14.4705 37.067C17.5137 45.6696 28.1871 50.0235 36.4948 46.7957C38.9258 45.8509 40.2325 44.9811 42.1938 43.3096C44.2334 41.3709 45.4674 39.6783 46.6054 37.073ZM94.5132 23.801C92.1011 16.7663 83.6466 12.1866 76.3861 13.1797C70.2917 14.0088 64.6247 17.9873 62.3536 23.8063C64.5345 23.9006 66.9357 23.8578 69.1376 23.8592L80.778 23.8515L89.4507 23.8548C90.838 23.8598 93.204 23.9327 94.5132 23.801Z" fill="black"></path></svg>
+<div class="ee-menus" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 34px; row-gap: 32px">
+<nav aria-label="Footer">
+<ul class="ee-h" style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: 20px">
+<li><a class="ee-link" href="#services" style="color: #000000">Services</a></li>
+<li><a class="ee-link" href="#for-businesses" style="color: #000000">For Businesses</a></li>
+<li><a class="ee-link" href="#for-creators" style="color: #000000">For Creators</a></li>
+<li><a class="ee-link" href="#services" style="color: #000000">Work</a></li>
+<li><a class="ee-link" href="#about" style="color: #000000">About</a></li>
+</ul>
+</nav>
+<ul class="ee-h" aria-label="Contacts" style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: 20px">
+<li><a class="ee-link" href="#" style="color: #000000">YouTube</a></li>
+<li><a class="ee-link" href="#" style="color: #000000">Instagram</a></li>
+<li><a class="ee-link" href="#" style="color: #000000">LinkedIn</a></li>
+<li><a class="ee-link" href="tel:+966333333333" style="color: #000000">+966 33 333 3333</a></li>
+<li><a class="ee-link" href="mailto:hello@Evolve.com" style="color: #000000">hello@Evolve.com</a></li>
+</ul>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px; font-size: 14px; line-height: 1.3; color: rgba(0, 0, 0, 0.5)">
+<p class="ee-b">Evolve Editing © 2026. All rights reserved.</p>
+<a class="ee-link" href="#" style="color: rgba(0, 0, 0, 0.5)">Privacy Policy</a>
+<a class="ee-link" href="#" style="color: rgba(0, 0, 0, 0.5)">Terms of Service</a>
+</div>
+</div>
+</footer>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":6325}}'>
+class Component extends DCLogic {
+  // Motion layer: one easing, one rise distance and one 90 ms stagger step for the whole page.
+  // Each element is revealed once; reduced-motion users and static renders get the final state.
+  componentDidMount() {
+    const root = this._root || document.getElementById('top');
+    if (!root) return;
+    const win = root.ownerDocument.defaultView || window;
+    const reduce = win.matchMedia ? win.matchMedia('(prefers-reduced-motion: reduce)').matches : false;
+    // Videos carry src, autoplay, muted, loop and playsinline in the markup, so a downloaded HTML plays them
+    // without this script. The script adds the muted attribute that React does not render (autoplay policies
+    // and DOM-based exports rely on it) and keeps videos still for reduced-motion users.
+    const vids = Array.from(root.querySelectorAll('video'));
+    vids.forEach((v) => {
+      v.muted = true;
+      v.defaultMuted = true;
+    });
+    if (reduce) {
+      vids.forEach((v) => {
+        v.removeAttribute('autoplay');
+        v.pause();
+      });
+    }
+    if (reduce || !('IntersectionObserver' in win)) return;
+    this._root = root;
+    this._win = win;
+    this._motion = true;
+    this._timers = [];
+    this._rafs = [];
+    root.setAttribute('data-motion', 'on');
+
+    // Anchor links glide instead of jumping. The handler sits on the root in the bubble phase, so element
+    // onClick handlers (Creator/Brand mode) still run; only the default jump is cancelled.
+    this._onAnchor = (e) => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const a = e.target && e.target.closest ? e.target.closest('a[href^="#"]') : null;
+      if (!a || !root.contains(a)) return;
+      const id = a.getAttribute('href').slice(1);
+      const target = id ? root.ownerDocument.getElementById(id) : null;
+      if (!target) return;
+      e.preventDefault();
+      this._glideTo(target);
+    };
+    root.addEventListener('click', this._onAnchor);
+
+    const reveal = (el, delay) => {
+      el.style.setProperty('--ee-d', delay + 'ms');
+      el.setAttribute('data-in', '');
+      el.querySelectorAll('[data-count]').forEach((n) => {
+        this._timers.push(win.setTimeout(() => this._countUp(n), delay));
+      });
+    };
+    this._io = new win.IntersectionObserver((entries) => {
+      // Elements entering together are staggered in document order; data-reveal-delay pins a fixed delay.
+      const hits = entries
+        .filter((e) => e.isIntersecting)
+        .map((e) => e.target)
+        .sort((a, b) => (a.compareDocumentPosition(b) & 4 ? -1 : 1));
+      hits.forEach((el, k) => {
+        this._io.unobserve(el);
+        const fixed = el.getAttribute('data-reveal-delay');
+        reveal(el, fixed !== null ? Number(fixed) : Math.min(k, 6) * 90);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
+    // Lazy mode. At mount, videos far from the viewport release their src, which aborts the download; they get
+    // it back 600 px before they scroll in. The src stays in the markup,
+    // so a downloaded HTML without this script still plays every video. Off-screen videos pause.
+    // The PNG poster stays when autoplay is blocked or the host is unreachable (inside the canvas the page
+    // may load media only from its own asset store).
+    const vh0 = win.innerHeight || root.ownerDocument.documentElement.clientHeight;
+    root.querySelectorAll('video').forEach((v) => {
+      const src = v.getAttribute('src');
+      if (!src) return;
+      v.setAttribute('data-lazy-src', src);
+      const r = v.getBoundingClientRect();
+      const near = r.width > 0 && r.top < vh0 + 600 && r.bottom > -600;
+      if (!near) {
+        v.removeAttribute('src');
+        v.load();
+      }
+    });
+    this._vio = new win.IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        const v = e.target;
+        if (!e.isIntersecting) {
+          v.pause();
+          return;
+        }
+        const lazySrc = v.getAttribute('data-lazy-src');
+        if (!v.getAttribute('src') && lazySrc) v.src = lazySrc;
+        const p = v.play();
+        if (p && p.catch) p.catch(() => {});
+      });
+    }, { rootMargin: '600px 0px' });
+    // Reveals are held while the page loader is up, so the first screen animates in view, not under the veil.
+    let revealsOn = false;
+    const watch = () => {
+      if (revealsOn) root.querySelectorAll('[data-reveal]:not([data-in])').forEach((el) => this._io.observe(el));
+      root.querySelectorAll('video').forEach((v) => this._vio.observe(v));
+    };
+    watch();
+    // Nodes re-created by the editor or by re-renders are observed too, so no element stays hidden.
+    this._mo = new win.MutationObserver(watch);
+    this._mo.observe(root, { childList: true, subtree: true });
+    this._pageLoader(root, () => {
+      revealsOn = true;
+      watch();
+    });
+
+    // Hero parallax: each media layer lags the scroll by its own factor (data-parallax), one rAF per frame.
+    const layers = Array.from(root.querySelectorAll('[data-parallax]'));
+    let queued = false;
+    const update = () => {
+      queued = false;
+      const y = Math.max(0, -root.getBoundingClientRect().top);
+      if (y > 1600) return;
+      layers.forEach((el) => {
+        const f = Number(el.getAttribute('data-parallax')) || 0;
+        el.style.transform = 'translate3d(0, ' + (y * f).toFixed(1) + 'px, 0)';
+      });
+    };
+    this._onScroll = () => {
+      if (queued) return;
+      queued = true;
+      this._scrollRaf = win.requestAnimationFrame(update);
+    };
+    root.ownerDocument.addEventListener('scroll', this._onScroll, { passive: true, capture: true });
+    win.addEventListener('resize', this._onScroll, { passive: true });
+    update();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (!this._motion || !this._root) return;
+    const was = (prevState || {}).t || 0;
+    const now = (this.state || {}).t || 0;
+    if (was === now) return;
+    const dx = 28 * (this._dir || 1);
+    const ease = 'cubic-bezier(0.16, 1, 0.3, 1)';
+    this._root.querySelectorAll('[data-t="cur"]').forEach((el, k) => {
+      el.animate(
+        [{ opacity: 0, transform: 'translateX(' + dx + 'px)' }, { opacity: 1, transform: 'none' }],
+        { duration: 800, delay: k * 90, easing: ease, fill: 'backwards' }
+      );
+    });
+    this._root.querySelectorAll('[data-t="side"]').forEach((el) => {
+      el.animate([{ opacity: 0 }, { opacity: 0.3 }], { duration: 800, easing: ease });
+    });
+  }
+
+  componentWillUnmount() {
+    const win = this._win;
+    if (this._io) this._io.disconnect();
+    if (this._mo) this._mo.disconnect();
+    if (this._vio) this._vio.disconnect();
+    if (this._pageLoaderEl) this._pageLoaderEl.remove();
+    if (!win) return;
+    if (this._onAnchor && this._root) this._root.removeEventListener('click', this._onAnchor);
+    if (this._glideRaf) win.cancelAnimationFrame(this._glideRaf);
+    if (this._glideCleanup) this._glideCleanup();
+    if (this._onScroll && this._root) {
+      this._root.ownerDocument.removeEventListener('scroll', this._onScroll, { capture: true });
+      win.removeEventListener('resize', this._onScroll);
+    }
+    (this._timers || []).forEach((id) => win.clearTimeout(id));
+    (this._rafs || []).forEach((id) => win.cancelAnimationFrame(id));
+    if (this._scrollRaf) win.cancelAnimationFrame(this._scrollRaf);
+  }
+
+  // Page loader over the whole viewport while the fonts and the videos of the first screen load.
+  // It stays at least 700 ms, so it never flashes, and at most 6 s, so a slow or blocked file never holds
+  // the page; a video counts as loaded on canplay, playing or error. onExit starts the reveals as it fades.
+  // The loader exists only when this script runs, so a downloaded HTML without it opens straight to the page.
+  _pageLoader(root, onExit) {
+    const win = this._win;
+    const doc = root.ownerDocument;
+    const el = doc.createElement('div');
+    el.className = 'ee-page-loader';
+    el.setAttribute('aria-hidden', 'true');
+    const orb = doc.createElement('span');
+    orb.className = 'ee-orb';
+    for (let i = 0; i < 4; i += 1) orb.appendChild(doc.createElement('span'));
+    el.appendChild(orb);
+    root.appendChild(el);
+    this._pageLoaderEl = el;
+    const t0 = win.performance.now();
+    const vh = win.innerHeight || doc.documentElement.clientHeight;
+    const firstScreen = Array.from(root.querySelectorAll('video[src]')).filter((v) => {
+      const r = v.getBoundingClientRect();
+      return r.width > 0 && r.top < vh && r.bottom > 0;
+    });
+    const ready = (v) => new Promise((resolve) => {
+      if (v.readyState >= 3) {
+        resolve();
+        return;
+      }
+      const kinds = ['canplay', 'playing', 'error'];
+      const fin = () => {
+        kinds.forEach((k) => v.removeEventListener(k, fin));
+        resolve();
+      };
+      kinds.forEach((k) => v.addEventListener(k, fin));
+    });
+    const fonts = doc.fonts && doc.fonts.ready ? doc.fonts.ready.catch(() => {}) : Promise.resolve();
+    const loaded = Promise.all([fonts].concat(firstScreen.map(ready)));
+    const cap = new Promise((resolve) => { this._timers.push(win.setTimeout(resolve, 6000)); });
+    let left = false;
+    Promise.race([loaded, cap]).then(() => {
+      const wait = Math.max(0, 700 - (win.performance.now() - t0));
+      this._timers.push(win.setTimeout(() => {
+        if (left) return;
+        left = true;
+        el.setAttribute('data-out', '');
+        onExit();
+        this._timers.push(win.setTimeout(() => el.remove(), 900));
+      }, wait));
+    });
+  }
+
+  // Eased scroll to an anchor target with the page's expo-out curve, cubic-bezier(.16,1,.3,1).
+  // Duration grows with distance (700–1600 ms). Wheel, touch or a key press cancels the glide at once.
+  // When it ends, focus moves to the target without a second scroll, for keyboard and screen-reader users.
+  _glideTo(target) {
+    const win = this._win;
+    const root = this._root;
+    const doc = root.ownerDocument;
+    // Nearest ancestor that really scrolls: the artboard document itself or a scrolling wrapper around it.
+    let sc = root.parentElement;
+    while (sc && sc !== doc.body && sc !== doc.documentElement) {
+      const oy = win.getComputedStyle(sc).overflowY;
+      if ((oy === 'auto' || oy === 'scroll') && sc.scrollHeight > sc.clientHeight) break;
+      sc = sc.parentElement;
+    }
+    const isDoc = !sc || sc === doc.body || sc === doc.documentElement;
+    const el = isDoc ? (doc.scrollingElement || doc.documentElement) : sc;
+    const viewTop = isDoc ? 0 : el.getBoundingClientRect().top;
+    const from = el.scrollTop;
+    // Layout offset through offsetParent ignores reveal transforms that are still in progress.
+    let y = 0;
+    let n = target;
+    while (n && n !== root) {
+      y += n.offsetTop;
+      n = n.offsetParent;
+    }
+    const goal = n === root ? from + root.getBoundingClientRect().top - viewTop + y : from + target.getBoundingClientRect().top - viewTop;
+    const to = Math.max(0, Math.min(el.scrollHeight - el.clientHeight, goal));
+    const dist = to - from;
+    if (this._glideRaf) win.cancelAnimationFrame(this._glideRaf);
+    if (this._glideCleanup) this._glideCleanup();
+    let cancelled = false;
+    const cancel = () => { cancelled = true; };
+    const opts = { passive: true, capture: true };
+    const kinds = ['wheel', 'touchstart', 'keydown'];
+    kinds.forEach((k) => win.addEventListener(k, cancel, opts));
+    const cleanup = () => {
+      kinds.forEach((k) => win.removeEventListener(k, cancel, opts));
+      this._glideCleanup = null;
+    };
+    this._glideCleanup = cleanup;
+    const land = () => {
+      cleanup();
+      this._glideRaf = 0;
+      if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+      if (target.focus) target.focus({ preventScroll: true });
+    };
+    if (Math.abs(dist) < 2) {
+      land();
+      return;
+    }
+    const dur = Math.min(1600, Math.max(700, 600 + Math.abs(dist) * 0.25));
+    const t0 = win.performance.now();
+    const step = (now) => {
+      if (cancelled) {
+        cleanup();
+        this._glideRaf = 0;
+        return;
+      }
+      const p = Math.min(1, (now - t0) / dur);
+      el.scrollTop = from + dist * (p >= 1 ? 1 : 1 - Math.pow(2, -10 * p));
+      if (p < 1) this._glideRaf = win.requestAnimationFrame(step);
+      else land();
+    };
+    this._glideRaf = win.requestAnimationFrame(step);
+  }
+
+  // Counts every number inside the literal copy from 0 to its value ("24–48h", "2,000+", "99.4%").
+  // It writes into the element's own text node and ends on the original string, so re-renders stay no-ops.
+  _countUp(el) {
+    const win = this._win;
+    const text = el.firstChild;
+    if (!win || !text || text.nodeType !== 3) return;
+    const final = text.nodeValue;
+    const re = /\d[\d,]*(?:\.\d+)?/g;
+    const fmt = (m, p) => {
+      const dec = (m.split('.')[1] || '').length;
+      const v = parseFloat(m.replace(/,/g, '')) * p;
+      return m.indexOf(',') >= 0
+        ? v.toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec })
+        : v.toFixed(dec);
+    };
+    const t0 = win.performance.now();
+    const dur = 1600;
+    const step = (now) => {
+      const p = Math.min(1, (now - t0) / dur);
+      const e = 1 - Math.pow(1 - p, 4);
+      text.nodeValue = p < 1 ? final.replace(re, (m) => fmt(m, e)) : final;
+      if (p < 1) this._rafs.push(win.requestAnimationFrame(step));
+    };
+    text.nodeValue = final.replace(re, (m) => fmt(m, 0));
+    this._rafs.push(win.requestAnimationFrame(step));
+  }
+
+  renderVals() {
+    if (!this._rootRef) this._rootRef = (el) => { this._root = el; };
+    const s = this.state || {};
+    const mode = s.mode || 'business';
+    // Carousel content is data: prev/next slots wrap around, so with two
+    // testimonials both side slots show the second one, as in the Figma frame.
+    // avatar: asset url, or '' while the photo is missing (the slot then shows a placeholder).
+    const items = [
+      { quote: '“They completely took over our Shorts production. Our views tripled in the very first month!”', name: 'Alex M.', role: 'Tech Creator', avatar: './assets/306bedca36ffdee81a71d78e24f2131c.png' },
+      { quote: '“Fast, reliable, and strictly on brand. Easily the best editing partner we’ve worked with.”', name: 'Sarah K.', role: 'CMO at SaaS Platform', avatar: '' }
+    ].map((it) => ({ ...it, hasAvatar: Boolean(it.avatar), noAvatar: !it.avatar }));
+    const n = items.length;
+    const i = (((s.t || 0) % n) + n) % n;
+    const biz = mode === 'business';
+    return {
+      rootRef: this._rootRef,
+      menuOpen: s.menu ? 'true' : 'false',
+      toggleMenu: () => this.setState({ menu: !s.menu }),
+      closeMenu: () => this.setState({ menu: false }),
+      cur: items[i],
+      prev: items[(i - 1 + n) % n],
+      next: items[(i + 1) % n],
+      prevT: () => { this._dir = -1; this.setState({ t: i - 1 }); },
+      nextT: () => { this._dir = 1; this.setState({ t: i + 1 }); },
+      pickBusiness: () => this.setState({ mode: 'business' }),
+      pickCreator: () => this.setState({ mode: 'creator' }),
+      bizBg: biz ? '#000000' : '#e5e5e5',
+      bizFg: biz ? '#ffffff' : '#000000',
+      creBg: biz ? '#e5e5e5' : '#000000',
+      creFg: biz ? '#000000' : '#ffffff',
+      bizPressed: biz ? 'true' : 'false',
+      crePressed: biz ? 'false' : 'true'
+    };
+  }
+}
+</script>
+</body>
+</html>
